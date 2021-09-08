@@ -1,0 +1,70 @@
+
+Welcome to AceCastDocs homepage!
+==============================================
+
+Here is a subheading
+--------------------
+
+
+* Bulleted list 
+
+**Bold Font**
+
+*Italics*
+
+.. warning::
+
+   Warning!
+
+.. admonition:: Notice
+   
+   Notice!
+
+linking to another page (format :ref:`(text to link) <linked rst file header reference>`
+:ref:`WSV3 Link <wsv3link>`
+
+For external links:
+`(linked text) <https:://www.external_site.com>`_ 
+
+Tip: delete doctrees file contents (except index and environment) of TOC is being funky
+
+Here is how to write text in code::
+
+	here is some code
+
+.. toctree::
+   :maxdepth: 2
+   :caption: AceCast
+
+   ./Releases
+   ./Installation
+   
+
+.. toctree::
+   :maxdepth: 2
+   :caption: WSV3
+
+   ./WSV3
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Other
+
+   ./External_Links
+   ./Gallery
+   ./Tools
+   ./Tutorials
+   ./FAQS
+   ./Support
+
+
+
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
