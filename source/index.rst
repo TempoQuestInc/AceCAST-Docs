@@ -12,7 +12,7 @@ This documentation is currently under construction
    :alt: You found me!
    :align: center
 
-   Numerical weather predictions by splitting the globe into "cubes".`Credit <https://business.esa.int/projects/decisionx>`_
+   Numerical weather predictions by splitting the globe into "cubes". `Credit <https://business.esa.int/projects/decisionx>`_
 
 Index
 =====
