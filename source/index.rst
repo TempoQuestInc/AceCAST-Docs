@@ -21,6 +21,7 @@ Index
    :maxdepth: 2
    :caption: AceCast
 
+   ./About
    ./Releases
    ./Requirements
    ./Installation
