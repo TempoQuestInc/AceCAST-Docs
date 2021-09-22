@@ -137,8 +137,8 @@ In this folder (henceforth denoted as a directory) should be 6 items (3 director
 	* A text file that contains brief tutorial instructions about how to install and run AceCAST, and some helpful 
 	  recommendations for best practices.
 	* To view this file, enter the following in the command line::
-	
-	  vi README
+
+		$ vi README
 
 #. README.namelist_support
 	* Location: ../AceCASTv1.2/
@@ -187,7 +187,7 @@ In this folder (henceforth denoted as a directory) should be 6 items (3 director
 
    This process can take up to an hour to complete and requires ~16GB of storage.
 
-*If the installation was successful, you should see a message in the terminal similar to: 
+* If the installation was successful, you should see a message in the terminal similar to: 
 
 	* "Successfully Installed AceCAST Dependency Packages."
 
