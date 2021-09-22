@@ -4,6 +4,13 @@ How to Use
 ===========
 
 (Under Construction)
+.. admonition:: Please Note: Preprocessing
+   *The role of AceCAST is simply to accelerate the execution of WRF itself on GPUs. AceCAST does not include any other elements of a typical end-to-end workflow of WRF.*
+
+.. admonition:: Please Note: Benchmark Recommendation
+   It is highly recommended that users run the test cases provided in the ../AceCASTv1.2/benchmarks directory to familiarize themselves with AceCAST. For further information, please refer to the **Additional Information** section. 
+
+
 
 Running AceCAST
 ---------------
