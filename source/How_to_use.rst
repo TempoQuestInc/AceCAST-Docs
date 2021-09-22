@@ -34,14 +34,19 @@ First Step: Running Real (real.exe)
 **1B.)** Ensure you have properly installed the required dependencies (see :ref:`installation <installationlink>` for more information) and have set up the corresponding runtime environment correctly. To ensure a proper runtime environment is created, source the environment script (**env.sh**).
 
         **NOTE:** There are two ways to do this:
+        
         **I.** Enter the following in the command line and press enter::
                
                 $ source ../tqi-build/20.7/env.sh
 
         **II.** Copy the env.sh file to the run directory and then source the env.sh script. 
+                
                 **Step One:** Assuming you are in the **../AceCASTv1.2/run** directory, enter the following in the command line and press enter::
+        
                         $ cp ../tqi-build/20.7/env.sh .
+
                 **Step Two:** Next, enter the following in the command line and press enter::
+              
                         $ source env.sh
 
 
