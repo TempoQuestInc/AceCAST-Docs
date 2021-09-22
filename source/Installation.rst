@@ -101,14 +101,14 @@ Installation Instructions
 -------------------------
 
 * First, click `here <https://tempoquest.com/acecast-registration/>`_ to be redirected to the AceCAST download page.
-* Now click the big button that says "*AceCAST v1.2 Binary Executable for 64-Bit Linux x86 or Power 9*".
+* Now click the button that says:"*AceCAST v1.2 Binary Executable for 64-Bit Linux x86 or Power 9*".
 * This will redirect to a registration page. To download AceCAST, free registration is required. 
 * The purpose of this registration form is for TempoQuest to track the types of users that are downloading AceCAST, and 
-   so TempoQuest can e-mail you the AceCAST download and AceCAST license file. 
+  so TempoQuest can e-mail you the AceCAST download and AceCAST license file. 
 * Please fill in the required fields and review the license agreement. 
 * Once you have read the license agreement, make sure to click the box located at the lower left corner of the page to acknowledge that you have read and understand the license agreement. 
-* After clicking the box, an orange “Submit” button will appear. 
-* Click on the “Submit” button. Fill out the page and click submit at the bottom of the page.
+* After clicking the box, an orange "Submit" button will appear. 
+* Click on the "Submit" button. Fill out the page and click submit at the bottom of the page.
 * Once submitted, you will receive an e-mail from "*samm.elliott@tempoquest.com*" that contains an attachment/download link which has the 
   the AceCAST download file for Linux-x86-64 or Linux Power9. 
 * This e-mail also contains another attachment, an AceCAST license file (acecast-trial.lic). 
@@ -127,7 +127,8 @@ This will download the AceCAST tarball. Be sure to also download the license fil
 
 	$ cd ./AceCASTv1.2
 
-In this folder (henceforth denoted as a directory) should be 6 items (3 directories and 3 files)::
+In this folder (henceforth denoted as a directory) should be 6 items (3 directories and 3 files):
+
 #. benchmarks
 	* Location: ../AceCASTv1.2/benchmarks
 	* A directory that contains standard, validated test cases for helping users get started with AceCAST.
@@ -143,8 +144,8 @@ In this folder (henceforth denoted as a directory) should be 6 items (3 director
 	* Location: ../AceCASTv1.2/
 	* A text file that contains a list of currently supported namelist options for this version release (can also be found :ref:`here <toolslink>`).
 	* To view this file, enter the following in the command line::
-
-	  vi README.namelist_support
+		
+		$ vi README.namelist_support
 
 #. RELEASE_NOTES
 	* Location: ../AceCASTv1.2/
@@ -152,7 +153,7 @@ In this folder (henceforth denoted as a directory) should be 6 items (3 director
           options and WRF features, and any bug fixes (can also be found :ref:`here <releaseslink>`).
 	* To view this file, enter the following in the command line::
 
-	   vi RELEASE_NOTES
+	   	$ vi RELEASE_NOTES
 
 #. run
 	* Location: ../AceCASTv1.2/run
@@ -206,9 +207,9 @@ Optional
 --------
 
 * Secondary dependency installation for Red Hat Package Manager (RPM)-based and Debian-based Linux distributions using the yum and 
-  apt-get utilities. Although this *isn't necessary* for most users where these secondary dependencies are already installed, 
+  apt-get utilities. Although this **isn't necessary** for most users where these secondary dependencies are already installed, 
   this may be useful on systems where these are not available. This functionality should be particularly useful for those using 
-  cloud-based resources.
+  cloud-based resources. Before invoking the following commands below, please make sure you are in the ../AceCASTv1.2/scripts directory:
         
 	* Usage for RPM-based Linux Distributions::
 
@@ -227,7 +228,7 @@ Optional
 
 
 
-*Before invoking the following commands below, please make sure you are in the ../AceCASTv1.2/scripts directory.
+
 
 
 
