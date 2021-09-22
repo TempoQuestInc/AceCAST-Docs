@@ -3,7 +3,11 @@
 +====================+=========================================+===================================================+
 | **&domains**       |                                         | *dimensions, nesting, parameters*                 |
 +--------------------+-----------------------------------------+---------------------------------------------------+
-| feedback	     | 			1	               | feedback from nest to its parent domain (0=off)   |
+| feedback	     | 			0	               | No feedback from nested domain to the parent      |
+|	             |                                         | domain. Also known as one-way nesting.            |
++--------------------+-----------------------------------------+---------------------------------------------------+
+|                    |                  1                      | Feedback from nested domain to the parent domain. | 
+|                    |                                         | Also known as two-way nesting. (1 = feedback).    |
 +--------------------+-----------------------------------------+---------------------------------------------------+
 | smooth_option      | 				               | smoothing option for parent domain;		   |
 |                    |                                         | used only with feedback=1               	   |
@@ -16,7 +20,7 @@
 | 		     | 			2	               | (default) smoothing-desmoothing option for parent |
 |                    |					       | domain; used only with feedback=1                 |
 +--------------------+-----------------------------------------+---------------------------------------------------+	
-| interp_method_type | 			2	               | (default) SINT                			   |
+| interp_method_type | 			2	               | (default) SINT Horizontal interpolation option    |
 +--------------------+-----------------------------------------+---------------------------------------------------+
 | **&physics**       |                        		       |   	                 			   |
 +--------------------+-----------------------------------------+---------------------------------------------------+
@@ -54,9 +58,11 @@
 | 		     | 			1	               | Thermal Diffusion scheme                	   |
 +--------------------+-----------------------------------------+---------------------------------------------------+
 | 		     | 			2	               | Unified Noah land-surface model; Includes Noah    |
-|		     |					       | LSM mosaic sub-option (sf_surface_mosaic = 1)     |      
+|		     |					       | LSM mosaic sub-option                             |
+|		     |                                         | (sf_surface_mosaic = 1, num_soil_layers = 4)      |      
 +--------------------+-----------------------------------------+---------------------------------------------------+
-| 		     | 			3	               | RUC land-surface model                	           |
+| 		     | 			3	               | RUC land-surface model   
+|		     |                                         | (num_soil_layers = 6)             	           |
 +--------------------+-----------------------------------------+---------------------------------------------------+
 | Surface Layer      | 				               | Surface layer option               		   |
 +--------------------+-----------------------------------------+---------------------------------------------------+
@@ -67,13 +73,16 @@
 +--------------------+-----------------------------------------+---------------------------------------------------+
 | 		     | 			5	               | MYNN                 			   	   |
 +--------------------+-----------------------------------------+---------------------------------------------------+
-| Cumulus	     | 				               | Cumulus parameterization option        	   |
+| Cumulus	     | 				               | Cumulus parameterization option                   |
 +--------------------+-----------------------------------------+---------------------------------------------------+
-| 		     | 			1	               | Kain-Fritsch (new Eta) scheme      		   |
+|		     |			0		       |  Off when dx/dy >10km; On when dx/dy <4km         |                                               |
 +--------------------+-----------------------------------------+---------------------------------------------------+
-| 		     | 			2	               | Betts-Miller-Janjic scheme   			   |
+| 		     | 			1	               | Kain-Fritsch (new Eta) scheme                     |
 +--------------------+-----------------------------------------+---------------------------------------------------+
-| 		     | 			11	               | Multi-scale Kain-Fritsch scheme       		   |
+| 		     | 			2	               | Betts-Miller-Janjic scheme              	   |
++--------------------+-----------------------------------------+---------------------------------------------------+
+| 		     | 			11	               | Multi-scale Kain-Fritsch scheme                   | 
+|                    |                                         | (when 4km < dx/dy < 10km)                         |
 +--------------------+-----------------------------------------+---------------------------------------------------+
 | Miscellaneous      | 				               |                 			   	   |
 +--------------------+-----------------------------------------+---------------------------------------------------+
@@ -84,8 +93,9 @@
 | Cumulus option     |					       | (not tied to deep convection); ; Subject to       |
 |		     |					       | further performance and numerical validation tests|
 +--------------------+-----------------------------------------+---------------------------------------------------+
-| 1d mixed layer     |                  1                      | Activate a simple ocean mixed layer (oml) model;  |
-| ocean model        |                                         | Subject to further performance and numerical      |
+| 1D mixed layer     |                  1                      | Activate a simple ocean mixed layer (oml) model;  |
+| ocean model        |                                         | Only works with sf_surface_physics = 1;           |
+|                    |                                         | Subject to further performance and numerical      |
 |		     |					       | validation tests              			   |
 +--------------------+-----------------------------------------+---------------------------------------------------+
 | Time-varying       |                  1		       | real.exe will create wrflowinp file(s) at the same|
@@ -95,11 +105,12 @@
 |	             | 				               | in time control section	                   |
 +--------------------+-----------------------------------------+---------------------------------------------------+
 | Radar reflectivity |			1		       | allows radar reflectivity to be computed using    |
-| calculation	     |					       | mp-scheme specific parameters. 0 = off; 1 = on    |
+| calculation	     |					       | mp-scheme specific parameters. 0 = Off; 1 = On    | 
+|                    |                                         | Must use with mp_physics = 6 or 8                 |
 +--------------------+-----------------------------------------+---------------------------------------------------+
 | Lightning potential|			3		       | Predicting the potential for lightning activity   |
-|		     |				       	       | (based on Yair et al., 2010)  		           |
-| prediction	     | 				               |                  			   	   |
+|  prediction	     |				       	       | (based on Yair et al., 2010)  		           |
+|  		     | 				               |                  			   	   |
 +--------------------+-----------------------------------------+---------------------------------------------------+
 | **&dynamics**      |                        		       | *Diffusion, damping options,advection options*    |
 +--------------------+-----------------------------------------+---------------------------------------------------+
