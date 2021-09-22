@@ -36,7 +36,7 @@ Once AceCAST has been downloaded, there will be a folder called benchmarks in ..
 		* download `here <https://tqi-s3bucket-testing.s3.us-east-2.amazonaws.com/distros/easter1500.tar.gz>`_ 
 
 AceCAST Scaling Advisor
----------------
+-----------------------
 
 * The AceCAST Advisor script provides various tools to assist AceCAST users with configuring and running their AceCAST simulations. 
   The primary functionalities are selected with the --tool flag and are summarized below. This should be the primary tool for users
