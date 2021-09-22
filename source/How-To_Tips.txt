@@ -1,6 +1,12 @@
 
-Welcome to AceCastDocs homepage!
-==============================================
+
+
+******NEVER DELETE index.rst in .../AceCAST-Docs/source****
+This is the source page that is ALWAYS needed
+
+
+Here is a heading
+=================
 
 Here is a subheading
 --------------------
@@ -20,51 +26,46 @@ Here is a subheading
    
    Notice!
 
-linking to another page (format :ref:`(text to link) <linked rst file header reference>`
-:ref:`WSV3 Link <wsv3link>`
+
+embedding youtube videos
+
+.. raw:: html
+   
+   (embed code)
+
+linking to another page (format :ref:`(text to link) <linked rst file header reference>`) Also need .. _linkedpage: at the 
+top of the linked page 
+Example:
+
+:ref:`Link <linkedpage>`
 
 For external links:
 `(linked text) <https:://www.external_site.com>`_ 
 
-Tip: delete doctrees file contents (except index and environment) of TOC is being funky
-
 Here is how to write text in code::
 
-	here is some code
+	This text will appear as code
+
+
+TOC Tree setup in index.rst (only here can you add the toctree syntax):
 
 .. toctree::
-   :maxdepth: 2
-   :caption: AceCast
+   :maxdepth: 2 
+   :caption: This adds a page caption
 
-   ./Releases
-   ./Installation
+   ./Adding_A_Page
+   ./Adding_Another_Page
    
 
 .. toctree::
    :maxdepth: 2
-   :caption: WSV3
+   :caption: New TOC section
 
-   ./WSV3
+   ./This_adds_a_new_TOC_section
 
+Tips:
+1.) Issue make html after finishing edits in ../AceCAST-Docs to "refresh" html files
+2.) Delete doctrees file contents in ../AceCAST-Docs/build/doctrees if Website TOC is being glitchy then issue make html
+3.) 9/10 times an error occured because of improper spacing
+4.) Copied " ' " and " - " from MSWord sometimes show up as invalid characters and trigger an error. To resolve, just delete and type again.
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Other
-
-   ./External_Links
-   ./Gallery
-   ./Tools
-   ./Tutorials
-   ./FAQS
-   ./Support
-
-
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
