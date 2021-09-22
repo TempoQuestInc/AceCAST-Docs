@@ -10,8 +10,9 @@ How to Use
         *The role of AceCAST is simply to accelerate the execution of WRF itself on GPUs. AceCAST does not include any other elements of a typical end-to-end workflow of WRF.*
         
         This means the user is responsible for running the following:
-              *  **1.** Gathering initialization data.
-              *  **2.** Running the WRF Preprocessing System (WPS).
+                *  **1.** Gathering initialization data.
+
+                *  **2.** Running the WRF Preprocessing System (WPS).
                       *  **2A.** geogrid.exe
                       *  **2B.** ungrib.exe
                       *  **2C.** metgrid.exe
