@@ -10,11 +10,11 @@ How to Use
         *The role of AceCAST is simply to accelerate the execution of WRF itself on GPUs. AceCAST does not include any other elements of a typical end-to-end workflow of WRF.*
         
         This means the user is responsible for running the following:
-                **1.** Gathering initialization data.
-                **2.** Running the WRF Preprocessing System (WPS).
-                        **2A.** geogrid.exe
-                        **2B.** ungrib.exe
-                        **2C.** metgrid.exe
+              *  **1.** Gathering initialization data.
+              *  **2.** Running the WRF Preprocessing System (WPS).
+                      *  **2A.** geogrid.exe
+                      *  **2B.** ungrib.exe
+                      *  **2C.** metgrid.exe
 
         **A user can use any WPS version they wish.** Since WPS is backwards compatible with WRF, a user can use the latest version of WPS, and the WPS files required to run real.exe, etc. will not cause compatiblity issues with AceCAST.
 
