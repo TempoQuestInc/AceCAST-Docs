@@ -92,6 +92,7 @@
             
               <p class="caption" role="heading"><span class="caption-text">AceCast</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="About.html">About</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Releases.html">What’s New</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">System Requirements</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#under-construction">Under Construction</a></li>
@@ -184,25 +185,40 @@
 <span id="requirementslink"></span><h1>System Requirements<a class="headerlink" href="#system-requirements" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="under-construction">
 <h2>Under Construction<a class="headerlink" href="#under-construction" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><dl class="simple">
-<dt>OS &amp; Host Architecture:</dt><dd><ul>
-<li><p>This distribution of AceCAST targets generic x86-64 and Power9 Linux systems. Note: Support is not guaranteed for any particular Linux distribution but this release has been tested successfully on a variety of distributions when using the recommended installation methods.</p></li>
+<ul>
+<li><p>OS &amp; Host Architecture:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>This distribution of AceCAST targets generic x86-64 and Power9 Linux systems. Note: Support is not guaranteed for any
+particular Linux distribution but this release has been tested successfully on a variety of distributions when using the
+recommended installation methods.</p></li>
 </ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>CUDA-Capable GPU and CUDA Toolkit:</dt><dd><ul>
-<li><p>This AceCAST distribution is compatible with GPU compute capabilities 3.5, 6.0, 7.0 and 8.0 and requires a CUDA runtime driver installation compatible with the CUDA 11.0 toolkit (i.e. driver versions &gt;= 450.36.06 – tip: you can find your version by  running nvidia-smi). Power9 version is compiled with CUDA 10.1 for compatibility with older system drivers. This should already be installed on most systems with GPUs by default. If it is not, please refer to the <a class="reference external" href="https://docs.nvidia.com/cuda/index.html">documentation</a> for installing the necessary cuda components.</p></li>
-</ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 </ul>
 <div class="admonition-note admonition">
 <p class="admonition-title">Note</p>
-<p>TQI extensively tested the model on Intel (Haswell and Skylake) CPUs with NVIDIA V100 GPUs on a CentOS Linux version 7 platform. IBM Power9 version is extensively tested on the U.S. Department of Energy Summit supercomputer.</p>
+<p>This AceCAST distribution targets generic x86-64 and Power9 Linux systems. Support is not guaranteed for any particular Linux
+distribution, but this release has been tested successfully on a variety of distributions when using the recommended installation
+methods.</p>
+</div>
+<ul>
+<li><p>CUDA-Capable GPU and CUDA Toolkit:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>This AceCAST distribution is compatible with GPU compute capabilities 3.5, 6.0, 7.0 and 8.0 and requires a CUDA runtime
+driver installation compatible with the CUDA 11.0 toolkit (i.e. driver versions &gt;= 450.36.06 – tip: you can find your version by
+running nvidia-smi). Power9 version is compiled with CUDA 10.1 for compatibility with older system drivers. This should already
+be installed on most systems with GPUs by default. If it is not, please refer to the <a class="reference external" href="https://docs.nvidia.com/cuda/index.html">documentation</a> for
+installing the necessary cuda components.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note</p>
+<p>TQI extensively tested the model on Intel (Haswell and Skylake) CPUs with NVIDIA V100 GPUs on a CentOS Linux version 7 platform.
+The IBM Power9 version is extensively tested on the U.S. Department of Energy Summit supercomputer.</p>
 </div>
 </div>
 </div>

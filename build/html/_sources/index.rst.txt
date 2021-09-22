@@ -5,12 +5,14 @@ Welcome to AceCastDocs homepage!
 The documentation page for AceCast
 ----------------------------------
 
+This documentation is currently under construction
+--------------------------------------------------
 
 .. figure:: /Images/NWP_Logo.png
    :alt: You found me!
    :align: center
 
-   Numerical weather predictions by splitting the globe into "cubes".
+   Numerical weather predictions by splitting the globe into "cubes". `Credit <https://business.esa.int/projects/decisionx>`_
 
 Index
 =====
@@ -19,6 +21,7 @@ Index
    :maxdepth: 2
    :caption: AceCast
 
+   ./About
    ./Releases
    ./Requirements
    ./Installation

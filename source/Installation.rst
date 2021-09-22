@@ -21,9 +21,9 @@ Required Dependencies Overview
 
 .. admonition:: Note
    
-Even if you have these libraries and versions already installed on your system, you will still have to run the dependency 
-installation script because this script not only installs the required library dependencies, but it also generates a script that 
-ensures a proper runtime environment for running AceCAST (env.sh).
+	Even if you have these libraries and versions already installed on your system, you will still have to run the dependency 
+	installation script because this script not only installs the required library dependencies, but it also generates a script that 
+	ensures a proper runtime environment for running AceCAST (env.sh).
 
 
 
@@ -54,7 +54,7 @@ required library versions were installed properly on your system.
 
 #. Check to see if HDF5 (Version 1.12.0) is installed. Enter the following in the command line and press enter::
 
-	$ h5dump –version
+	$ h5dump -version
 
    *  This command tells you the HDF5 version that is installed on your system and should return::
 
@@ -63,7 +63,7 @@ required library versions were installed properly on your system.
 
 #. Check to see if netCDF-C (Version 4.7.4) is installed. Enter the following in the command line and press enter::
 
-	$ nc-config –version
+	$ nc-config -version
 
    * This command tells you the netCDF-C version that is installed on your system and should return::
 
@@ -71,7 +71,7 @@ required library versions were installed properly on your system.
 
 #. Check to see if netCDF-Fortran (Version 4.5.3) is installed. Enter the following in the command line and press enter::
 	
-	$ nf-config –version
+	$ nf-config -version
 
    * This command tells you the netCDF-Fortran version that is installed on your system and should return::
 

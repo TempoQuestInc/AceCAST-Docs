@@ -41,8 +41,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Gallery" href="Gallery.html" />
-    <link rel="prev" title="How to Use" href="How_to_use.html" /> 
+    <link rel="next" title="What’s New" href="Releases.html" />
+    <link rel="prev" title="Welcome to AceCastDocs homepage!" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,21 +91,20 @@
             
             
               <p class="caption" role="heading"><span class="caption-text">AceCast</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="About.html">About</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">About</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-acecast">What is AceCAST?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#will-will-acecast-benefit-you">Will will AceCAST Benefit You?</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Releases.html">What’s New</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Requirements.html">System Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="How_to_use.html">How to Use</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">WSV3</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">About</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#under-construction">Under Construction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#a-quick-overview-of-the-capabilities-of-wsv3">A quick overview of the capabilities of WSV3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#see-the-video-below-for-more-details">See the video below for more details:</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="WSV3.html">About</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul>
@@ -170,7 +169,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/WSV3.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/About.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -184,33 +183,43 @@
            <div itemprop="articleBody">
             
   <div class="section" id="about">
-<span id="wsv3link"></span><h1>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="under-construction">
-<h2>Under Construction<a class="headerlink" href="#under-construction" title="Permalink to this headline">¶</a></h2>
-<p>WSV3 is the visualization program that pairs with AceCAST. To learn more click <a class="reference external" href="https://wsv3.com/">here</a></p>
+<span id="aboutlink"></span><h1>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h1>
+<p>(Under Construction)</p>
+<div class="section" id="what-is-acecast">
+<h2>What is AceCAST?<a class="headerlink" href="#what-is-acecast" title="Permalink to this headline">¶</a></h2>
+<p>TempoQuest’s (TQI’s) software product, AceCAST, accelerates the world’s most widely used regional weather forecasting model,
+known as the Weather Research and Forecasting (<a class="reference external" href="https://www.mmm.ucar.edu/weather-research-and-forecasting-model">WRF</a>) model,
+which is supported by the U.S. National Center for Atmospheric Research (NCAR). WRF is widely utilized by more than 36,000
+registered users located in 162 countries, and is a next-generation mesoscale Numerical Weather Prediction (NWP) system designed
+to serve both operational forecasting and atmospheric research needs. WRF features multiple dynamical cores and a software
+architecture allowing for computational parallelism and system extensibility. WRF is suitable for a broad spectrum of applications
+across scales ranging from meters to thousands of kilometers.</p>
+<p>AceCAST is a powerful cutting-edge software powered by Graphics Processing Units (GPUs) that enable acceleration of the WRF model.
+AceCAST is the product of half-a-decade of punctilious research and development that empowers WRF users to secure striking
+performance optimizations using the superior massive parallelism of GPU hardware versus traditional CPU computation. AceCAST
+encompasses an ample set of refactored common WRF physics and dynamics modules, and namelist options with NVIDIA CUDA or
+OpenACC GPU programming techniques, allowing a wide swath of users to adopt AceCAST painlessly as a drop-in replacement
+for existing WRF configurations.</p>
+<p>GPUs enable exceptional acceleration by using multi-threaded, many-core processors with tremendous computational speed
+and very high memory bandwidth. The combined features of general-purpose supercomputing, high parallelism, high memory
+bandwidth, low cost, and compact size are what make a GPU-based system an appealing alternative to a massively parallel
+system made up of commodity CPU clusters. TempoQuest’s software is a result of specialized programming and optimization
+techniques coupled with a deep understanding of high-performance computing, NWP, atmospheric science, WRF configurations,
+GPUs, and CUDA code. The TQI developed CUDA-based GPU WRF is currently the world’s fastest and highest resolution weather
+forecasting model.</p>
 </div>
-<div class="section" id="a-quick-overview-of-the-capabilities-of-wsv3">
-<h2>A quick overview of the capabilities of WSV3<a class="headerlink" href="#a-quick-overview-of-the-capabilities-of-wsv3" title="Permalink to this headline">¶</a></h2>
-<p>Noteworthy features include but are not limited to:</p>
-<ul class="simple">
-<li><p>Near Live Duel-Pol and Terminal radars</p></li>
-<li><p>Satellite imagery</p></li>
-<li><p>Severe Weather</p></li>
-<li><p>METAR</p></li>
-<li><p>Surface Analysis</p></li>
-<li><p>Lightning detection</p></li>
-<li><p>Own data (grib2)</p></li>
-<li><p>Model data</p></li>
-<li><p>Tropical Weather</p></li>
-<li><p>Winter Weather</p></li>
-<li><p>TONS of customizations</p></li>
-</ul>
+<div class="section" id="will-will-acecast-benefit-you">
+<h2>Will will AceCAST Benefit You?<a class="headerlink" href="#will-will-acecast-benefit-you" title="Permalink to this headline">¶</a></h2>
+<p>Weather forecasts have a critical impact on the economy and extreme weather events are one of the greatest risks in the world.
+High quality weather forecasts require a tremendous amount of computational power, which TempoQuest has addressed by accelerating
+the WRF model by utilizing GPUs. Compared to standard computing methods, AceCAST is currently the world’s fastest and highest
+resolution weather forecasting model. Running WRF via AceCAST enables users to run forecast simulations and research simulations
+with accelerated time-to-solution processes at higher resolutions, lower cost, and deeper insight. The capabilities of AceCAST
+provides meteorologists and end-users the products derived by WRF that deliver greater awareness of localized weather phenomena
+that global weather models are unable to discern, or which are missed at lower resolutions. The compute performance improvement
+makes high resolution deterministic and probabilistic forecasts practical at lower cost than running WRF on Central Processing
+Units (CPUs), and the forecast simulation acceleration has consistently improved forecast processing speed by a factor of five.</p>
 </div>
-<div class="section" id="see-the-video-below-for-more-details">
-<h2>See the video below for more details:<a class="headerlink" href="#see-the-video-below-for-more-details" title="Permalink to this headline">¶</a></h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/msc2xWM0Cjw"
- title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;
- encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 </div>
 
 
@@ -219,8 +228,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="Gallery.html" class="btn btn-neutral float-right" title="Gallery" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="How_to_use.html" class="btn btn-neutral float-left" title="How to Use" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Releases.html" class="btn btn-neutral float-right" title="What’s New" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to AceCastDocs homepage!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

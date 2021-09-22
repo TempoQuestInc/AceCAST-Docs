@@ -92,11 +92,13 @@
             
               <p class="caption" role="heading"><span class="caption-text">AceCast</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="About.html">About</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Releases.html">What’s New</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Requirements.html">System Requirements</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#required-dependencies-overview">Required Dependencies Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#optional-secondary-packages">Optional secondary packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#library-dependency-check">Library dependency check</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation-instructions">Installation Instructions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#optional">Optional</a></li>
 </ul>
@@ -186,12 +188,15 @@
   <div class="section" id="installation">
 <span id="installationlink"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <p>(Under Construction)</p>
-<p>Below is a list of required dependencies for AceCAST. Please be aware that AceCAST
-comes with a script that installs these dependencies for you, keep reading for details:</p>
+<p>Provided below is a list of required library dependencies for AceCAST. Please check to see if these libraries have already
+been installed on your system. If they have not been installed, TempoQuest provides a library dependency installation script
+(../scripts/install_deps.sh) in the AceCAST download file that installs these libraries for you. Please use the dependency
+installation script to ensure compatibility with the AceCAST binary executable. Further instructions are provided below if
+needed:</p>
 <div class="section" id="required-dependencies-overview">
 <h2>Required Dependencies Overview<a class="headerlink" href="#required-dependencies-overview" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>NVIDIA HPC SDK (2020, Version 20.7)</p></li>
+<li><p>NVIDIA HPC SDK (formerly PGI) compiler suite which includes NVIDIA-compiled, CUDA-aware OpenMPI build (2020, Version 20.7)</p></li>
 <li><p>HDF5 (Version 1.12.0)</p></li>
 <li><p>NETCDF-C (Version 4.7.4)</p></li>
 <li><p>NETCDF-Fortran (Version 4.5.3)</p></li>
@@ -199,7 +204,9 @@ comes with a script that installs these dependencies for you, keep reading for d
 </ul>
 <div class="admonition-note admonition">
 <p class="admonition-title">Note</p>
-<p>Any of these packages <em>can</em> already be installed on the system.</p>
+<p>Even if you have these libraries and versions already installed on your system, you will still have to run the dependency
+installation script because this script not only installs the required library dependencies, but it also generates a script that
+ensures a proper runtime environment for running AceCAST (env.sh).</p>
 </div>
 </div>
 <div class="section" id="optional-secondary-packages">
@@ -219,6 +226,76 @@ comes with a script that installs these dependencies for you, keep reading for d
 <p class="admonition-title">Note</p>
 <p>Most linux-based systems already have these optional packages pre-installed.</p>
 </div>
+</div>
+<div class="section" id="library-dependency-check">
+<h2>Library dependency check<a class="headerlink" href="#library-dependency-check" title="Permalink to this headline">¶</a></h2>
+<p>Run the following commands listed below to see if your system already has the required library versions and ensure that the
+required library versions were installed properly on your system.</p>
+<ol class="arabic">
+<li><p>Check to see if HDF5 (Version 1.12.0) is installed. Enter the following in the command line and press enter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ h5dump -version
+</pre></div>
+</div>
+<ul>
+<li><p>This command tells you the HDF5 version that is installed on your system and should return:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ h5dump: Version 1.12.0
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Check to see if netCDF-C (Version 4.7.4) is installed. Enter the following in the command line and press enter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nc-config -version
+</pre></div>
+</div>
+<ul>
+<li><p>This command tells you the netCDF-C version that is installed on your system and should return:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ netCDF 4.7.4
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Check to see if netCDF-Fortran (Version 4.5.3) is installed. Enter the following in the command line and press enter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nf-config -version
+</pre></div>
+</div>
+<ul>
+<li><p>This command tells you the netCDF-Fortran version that is installed on your system and should return:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ netCDF-Fortran 4.5.3
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Check to see if NVIDIA (Version 20.7) is installed. Enter the following in the command line and press enter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pgfortran -V
+</pre></div>
+</div>
+<ul>
+<li><p>This command tells you the NVIDIA compiler version that is installed on your system and should return:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pgfortran (aka nvfortran) 20.7-0 LLVM 64-bit target on x86-64
+  Linux -tp haswell
+  PGI Compilers and Tools
+  Copyright (c) 2020, NVIDIA CORPORATION.  All rights reserved.
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Check to see if PnetCDF (Version 1.12.1) is installed. Enter the following in the command line and press enter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pnetcdf_version
+</pre></div>
+</div>
+<ul>
+<li><p>This command tells you the PnetCDF version that is installed on your system and should return:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ PnetCDF Version:        1.12.1
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
 </div>
 <div class="section" id="installation-instructions">
 <h2>Installation Instructions<a class="headerlink" href="#installation-instructions" title="Permalink to this headline">¶</a></h2>
