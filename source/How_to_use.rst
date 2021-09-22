@@ -11,7 +11,6 @@ How to Use
         
         This means the user is responsible for running the following:
                 *  **1.** Gathering initialization data.
-
                 *  **2.** Running the WRF Preprocessing System (WPS).
                       *  **2A.** geogrid.exe
                       *  **2B.** ungrib.exe
@@ -36,17 +35,17 @@ First Step: Running Real (real.exe)
 
         **NOTE:** There are two ways to do this:
         
-        *  **I.** Enter the following in the command line and press enter::
+        **I.** Enter the following in the command line and press enter::
                
                 $ source ../tqi-build/20.7/env.sh
 
-        *  **II.** Copy the env.sh file to the run directory and then source the env.sh script. 
+        **II.** Copy the env.sh file to the run directory and then source the env.sh script. 
                 
-                *  **Step One:** Assuming you are in the **../AceCASTv1.2/run** directory, enter the following in the command line and press enter::
+                **Step One:** Assuming you are in the **../AceCASTv1.2/run** directory, enter the following in the command line and press enter::
         
                         $ cp ../tqi-build/20.7/env.sh .
 
-                *  **Step Two:** Next, enter the following in the command line and press enter::
+                **Step Two:** Next, enter the following in the command line and press enter::
               
                         $ source env.sh
 
