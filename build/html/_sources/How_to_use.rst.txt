@@ -3,16 +3,7 @@
 How to Use
 ===========
 
-Under Construction
-------------------
-
-Who is AceCAST for?
-Anyone!
-
-Not sure if AceCAST suits your needs? Lets talk about it! Contact us at support@tempoquest.com
-
-What is ACECAST?
-ACECAST is like WRF, but with GPU's instead of CPU's. This means that you can have higher quality results in a faster time!
+(Under Construction)
 
 Running AceCAST
 ---------------

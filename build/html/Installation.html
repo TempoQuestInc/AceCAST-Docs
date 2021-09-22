@@ -301,11 +301,18 @@ required library versions were installed properly on your system.</p>
 <h2>Installation Instructions<a class="headerlink" href="#installation-instructions" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p>First, click <a class="reference external" href="https://tempoquest.com/acecast-registration/">here</a> to be redirected to the AceCAST download page.</p></li>
-<li><p>Now click the big button that says “<em>AceCAST v1.2 Binary Executable for 64-Bit Linux x86 or Power 9</em>”.</p></li>
-<li><p>This will redirect to a registration page. To download AceCAST, free registration is required. Fill out the page and click submit at the bottom of the page.</p></li>
-<li><p>Be sure to review and accept the License Agreement (at the bottom of the page, click the small box to the left of “<em>I have read and agreed to the License Agreement</em>”).</p></li>
-<li><p>Once submitted, you will be sent a link through the email that provided in the registration form from which AceCAST can be downloaded either for Linux-x86-64 or Linux Power9.</p></li>
-<li><p>The email will be from “<em>samm.elliott&#64;tempoquest.com</em>”</p></li>
+<li><p>Now click the button that says:”<em>AceCAST v1.2 Binary Executable for 64-Bit Linux x86 or Power 9</em>”.</p></li>
+<li><p>This will redirect to a registration page. To download AceCAST, free registration is required.</p></li>
+<li><p>The purpose of this registration form is for TempoQuest to track the types of users that are downloading AceCAST, and
+so TempoQuest can e-mail you the AceCAST download and AceCAST license file.</p></li>
+<li><p>Please fill in the required fields and review the license agreement.</p></li>
+<li><p>Once you have read the license agreement, make sure to click the box located at the lower left corner of the page to acknowledge that you have read and understand the license agreement.</p></li>
+<li><p>After clicking the box, an orange “Submit” button will appear.</p></li>
+<li><p>Click on the “Submit” button. Fill out the page and click submit at the bottom of the page.</p></li>
+<li><p>Once submitted, you will receive an e-mail from “<em>samm.elliott&#64;tempoquest.com</em>” that contains an attachment/download link which has the
+the AceCAST download file for Linux-x86-64 or Linux Power9.</p></li>
+<li><p>This e-mail also contains another attachment, an AceCAST license file (acecast-trial.lic).</p></li>
+<li><p>The AceCAST license file is required for AceCAST to run properly because this file is checked by the acecast.exe executable during runtime to ensure the user has a valid license.</p></li>
 <li><p>Next, copy the download link in the email or click the download that applies to your system to begin the download (either Linux x86-64 or Linux Power9). In a terminal, on linux x86-64 issue the command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget -c https://tqi-s3bucket-testing.s3.us-east-2.amazonaws.com/distros/AceCASTv1.2%2Blinux.x86_64.tar.gz
 </pre></div>
@@ -315,7 +322,7 @@ required library versions were installed properly on your system.</p>
 <p>This will download the AceCAST tarball. Be sure to also download the license file which came as an attachment to the email. Why? See <a class="reference internal" href="License.html#licenselink"><span class="std std-ref">license</span></a> for more information.</p>
 <ul>
 <li><p>Next, uncompress the download by typing the command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tar -xf AceCASTv1.2+linux.x86_64.tar.gz
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tar -xvzf AceCASTv1.2+linux.x86_64.tar.gz
 </pre></div>
 </div>
 </li>
@@ -325,43 +332,93 @@ required library versions were installed properly on your system.</p>
 </div>
 </li>
 </ul>
-<dl class="simple">
-<dt>In this folder (henceforth denoted as a directory)  should be 6 items (3 directories and 3 files):</dt><dd><ul class="simple">
-<li><p>run directory</p></li>
-<li><p>benchmarks directory</p></li>
-<li><p>scripts directory</p></li>
-<li><p>README.namelist_support file</p></li>
-<li><p>README file</p></li>
-<li><p>RELEASE_NOTES file</p></li>
-</ul>
-</dd>
-</dl>
-<ul>
+<p>In this folder (henceforth denoted as a directory) should be 6 items (3 directories and 3 files):</p>
+<ol class="arabic">
 <li><dl class="simple">
-<dt>Breakdown</dt><dd><ul class="simple">
-<li><p><strong>Run:</strong> A directory which contains all WRF/AceCAST binary executables and miscellaneous runtime files (should look very similar to standard WRF run directory)</p></li>
-<li><p><strong>Benchmarks:</strong> A directory that contains standard, validated test cases for helping users to get started with AceCAST</p></li>
-<li><p><strong>Scripts:</strong> A directory that contains a script which will install the required dependencies to run AceCAST</p></li>
-<li><p><strong>README.namelist_support:</strong> A text file that contains a list of currently supported namelist options (can also be found <a class="reference internal" href="Tools.html#toolslink"><span class="std std-ref">here</span></a>)</p></li>
-<li><p><strong>README:</strong> A text file with some additional information relevent to AceCAST</p></li>
-<li><p><strong>RELEASE_NOTES:</strong> A text file that contains release notes (can also be found <a class="reference internal" href="Releases.html#releaseslink"><span class="std std-ref">here</span></a>)</p></li>
+<dt>benchmarks</dt><dd><ul class="simple">
+<li><p>Location: ../AceCASTv1.2/benchmarks</p></li>
+<li><p>A directory that contains standard, validated test cases for helping users get started with AceCAST.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
+<li><dl>
+<dt>README</dt><dd><ul>
+<li><p>Location: ../AceCASTv1.2/</p></li>
+<li><p>A text file that contains brief tutorial instructions about how to install and run AceCAST, and some helpful
+recommendations for best practices.</p></li>
+<li><p>To view this file, enter the following in the command line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ vi README
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>README.namelist_support</dt><dd><ul>
+<li><p>Location: ../AceCASTv1.2/</p></li>
+<li><p>A text file that contains a list of currently supported namelist options for this version release (can also be found <a class="reference internal" href="Tools.html#toolslink"><span class="std std-ref">here</span></a>).</p></li>
+<li><p>To view this file, enter the following in the command line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ vi README.namelist_support
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>RELEASE_NOTES</dt><dd><ul>
+<li><p>Location: ../AceCASTv1.2/</p></li>
+<li><p>A text file that contains information about what is included in the AceCAST release such as newly added namelist
+options and WRF features, and any bug fixes (can also be found <a class="reference internal" href="Releases.html#releaseslink"><span class="std std-ref">here</span></a>).</p></li>
+<li><p>To view this file, enter the following in the command line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ vi RELEASE_NOTES
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>run</dt><dd><ul class="simple">
+<li><p>Location: ../AceCASTv1.2/run</p></li>
+<li><p>A directory that contains all WRF/AceCAST binary executables and miscellaneous runtime files (it should look very
+similar to a standard WRF run directory).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>scripts</dt><dd><ul class="simple">
+<li><p>Location: ../AceCASTv1.2/scripts</p></li>
+<li><p>A directory that contains a script to install and build the required library dependencies to run AceCAST.
+This script also installs an environment script that ensures a proper runtime environment is created when running AceCAST.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+<ul>
 <li><p>Next, navigate to the scripts directory by typing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ./Scripts
 </pre></div>
 </div>
 </li>
-<li><p>In this directory is a shell script called “<em>install_deps.sh</em>” which will install all the required dependencies mentioned earlier. This script will prompt to specify an installation directory for these dependencies (defaults to: ~/tqi-build) and generates a script acecast_env.sh that should be used to setup your runtime environment correctly for acecast.exe to link with these dependencies properly.</p></li>
+<li><p>In this directory is a shell script called “<em>install_deps.sh</em>” which will install all the required dependencies mentioned earlier.
+This script will prompt to specify an installation directory for these dependencies (defaults to: ~/tqi-build) and also generates a
+script, acecast_env.sh, that should be used to setup your runtime environment correctly for acecast.exe to link with these
+dependencies properly.</p></li>
 <li><p>Power9 users, please issue the following commands before running the dependency installation script:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ module purge
 $ export TPFLAGS=-tp=pwr9
 </pre></div>
 </div>
 </li>
-<li><p>Then, install the dependencies by running the script:</p>
+<li><p>Then, please make sure you are in the ../AceCASTv1.2/scripts directory and install the dependencies by running the command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./install_deps.sh
 </pre></div>
 </div>
@@ -371,11 +428,35 @@ $ export TPFLAGS=-tp=pwr9
 <p class="admonition-title">Note</p>
 <p>This process can take up to an hour to complete and requires ~16GB of storage.</p>
 </div>
+<ul>
+<li><p>If the installation was successful, you should see a message in the terminal similar to:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>“Successfully Installed AceCAST Dependency Packages.”</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Please ensure that the installation script created the environment scripts (env.sh) as well:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ../tqi-build/20.7
+</pre></div>
+</div>
+</li>
+<li><p>Once in this directory, type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
+</pre></div>
+</div>
+</li>
+<li><p>You should see an env.sh script in this directory. If you see this script and the message in the terminal,
+then AceCAST was installed successfully.</p></li>
+</ul>
 </div>
 <div class="section" id="optional">
 <h2>Optional<a class="headerlink" href="#optional" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p>Secondary dependency installation for RPM-based and Debian-based Linux distributions using the yum and apt-get utilities. Although this <em>isn’t necessary</em> for most users where these secondary dependencies are already installed, this may be useful on systems where these are not available. This functionality should be particularly useful for those using cloud-based resources.</p>
+<li><p>Secondary dependency installation for Red Hat Package Manager (RPM)-based and Debian-based Linux distributions using the yum and
+apt-get utilities. Although this <strong>isn’t necessary</strong> for most users where these secondary dependencies are already installed,
+this may be useful on systems where these are not available. This functionality should be particularly useful for those using
+cloud-based resources. Before invoking the following commands below, please make sure you are in the ../AceCASTv1.2/scripts directory:</p>
 <blockquote>
 <div><ul>
 <li><p>Usage for RPM-based Linux Distributions:</p>
@@ -396,6 +477,9 @@ $ export TPFLAGS=-tp=pwr9
 <p class="admonition-title">Note</p>
 <p>Using these options requires sudo (root) access.</p>
 </div>
+<ul class="simple">
+<li><p>If you have any questions or issues during installation, please reach out to us at <a class="reference external" href="mailto:support&#37;&#52;&#48;tempoquest&#46;com">support<span>&#64;</span>tempoquest<span>&#46;</span>com</a></p></li>
+</ul>
 </div>
 </div>
 
