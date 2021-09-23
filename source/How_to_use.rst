@@ -49,14 +49,27 @@ First Step: Running Real (real.exe)
               
                         $ source env.sh
 
-**1C.** Lastly, run real.exe as you would in a typical WRF workflow by entering the following in the command line and pressing enter::
+**1C.)** Lastly, run real.exe as you would in a typical WRF workflow by entering the following in the command line and pressing enter::
 
         $ mpirun -np 4 ./real.exe
 
 .. admonition:: Please Note:
    
-        real.exe generates the required files, wrfinput_d0* and wrfbdy_d01* that are needed to run AceCAST.
+        real.exe generates the required files, wrfinput_d0* and wrfbdy_d01, that are needed to run AceCAST.
 
+
+Second Step: Running AceCAST (acecast.exe)
+------------------------------------------
+
+At this point, it is assumed the user has run WPS and real.exe. It is also assumed the user is in the **../AceCASTv1.2/run** directory.
+
+**2A.)** Source the environment script (**env.sh**).
+        This script will need to be invoked every time a user logs in.
+        Source this script by entering the following in the command line and pressing enter::
+        
+        $ source env.sh
+
+       **NOTE:** This command assumes the user copied the environment script (**env.sh**) to the **../AceCASTv1.2/run** directory. Please refer to the followingsection for further information: **First Step: Running Real (real.exe)**, step **1B.)**. 
 
 Namelist Considerations
 -----------------------
