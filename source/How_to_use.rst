@@ -95,7 +95,7 @@ Please follow the steps below to continue.
 
 
 
-**2C.)** After modifying your *namelist.input* file, it is good practice to run the AceCAST Advisor Script to ensure your chosen namelist.input settings are compatible with AceCAST.
+**2C.)** After modifying your *namelist.input* file, it is good practice to run the AceCAST Advisor Script to ensure your chosen namelist.input settings are compatible with AceCAST. Additionally, a list of supported packages can be found here :ref:`here <toolslink>`. 
 
        **I.** Make sure you are in the **../AceCASTv1.2/run** directory by entering the following in the command line and pressing enter::
         
@@ -177,11 +177,6 @@ Please follow the steps below to continue.
                         Maximum number of GPUs: 3 GPUs
                   Scaling Advisor Tool Finished - Exiting
 
-Namelist Considerations
------------------------
-
-* AceCAST uses the same namelist options that are used by WRF with the exception that certain options are not yet supported. We have provided a summary of the most relevant supported packages :ref:`here <toolslink>` as well as in the README.namelist_support file. We have provided the "AceCAST Advisor" utility (run/acecast-advisor.sh) to help users modify their namelist to one that is supported by AceCAST (see previous link for more details).
-* In addition, the acecast.exe executable performs a check for supported options at runtime and will terminate execution if an unsupported option is selected in the namelist (see the previous link for more details).
 
 MPI Usage
 ---------
