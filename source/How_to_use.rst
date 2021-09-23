@@ -63,13 +63,26 @@ Second Step: Running AceCAST (acecast.exe)
 
 At this point, it is assumed the user has run WPS and real.exe. It is also assumed the user is in the **../AceCASTv1.2/run** directory.
 
-**2A.)** Source the environment script (**env.sh**).
+**2A.)** Source the environment script (env.sh).
         This script will need to be invoked every time a user logs in.
         Source this script by entering the following in the command line and pressing enter::
         
         $ source env.sh
 
-       **NOTE:** This command assumes the user copied the environment script (**env.sh**) to the **../AceCASTv1.2/run** directory. Please refer to the followingsection for further information: **First Step: Running Real (real.exe)**, step **1B.)**. 
+       **NOTE:** This command assumes the user copied the environment script (**env.sh**) to the **../AceCASTv1.2/run** directory. Please refer to the followingsection for further information: **First Step: Running Real (real.exe), step 1B.).** 
+
+**2B.)** Modify the **namelist.input** file to ensure the settings are correct for your specific case.
+
+        **NOTE:** *AceCAST uses the same namelist options that are used by WRF with the exception that certain options are not yet supported. TempoQuest has provided a summary of the supported namelist settings in the **README.namelist_support file located in the ../AceCASTv1.2 directory.**
+
+        **NOTE:** Additionally, TempoQuest has also provided an **AceCAST Advisor Script (acecast-advisor.sh) located in the ../AceCAST/run directory** to assist users in modifying their namelist settings to settings that are supported by AceCAST. More information about this utility can be found under the **Additional Information** section.
+
+        **I** To view the namelist.input file using VIM in the terminal, enter the following in the command line and press enter::
+                
+                $ vi namelist.input
+
+        **II** Next, enter insert mode in VIM by **pressing i**. This will allow you to modify the file.
+
 
 Namelist Considerations
 -----------------------
