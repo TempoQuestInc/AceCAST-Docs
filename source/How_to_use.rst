@@ -78,11 +78,11 @@ At this point, it is assumed the user has run WPS and real.exe. It is also assum
 .. admonition:: Please Note:
         Additionally, TempoQuest has also provided an **AceCAST Advisor Script (acecast-advisor.sh) located in the ../AceCAST/run directory** to assist users in modifying their namelist settings to settings that are supported by AceCAST. More information about this utility can be found under the **Additional Information** section.
 
-        **I.** To view the namelist.input file using VIM in the terminal, enter the following in the command line and press enter::
+**I.** To view the namelist.input file using VIM in the terminal, enter the following in the command line and press enter::
                 
-                $ vi namelist.input
+        $ vi namelist.input
 
-        **II.** Next, enter insert mode in VIM by **pressing i**. This will allow you to modify the file.
+**II.** Next, enter insert mode in VIM by **pressing i**. This will allow you to modify the file.
 
 **2C.)** After modifying your *namelist.input* file, it is good practice to run the AceCAST Advisor Script to ensure your chosen namelist.input settings are compatible with AceCAST.
 
@@ -98,11 +98,12 @@ At this point, it is assumed the user has run WPS and real.exe. It is also assum
 
         $ ./acecast-advisor.sh --tool support-check --namelist-file /path/to/namelist.input/file
 
-       For example:::
+       For example,::
         
         $ ./acecast-advisor.sh --tool support-check --namelist-file /gto/ttrask/AceCASTv1.2/run/namelist.input
 
-       If the namelist.input file being checked ***uses supported options*** that are compatible with AceCAST, you will see a similar message to the one below printed in the terminal::
+       If the namelist.input file being checked ***uses supported options*** that are compatible with AceCAST, 
+        you will see a similar message to the one below printed in the terminal::
 
         Support Check Configuration:
         Namelist: /gto/ttrask/AceCASTv1.2/run/namelist.input
@@ -111,7 +112,8 @@ At this point, it is assumed the user has run WPS and real.exe. It is also assum
         NOTE: Namelist options may be determined implicitly if not specified in the given namelist.
         Support Check Tool Success: No unsupported options found - Ok to use namelist for AceCAST execution.
 
-       If the namelist.input file being checked ***uses unsupported options that are **not** compatible with AceCAST, you will see a similar message to the one below printed in the terminal::
+       If the namelist.input file being checked **uses unsupported options** that are **not** compatible with AceCAST, 
+        you will see a similar message to the one below printed in the terminal::
 
         Support Check Configuration:
         Namelist: /gto/ttrask/AceCASTv1.2/run/namelist.input
@@ -120,13 +122,16 @@ At this point, it is assumed the user has run WPS and real.exe. It is also assum
         NOTE: Namelist options may be determined implicitly if not specified in the given namelist.
 
         (For Example)
-        Support Check Failure: Unsupported option selected for namelist variable mp_physics in &physics: mp_physics = 10
+        Support Check Failure: Unsupported option selected for namelist variable mp_physics in 
+        &physics: mp_physics = 10
         Supported options for namelist variable mp_physics: 0, 1, 6, 8, 28
-        Support Check Tool Failure: One or more options found that are not supported by AceCAST. Please modify your namelist selections based on the previous "SUPPORT CHECK FAILURE" messages and run this check again.
+        Support Check Tool Failure: One or more options found that are not supported by AceCAST. 
+        Please modify your namelist selections based on the previous "SUPPORT CHECK FAILURE" 
+        messages and run this check again.
 
 .. admonition:: Please Note:
         
-        *If a setting is not compatible, you will have to change this setting to a setting that is compatible, and **you will be required to rerun real.exe because any changes in the namelist.input file will affect the wrfbdy_d01 and wrfinput_d0 files.*
+        **If a setting is not compatible, you will have to change this setting to a setting that is compatible, and **you will be required to rerun real.exe because any changes in the namelist.input file will affect the wrfbdy_d01 and wrfinput_d0 files.**
 
 
 Namelist Considerations
