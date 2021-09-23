@@ -31,6 +31,7 @@ First Step: Running Real (real.exe)
 
 **1A.)** To run real.exe, please make sure you are in the **../AceCASTv1.2/run** directory where the real.exe executable resides.
 
+
 **1B.)** Ensure you have properly installed the required dependencies (see :ref:`installation <installationlink>` for more information) and have set up the corresponding runtime environment correctly. To ensure a proper runtime environment is created, source the environment script (**env.sh**).
 
         **NOTE:** There are two ways to do this:
@@ -48,6 +49,7 @@ First Step: Running Real (real.exe)
                 **Step Two:** Next, enter the following in the command line and press enter::
               
                         $ source env.sh
+
 
 **1C.)** Lastly, run real.exe as you would in a typical WRF workflow by entering the following in the command line and pressing enter::
 
@@ -68,21 +70,23 @@ At this point, it is assumed the user has run WPS and real.exe. It is also assum
         
         $ source env.sh
 
-       **NOTE:** This command assumes the user copied the environment script (**env.sh**) to the **../AceCASTv1.2/run** directory. Please refer to the followingsection for further information: **First Step: Running Real (real.exe), step 1B.).** 
+**NOTE:** This command assumes the user copied the environment script (**env.sh**) to the **../AceCASTv1.2/run** directory. Please refer to the followingsection for further information: **First Step: Running Real (real.exe), step 1B.).** 
+
 
 **2B.)** Modify the **namelist.input** file to ensure the settings are correct for your specific case.
 
 .. admonition:: Please Note:
+
         *AceCAST uses the same namelist options that are used by WRF with the exception that certain options are not yet supported. TempoQuest has provided a summary of the supported namelist settings in the **README.namelist_support file located in the ../AceCASTv1.2 directory.*
 
-.. admonition:: Please Note:
-        Additionally, TempoQuest has also provided an **AceCAST Advisor Script (acecast-advisor.sh) located in the ../AceCAST/run directory** to assist users in modifying their namelist settings to settings that are supported by AceCAST. More information about this utility can be found under the **Additional Information** section.
+**NOTE:** Additionally, TempoQuest has also provided an **AceCAST Advisor Script (acecast-advisor.sh) located in the ../AceCAST/run directory** to assist users in modifying their namelist settings to settings that are supported by AceCAST. More information about this utility can be found under the **Additional Information** section.
 
-**I.** To view the namelist.input file using VIM in the terminal, enter the following in the command line and press enter::
+        **I.** To view the namelist.input file using VIM in the terminal, enter the following in the command line and press enter::
                 
-        $ vi namelist.input
+                $ vi namelist.input
 
-**II.** Next, enter insert mode in VIM by **pressing i**. This will allow you to modify the file.
+        **II.** Next, enter insert mode in VIM by **pressing i**. This will allow you to modify the file.
+
 
 **2C.)** After modifying your *namelist.input* file, it is good practice to run the AceCAST Advisor Script to ensure your chosen namelist.input settings are compatible with AceCAST.
 
@@ -102,8 +106,7 @@ At this point, it is assumed the user has run WPS and real.exe. It is also assum
         
                 $ ./acecast-advisor.sh --tool support-check --namelist-file /gto/ttrask/AceCASTv1.2/run/namelist.input
 
-       If the namelist.input file being checked ***uses supported options*** that are compatible with AceCAST, 
-        you will see a similar message to the one below printed in the terminal::
+       If the namelist.input file being checked ***uses supported options*** that are compatible with AceCAST, you will see a similar message to the one below printed in the terminal::
 
         Support Check Configuration:
         Namelist: /gto/ttrask/AceCASTv1.2/run/namelist.input
@@ -112,8 +115,7 @@ At this point, it is assumed the user has run WPS and real.exe. It is also assum
         NOTE: Namelist options may be determined implicitly if not specified in the given namelist.
         Support Check Tool Success: No unsupported options found - Ok to use namelist for AceCAST execution.
 
-       If the namelist.input file being checked **uses unsupported options** that are **not** compatible with AceCAST, 
-        you will see a similar message to the one below printed in the terminal::
+       If the namelist.input file being checked **uses unsupported options** that are **not** compatible with AceCAST, you will see a similar message to the one below printed in the terminal::
 
         Support Check Configuration:
         Namelist: /gto/ttrask/AceCASTv1.2/run/namelist.input
