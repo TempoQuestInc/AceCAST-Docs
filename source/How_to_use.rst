@@ -94,6 +94,7 @@ Please follow the steps below to continue.
         **II.** Next, enter insert mode in VIM by **pressing i**. This will allow you to modify the file.
 
 
+
 **2C.)** After modifying your *namelist.input* file, it is good practice to run the AceCAST Advisor Script to ensure your chosen namelist.input settings are compatible with AceCAST.
 
        **I.** Make sure you are in the **../AceCASTv1.2/run** directory by entering the following in the command line and pressing enter::
@@ -139,8 +140,42 @@ Please follow the steps below to continue.
 
 .. admonition:: Please Note:
         
-        **If a setting is not compatible, you will have to change this setting to a setting that is compatible, and **you will be required to rerun real.exe because any changes in the namelist.input file will affect the wrfbdy_d01 and wrfinput_d0 files.**
+        **If a setting is not compatible, you will have to change this setting to a setting that is compatible, and you will be required to rerun real.exe because any changes in the namelist.input file will affect the wrfbdy_d01 and wrfinput files.**
 
+
+
+**2D.)** After modifying your namelist.input file so it contains supported namelist settings compatible with AceCAST, it is good practice to run the AceCAST Advisor Script again with its Scaling Advisor to see how many GPUs you should use to run your simulation.
+
+.. admonition:: Please Note:
+
+        This script should be run on the intended environment and machine that will be used to run AceCAST in order for this tool to identify the critical information needed about the user's GPU specifications.
+
+Please follow the steps below to continue.
+
+        **I.** Make sure you are in the **../AceCASTv1.2/run** directory by entering the following in the command line and pressing enter::
+
+               $ pwd
+
+        This command should return something like::
+
+               $ ../AceCASTv1.2/run
+
+        **II.** Run the AceCAST Advisor Script with the Scaling Advisor option by entering the following in the command line and pressing enter::
+
+                $ ./acecast-advisor.sh --tool scaling-advisor --namelist.file /path/to/namelist.input/file
+
+        For example::
+
+                $ ./acecast-advisor.sh --tool scaling-advisor --namelist-file /gto/ttrask/AceCASTv1.2/run/namelist.input
+
+        This will return a message to the screen that tells you the minimum and maximum number of GPUs that should be used for your specific simulation.
+
+        For example::
+
+                $ AceCAST Scaling Advisor Recommendation:
+                        Minimum number of GPUs: 1 GPUs
+                        Maximum number of GPUs: 3 GPUs
+                  Scaling Advisor Tool Finished - Exiting
 
 Namelist Considerations
 -----------------------
