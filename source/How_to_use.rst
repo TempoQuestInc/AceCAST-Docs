@@ -49,6 +49,13 @@ First Step: Running Real (real.exe)
               
                         $ source env.sh
 
+**1C.** Lastly, run real.exe as you would in a typical WRF workflow by entering the following in the command line and pressing enter::
+
+        $ mpirun -np 4 ./real.exe
+
+.. admonition:: Please Note:
+   
+        real.exe generates the required files, wrfinput_d0* and wrfbdy_d01* that are needed to run AceCAST.
 
 
 Namelist Considerations
