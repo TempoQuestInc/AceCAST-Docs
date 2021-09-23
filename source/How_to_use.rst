@@ -73,7 +73,7 @@ At this point, it is assumed the user has run WPS and real.exe. It is also assum
 **2B.)** Modify the **namelist.input** file to ensure the settings are correct for your specific case.
 
 .. admonition:: Please Note:
-        *AceCAST uses the same namelist options that are used by WRF with the exception that certain options are not yet supported. TempoQuest has provided a summary of the supported namelist settings in the **README.namelist_support file located in the ../AceCASTv1.2 directory.***
+        *AceCAST uses the same namelist options that are used by WRF with the exception that certain options are not yet supported. TempoQuest has provided a summary of the supported namelist settings in the **README.namelist_support file located in the ../AceCASTv1.2 directory.*
 
 .. admonition:: Please Note:
         Additionally, TempoQuest has also provided an **AceCAST Advisor Script (acecast-advisor.sh) located in the ../AceCAST/run directory** to assist users in modifying their namelist settings to settings that are supported by AceCAST. More information about this utility can be found under the **Additional Information** section.
@@ -88,19 +88,19 @@ At this point, it is assumed the user has run WPS and real.exe. It is also assum
 
         **I.** Make sure you are in the **../AceCASTv1.2/run** directory by entering the following in the command line and pressing enter::
 
-        $ pwd 
+                $ pwd 
 
-       This command should return something like::
+        This command should return something like::
         
-        $ ../AceCASTv1.2/run
+                $ ../AceCASTv1.2/run
 
        **II.** Run the **AceCAST Advisor Namelist Support Check** by entering the following in the command line and pressing enter::
 
-        $ ./acecast-advisor.sh --tool support-check --namelist-file /path/to/namelist.input/file
+                $ ./acecast-advisor.sh --tool support-check --namelist-file /path/to/namelist.input/file
 
        For example,::
         
-        $ ./acecast-advisor.sh --tool support-check --namelist-file /gto/ttrask/AceCASTv1.2/run/namelist.input
+                $ ./acecast-advisor.sh --tool support-check --namelist-file /gto/ttrask/AceCASTv1.2/run/namelist.input
 
        If the namelist.input file being checked ***uses supported options*** that are compatible with AceCAST, 
         you will see a similar message to the one below printed in the terminal::
