@@ -178,23 +178,31 @@ Please follow the steps below to continue.
                   Scaling Advisor Tool Finished - Exiting
 
 
-MPI Usage
----------
 
-* AceCAST uses MPI for running on multiple GPUs just as CPU WRF does for running on multiple CPU cores. The recommended strategy is to launch one MPI rank per GPU. This is typically done using the gpu-launch.sh mpi wrapper script, which properly assigns a GPU to each rank using its rank number. Here are a couple of examples:
+**2E.)** Transfer or link your AceCAST license file (**acecast-trial.lic**) to your **../AceCASTv1.2/run** directory. The reason you need to do this is because this license file is checked when AceCAST (**acecast.exe**) runs to ensure the user has a valid license.
+
+        **I.** Copy the license file to the ../AceCASTv1.2/run directory.
+
+        Or
+
+        **II.** If you do not want to copy the license file to the ../AceCASTv1.2/run directory, you can point the **RLM_LICENSE** environment variable to the location of the license file by entering the following in the command line and pressing enter::
+                $ export RLM_LICENSE=$HOME//AceCAST/run/acecast-trial.lic
+
+
+
+**2F.)** After you have verified your namelist settings are compatible with AceCAST, and you have a range of the number of GPUs you should use to optimize the time it will take to run your simulation, you can now run AceCAST.
+
+AceCAST uses Message Passing Interface (MPI) for running on multiple GPUs just as CPU WRF does for running on multiple CPU cores. **The recommended strategy is to launch one MPI rank per GPU.** This is typically done using a wrapper script (**gpu-launch.sh - which is included in the AceCAST download**) that properly assigns a GPU to each rank using its rank number. This wrapper script is located in the **../AceCASTv1.2/run** directory.
+
+Here are some examples of how to run AceCAST using MPI commands in the table below:
 		
 .. include:: _templates/mpi_table.txt
+
+After invoking a command to run AceCAST, it will run and the acecast.exe executable will perform a check for supported namelist options at runtime. If there is an unsupported namelist option within your namelist.input file, AceCAST will automatically terminate the job. Additionally, the acecast.exe executable will check the license file to ensure the user's license is active/valid. At the end of a successful AceCAST run, it will generate output similat to this in the **rsl.out.0000 and rsl.error.0000 files**: **"Successfully checked out licenses."**
+
+
 
 Scaling Considerations
 ----------------------
 
 * Although GPUs typically offer far more performance potential than typical CPUs, they do require relatively large parallel workloads to efficiently utilize the thousands of CUDA execution cores available to each GPU. This means that it is not very efficient to use more GPUs than is necessary for a given domain's grid size. To assist AceCAST users we have provided the "AceCAST Advisor" utility (run/acecast-advisor.sh), which, in addition to assisting with namelist selection, will determine a good number of GPUs to use based on the given namelist and user's GPU compute architecture (See :ref:`tools <toolslink>` for more).
-
-
-
-.. admonition:: A Note on Preprocessing
-   
-   The role of AceCAST is simply to accelerate the execution of WRF itself on GPUs. This does not include any other elements of a typical workflow such as the components of WPS or real.exe. These should be run as one would for CPU-WRF to generate the inputs for AceCAST (i.e. wrfinput*, wrfbdy*, etc.). For your convenience we have provided a real.exe binary for host-side execution..
-
-
-
