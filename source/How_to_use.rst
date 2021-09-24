@@ -186,6 +186,7 @@ Please follow the steps below to continue.
         Or
 
         **II.** If you do not want to copy the license file to the ../AceCASTv1.2/run directory, you can point the **RLM_LICENSE** environment variable to the location of the license file by entering the following in the command line and pressing enter::
+
                 $ export RLM_LICENSE=$HOME//AceCAST/run/acecast-trial.lic
 
 
