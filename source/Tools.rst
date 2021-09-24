@@ -18,7 +18,9 @@ Benchmarks
 
 Once AceCAST has been downloaded, there will be a folder called benchmarks in ../AceCASTv1.2/run directory.
 
-* It is recommended to use the test cases provided in the benchmarks directory for getting started with AceCAST.
+* It is recommended to use the test cases provided in the benchmarks directory for 
+  getting started with AceCAST.
+	
 	* easter100:
 		* 2km horizontal resolution, 100x100x51 grid, 2 days simulation initialized with HRRR
 		* Very small domain intended for quick validation testing.
