@@ -16,7 +16,7 @@ General
 
 #. Q: What kind of runtime improvements can I expect to see?
 
-   * A: Please get in touch with :ref:`sales <supportlink>`.
+   * A: This varies, please get in touch with :ref:`sales <supportlink>` for specific details.
 
 
 Runtime
@@ -32,7 +32,7 @@ Runtime
 
 #. Q: Do I need any other software to run AceCast?
 
-   * A: Refer to :ref:`Installation <installationlink>`
+   * A: There are some dependecies required. Please refer to :ref:`Installation <installationlink>`
 
 
 Technical
@@ -46,16 +46,23 @@ Technical
 
    * A: Your system may not be compatible/properly setup, please :ref:`get in touch with us <supportlink>` for help.
 
+#. Q: My license has expired what do I do?
+
+   * A: Send us an :ref:`email! <supportlink>`.
 
 
 Other
 -----
 #. Q: What are the recommended settings to use?
 
-   * A: Varies
+   * A: This varies but generally you can check out these links for WRF `namelist.wps <https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wps.html/>`_
+     and `namelist.input <https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wrf.html/>`_ best practices.
+
+
+
 
 #. Q: Where can I learn more?
 
-   * A: Click through the different tabs on the side of this page
+   * A: Read through through the different tabs on the side of this page and then :ref:`get in touch with us <supportlink>`
 
 

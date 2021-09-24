@@ -152,6 +152,7 @@ Version 1.0.1
 .. admonition:: Note
 
     The following afwa options are still not available in this version:
+
       #. afwa_turb_opt = 1
       #. afwa_hailcast_opt = 1
 
@@ -159,6 +160,7 @@ Version 1.0.1
 
 * Physics
 	* We have added support for the following physics options:
+
 		* Mellor-Yamada-Janjic TKE scheme (bl_pbl_physics = 2)
 		* Monin-Obukhov (Janjic) scheme (sf_sfclay_physics = 2)
 
