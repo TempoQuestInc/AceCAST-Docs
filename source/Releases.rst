@@ -222,6 +222,7 @@ Version 1.0-beta
 * Initial public release of AceCAST
     
 * Supported Platforms
+
 	* This release of AceCAST has a single generic distribution targeting x86-64 Linux systems. Support is not guaranteed 
   	  for any particular Linux distribution but this release has been tested successfully on a variety of distributions 
   	  when using the recommended installation methods (see README.ACECAST). This distribution has been built for NVIDIA 

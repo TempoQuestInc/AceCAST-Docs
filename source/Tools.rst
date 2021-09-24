@@ -56,6 +56,7 @@ AceCAST Scaling Advisor
 * Invoking this command will list all of the AceCAST Advisor Script options
 
 * usage: acecast-advisor.sh [OPTIONS]
+
 	* OPTIONS:
 		* -t, --tool <support-check|scaling-advisor> [Default: none]
 		* -n, --namelist-file <FILE> [Default: ./namelist.input]
