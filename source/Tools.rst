@@ -85,10 +85,3 @@ AceCAST Scaling Advisor
     When using the scaling advisor tool the script should be run on the intended runtime machine and runtime environment. 
     Otherwise the script will not be able to determine critical information about the user's GPU specifications.
 
-
-* diffwrfs
-
-* wrfstats
-
-* configuration
-
