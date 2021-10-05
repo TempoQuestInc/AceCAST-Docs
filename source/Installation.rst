@@ -3,8 +3,6 @@
 Installation
 ============
 
-(Under Construction)
-
 Provided below is a list of required library dependencies for AceCAST. Please check to see if these libraries have already 
 been installed on your system. If they have not been installed, TempoQuest provides a library dependency installation script 
 (../scripts/install_deps.sh) in the AceCAST download file that installs these libraries for you. Please use the dependency 

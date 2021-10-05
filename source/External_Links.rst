@@ -1,9 +1,6 @@
 External Links
 ==============
 
-Under Construction
-------------------
-
 * `Tempoquest homepage <https://tempoquest.com/>`_
 * `WRF homepage <https://www.mmm.ucar.edu/weather-research-and-forecasting-model>`_
 * `CPU WRF on-demand <https://wrfondemand.com/login>`_

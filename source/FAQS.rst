@@ -1,9 +1,6 @@
 Frequenty Asked Questions
 =========================
 
-Under Construction
-------------------
-
 General
 -------
 #. Q: How much does AceCast Cost? 

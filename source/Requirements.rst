@@ -3,9 +3,6 @@
 System Requirements
 ===================
 
-Under Construction
-------------------
-
 * OS & Host Architecture:
 
 	* This distribution of AceCAST targets generic x86-64 and Power9 Linux systems. Note: Support is not guaranteed for any 

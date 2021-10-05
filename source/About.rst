@@ -3,9 +3,6 @@
 About
 =====
 
-(Under Construction)
-
-
 What is AceCAST?
 ----------------
 

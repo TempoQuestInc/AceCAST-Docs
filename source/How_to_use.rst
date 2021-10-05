@@ -3,8 +3,6 @@
 How to Use
 ==========
 
-(Under Construction)
-
 .. admonition:: Preprocessing
    
         The role of AceCAST is simply to accelerate the execution of WRF itself on GPUs. AceCAST does not 
