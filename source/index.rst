@@ -21,18 +21,18 @@ Index
    :maxdepth: 2
    :caption: AceCast
 
-   ./About
-   ./Releases
-   ./Requirements
-   ./Installation
-   ./How_to_use
+   About.rst
+   Releases.rst
+   Requirements.rst
+   Installation.rst
+   How_to_use.rst
    
 
 .. toctree::
    :maxdepth: 2
    :caption: WSV3
 
-   ./WSV3
+   WSV3.rst
 
 
 .. toctree::
@@ -40,11 +40,11 @@ Index
    :caption: Other
 
 
-   ./Gallery
-   ./Tools
-   ./Tutorials
-   ./External_Links
-   ./FAQS
-   ./Support
-   ./License
+   Gallery.rst
+   Tools.rst
+   Tutorials.rst
+   External_Links.rst
+   FAQS.rst
+   Support.rst
+   License.rst
 
