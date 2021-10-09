@@ -1,12 +1,34 @@
 .. _releaseslink:
 
 Releases
-========
+########
 
 Version 1.3
------------
+===========
 
-**New Features**
+Download
+--------
+
+    To download the AceCAST v1.3 distribution package use the following link:
+
+        AceCAST v1.3 for Linux x86-64: `AceCASTv1.3+linux.x86_64.tar.gz <https://s3.console.aws.amazon.com/s3/object/tqi-s3bucket-testing?region=us-east-2&prefix=distros/AceCASTv1.3%2Blinux.x86_64.tar.gz>`_
+
+    Alternatively, if you would like to download the package from the command line you can simply copy the url from above and use a tool such as 
+    `wget` or `curl` to download the file. Example:
+
+    ::
+
+        wget https://s3.console.aws.amazon.com/s3/object/tqi-s3bucket-testing?region=us-east-2&prefix=distros/AceCASTv1.3%2Blinux.x86_64.tar.gz
+
+
+    .. important::
+        AceCAST requires a valid license file to run. Register for a free 60-day trial license `here <https://tempoquest.com/acecast-registration/>`_. 
+        Contact support@tempoquest.com for more licensing information.
+
+    
+
+New Features
+------------
     
     The following table summarizes the newly supported namelist options in version 1.3.
 
@@ -50,11 +72,83 @@ Version 1.3
     *Grid Nudging*
         quick diddy on what this is and what it is used for
 
-**Improvements**
-**Bug Fixes**
+Improvements and Bug Fixes
+--------------------------
+
+    **Noah LSM (sf_surface_physics = 2) Improvement**
+        
+        The noah lsm scheme was using a lot of thread-level private automatic arrays. This was computationally expensive and also caused
+        memory issues for larger patch sizes. In these cases users would have encountered errors similar to the following prior to the
+        run failing:
+        
+        ::
+
+            INITIALIZE THREE Noah LSM RELATED TABLES
+             Tile Strategy is not specified. Assuming 1D-Y
+            WRF TILE   1 IS    139 IE    275 JS    137 JE    272
+            WRF NUMBER OF TILES =   1
+             Tile Strategy is not specified. Assuming 1D-Y
+            WRF TILE   1 IS    279 IE    556 JS    198 JE    393
+            WRF NUMBER OF TILES =   1
+            FATAL ERROR: FORTRAN AUTO ALLOCATION FAILED
+            FATAL ERROR: FORTRAN AUTO ALLOCATION FAILED
+            FATAL ERROR: FORTRAN AUTO ALLOCATION FAILED
+
+        We have reworked the noah lsm components and users should no longer see this issue moving forward.
+
+    **Adaptive Time Stepping (ADT) Bug Fix**
+        
+        Ever since the release of ADT in version 1.1 we have encountered subtle issues for simulations using ADT with multiple GPUs. This 
+        turned out to be an issue where the `num_sound_steps` was miscalculated causing numerical instabilities that resulted in CFL errors
+        and the model eventually blowing up. Example rsl log output:
+
+        ::
+
+            d01 2020-12-09_00:00:00            15  points exceeded cfl=2 in domain d01 at time 2020-12-09_00:00:00 hours
+            d01 2020-12-09_00:00:00  max_vert_cfl=             Inf
+            Timing for main (dt= 10.00): time 2020-12-09_00:00:10 on domain   1:   21.61837 elapsed seconds
+            d01 2020-12-09_00:00:10             5  points exceeded cfl=2 in domain d01 at time 2020-12-09_00:00:10 hours
+            d01 2020-12-09_00:00:10  max_vert_cfl=             Inf
+            Timing for main (dt=  1.00): time 2020-12-09_00:00:11 on domain   1:    0.44749 elapsed seconds
+            Failing in Thread:1
+            call to cuStreamSynchronize returned error 700: Illegal address during kernel execution
+
+        This rather slippery bug has finally been identified and fixed. We highly encourage users to consider using ADT moving forward.
+
+    **Dependency Installation Script Improvement**
+
+        Many AceCAST users do not have administrator access on the systems they install and run AceCAST on. Typically these systems already
+        have the required software packages installed on the machine but we have found that a number of users have reported issues with 
+        the libcurl headers and libraries when running the dependency installation script provided with the AceCAST distribution. We have 
+        disabled the unnecessary feature of the netcdf-c configuration that required libcurl packages. 
+
+    **Improved Error Messaging**
+
+        We have found that users were experiencing kernel launch error messages in cases where they were actually running out of GPU 
+        memory. This behavior has been corrected.
+
+    **Modified Default Grid Decomposition Strategy**
+
+        AceCAST will now default to a 1-dimensional patch decomposition strategy when running on multiple GPUs. This typically improves 
+        performance by up to 20% in our experience due to improved MPI buffer packing/unpacking and I/O read/write data access patterns.
+        We therefore decided to make this the default decomposition strategy. Users can still explicitly specify the decomposition using
+        the `nproc_x` and `nproc_y` namelist options if desired.
+
+                
+Known Issues
+------------
+
+    **Easter1500 16x V100 GPU failure**
+        
+        Currently AceCAST encounters an issue when running the Easter1500 benchmark on 16 V100 GPUs with a 4x4 patch decomposition. Due to
+        the new decomposition strategy users are unlikely to encounter this issue. Regardless we would like to make sure that users are
+        aware that it exists.
+
+    **Performance Issue**
+    
 
 Version 1.2
------------
+===========
 * Nesting
 	* This release includes a large number of new and improved features, the primary of which is nesting. Both 1-way and 2-way nesting
           is now fully supported with the only notable exceptions being the inability to use vertical nesting and restricting the user to
@@ -139,7 +233,7 @@ Version 1.2
 
 
 Version 1.1.2
--------------
+=============
 * Release 1.1.2 adds beta support for IBM Power9 systems on Linux.
   This Power9 version is intended for research use only.
   TQI acknowledges computational resources of the Oak Ridge Leadership Computing Facility at the Oak Ridge National Laboratory, 
@@ -147,12 +241,12 @@ Version 1.1.2
 
 
 Version 1.1.1
--------------
+=============
 * This release does not incorporate any new features. This release incorporates changes necessary to enable counting, floating 
   licenses. We have also cleaned up much of the output from the license checkout/checkin tasks.
 
 Version 1.1
------------
+===========
 * AceCAST has been compiled and tested with NVIDIA HPC SDK (20.7) and CUDA 11. This version has support for A100 architecture GPUs. 
 
 
@@ -174,7 +268,7 @@ Version 1.1
 		* Performance optimizations for WSM6 (mp_physics = 6), YSU PBL (bl_pbl_physics = 1), and BMJ (cu_physics = 2) schemes
 
 Version 1.0.1
--------------
+=============
 * Diagnostics
 	* We have ported a significant selection of diagnostics options. The following options are now available to AceCAST.
         
@@ -217,7 +311,7 @@ Version 1.0.1
 
 
 Version 1.0
------------
+===========
 * Testing
 	* AceCAST v1.0 has been thoroughly tested at all stages of model development and ready for user evaluation. We 
   	  rigorously evaluated 12 main physics and majority of dynamics options for numerical and performance aspects using 
@@ -267,7 +361,7 @@ Version 1.0
 		* MYNN PBL (bl_pbl_physics = 5) - The MYNN PBL scheme has been reworked to exploit more parallelism.
 
 Version 1.0-beta
-----------------
+================
 
 * Initial public release of AceCAST
     
