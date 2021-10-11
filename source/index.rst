@@ -1,6 +1,6 @@
 
 Welcome to AceCastDocs homepage!
-==============================================
+================================
 
 The documentation page for AceCast
 ----------------------------------
@@ -22,10 +22,12 @@ Index
    :caption: AceCast
 
    About.rst
-   Releases.rst
    Requirements.rst
    Installation.rst
-   How_to_use.rst
+   Releases.rst
+   Benchmarks.rst
+   Namelist.rst
+   Troubleshooting.rst
    
 
 .. toctree::
