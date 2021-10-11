@@ -20,7 +20,7 @@ A quick overview of the capabilities of WSV3
 
 Noteworthy features include but are not limited to:
 
-* Near Live Duel-Pol and Terminal radars
+* Near Live Dual-Pol and Terminal radars
 * Satellite imagery
 * Severe Weather
 * METAR
