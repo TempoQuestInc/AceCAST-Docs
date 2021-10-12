@@ -40,7 +40,7 @@ First Step: Running Real (real.exe)
 **1A.)** To run *real.exe*, please make sure you are in the *../AceCASTv1.2/run* directory where the *real.exe* executable resides.
 
 **1B.)** Ensure you have properly installed the required dependencies 
-(see :ref:`installation <installationlink>` for more information) and have set up the corresponding runtime 
+(see :ref:`Installation` for more information) and have set up the corresponding runtime 
 environment correctly. To ensure a proper runtime environment is created, source the environment script 
 (*env.sh*),
 

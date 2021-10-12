@@ -7,8 +7,7 @@ Prerequisites
 =============
 
 Before attempting to install AceCAST users should ensure they have access to a compatible system with NVIDIA GPUs 
-(see :ref:`requirementslink`). Users should also be comfortable working from a linux command line and be familiar 
-with running MPI applications.
+(see :ref:`requirementslink`).
 
 Contact and User Support
 ========================
@@ -176,4 +175,8 @@ packages with `yum` or `apt-get` then run the `install_deps.sh` script with the 
     Usage for Debian-based Linux Distributions:   ./install_deps.sh --install-secondary-packages-deb
 
 
+Troubleshooting
+===============
+
+If you are still having issues, please check out the :ref:`Troubleshooting` section.
     

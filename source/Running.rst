@@ -3,41 +3,159 @@
 Running AceCAST
 ###############
 
-
-A Statement from the Developers
-===============================
-
-AceCAST is simply a modified implementation of the standard CPU-based WRF model distributed by NCAR (checkout the 
-`wrf users page here <https://www2.mmm.ucar.edu/wrf/users/>`_) that runs on high-performance GPUs. Our goal is to 
-make AceCAST a simple and convenient alternative to running WRF on CPUs and as such have preserved as much of the
-standard WRF functionality as possible. It is assumed that users are at least somewhat familiar with running the
-standard WRF model prior to running AceCAST. This guide is intended to help existing WRF users become familiar 
-with the mechanics of running AceCAST as well as help them understand how CPU-WRF and GPU-AceCAST differ.
-
+Before attempting to run make sure you have installed AceCAST properly and acquired a valid license to use the 
+software (see :ref:`Installation Guide <Installation>`).
 
 Input Data
 ==========
 
-Once the installation script has been run successfully, the next step is to download some input data for testing 
-AceCAST. AceCAST intentionally uses the same exact `namelist.input, wrfbdy*, wrfinput*, etc.` files that are used by 
-the standard CPU-WRF model. The only restrictions are that they must be compatible with `WRFV3.8.1` and the namelist
-options must be supported by AceCAST (see :ref:`Namelist`). Although you can use your own test data, to keep
-things simple it is highly recommended to start with one of our :ref:`benchmark test cases <Benchmarks>`. In this
-example, we will use the :ref:`Easter500 benchmark <Easter500>`, which is a good test case for a small number of GPUs
-and for convenience we download and unpack the benchmark data in the `AceCASTv1.3/benchmarks` directory:
+The first step in any AceCAST/WRF workflow is to generate input data for the model. AceCAST intentionally uses the 
+same exact `namelist.input, wrfbdy*, wrfinput*, etc.` files that are used by the standard CPU-WRF model. The only 
+restrictions are that they must be compatible with `WRF version 3.8.1` and the namelist options must be supported by
+AceCAST (see :ref:`Namelist`). Although you can use your own test data, to keep things simple it is highly 
+recommended to start with the input data from one of our :ref:`benchmark test cases <Benchmarks>`. In this example 
+we will use the :ref:`Easter500 benchmark <Easter500>`, which is a good test case for a small number of GPUs and for 
+convenience we download and unpack the benchmark data in the `AceCASTv1.3/benchmarks` directory:
 
 ::
 
-    [ec2-user@gpu-node test]$ cd AceCASTv1.3/benchmarks/
-    [ec2-user@gpu-node benchmarks]$ wget https://tqi-public.s3.us-east-2.amazonaws.com/datasets/easter500.tar.gz
+    [acecast-user@localhost]$ cd AceCASTv1.3/benchmarks/
+    [acecast-user@localhost]$ wget https://tqi-public.s3.us-east-2.amazonaws.com/datasets/easter500.tar.gz
     ...
-    [ec2-user@gpu-node benchmarks]$ tar -xf easter500.tar.gz 
-    [ec2-user@gpu-node benchmarks]$ ls
+    [acecast-user@localhost]$ tar -xf easter500.tar.gz 
+    [acecast-user@localhost]$ ls
     easter500  easter500.tar.gz
-    [ec2-user@gpu-node benchmarks]$ tree easter500
+    [acecast-user@localhost]$ tree easter500
     easter500
     ├── namelist.input
     ├── namelist.wps
     ├── wrfbdy_d01
     └── wrfinput_d01
+
+Setting Up the Simulation Run Directory
+=======================================
+
+Although you are free to run your simulations in the `AceCASTv1.3/run` directory, we suggest you create a new 
+directory and link/copy any files required at runtime to that directory. This includes the following:
+
+    - AceCAST executable (`acecast.exe`)
+    - AceCAST license (something like `acecast-trial.lic`)
+    - MPI wrapper script (`gpu_launch.sh`)
+    - static runtime data files (`CCN_ACTIVATE.BIN, GENPARM.TBL, LANDUSE.TBL, etc.`)
+    - namelist file (`namelist.input`)
+    - input data (`wrfbdy*, wrfinput*, etc.`)
+
+.. tip::
+    We consider it best practice to create a new directory for each simulation you run. This can help you avoid 
+    common mistakes when running large numbers of simulations and also allows you to run multiple simulations 
+    simultaneously if you have the compute resources to do so.
+
+For our example we will be running with 4 GPUs on a single compute node (`localhost`). Given this, we create 
+an appropriately named simulation run directory at `AceCASTv1.3/test/easter500-4GPU` and link the necessary
+runtime files into this directory:
+
+::
+
+    [acecast-user@localhost]$ cd AceCASTv1.3
+    [acecast-user@localhost]$ mkdir -p test/easter500-4GPU
+    [acecast-user@localhost]$ cd test/easter500-4GPU/
+    [acecast-user@localhost]$ ln -s ../../run/* .
+    [acecast-user@localhost]$ ln -s ../../benchmarks/easter500/* .
+
+
+At this point your `easter500-4GPU` directory contents should look something like this:
+
+::
+
+    easter500-4GPU
+    ├── acecast-advisor.sh -> ../../run/acecast-advisor.sh
+    ├── acecast.exe -> ../../run/acecast.exe
+    ├── acecast-trial.lic -> ../../run/acecast-trial.lic
+    ├── CCN_ACTIVATE.BIN -> ../../run/CCN_ACTIVATE.BIN
+    ├── diffwrfs -> ../../run/diffwrfs
+    ├── GENPARM.TBL -> ../../run/GENPARM.TBL
+    ├── gpu-launch.sh -> ../../run/gpu-launch.sh
+    ├── LANDUSE.TBL -> ../../run/LANDUSE.TBL
+    ├── namelist.input -> ../../benchmarks/easter500/namelist.input
+    ├── namelist.wps -> ../../benchmarks/easter500/namelist.wps
+    ├── ndown.exe -> ../../run/ndown.exe
+    ├── ozone.formatted -> ../../run/ozone.formatted
+    ├── ozone_lat.formatted -> ../../run/ozone_lat.formatted
+    ├── ozone_plev.formatted -> ../../run/ozone_plev.formatted
+    ├── README.namelist -> ../../run/README.namelist
+    ├── real.exe -> ../../run/real.exe
+    ├── RRTMG_LW_DATA -> ../../run/RRTMG_LW_DATA
+    ├── RRTMG_SW_DATA -> ../../run/RRTMG_SW_DATA
+    ├── SOILPARM.TBL -> ../../run/SOILPARM.TBL
+    ├── VEGPARM.TBL -> ../../run/VEGPARM.TBL
+    ├── wrfbdy_d01 -> ../../benchmarks/easter500/wrfbdy_d01
+    ├── wrf.exe -> ../../run/wrf.exe
+    └── wrfinput_d01 -> ../../benchmarks/easter500/wrfinput_d01
+
+
+Setting Up Your Runtime Environment
+===================================
+
+Prior to running AceCAST, we need to setup the runtime environment by sourcing the `~/tqi-build/20.7/env.sh` 
+script that was generated by the `install_deps.sh` script during the :ref:`Installation`:
+
+::
+
+    [acecast-user@localhost]$ source ~/tqi-build/20.7/env.sh
+
+.. note::
+   If you installed the AceCAST dependencies in a non-default location, the env.sh script will be located
+   in the directory you specified during the installation.
+
+This modifies your `PATH` and `LD_LIBRARY_PATH` variables so that `acecast.exe` can properly link with the
+shared libraries for NetCDF, HDF5, etc..
+
+
+Single-Node Usage
+=================
+
+AceCAST uses MPI to enable it to run on multiple GPUs just like WRF does (when compiled for `dmpar`) to run
+on multiple CPU cores. We always recommend that you use a single MPI process for each GPU you intend to run
+on.
+
+.. warning::
+    AceCAST doesn't stop you from running with multiple MPI processes per GPU, which can degrade performance
+    and GPU memory limitation isssues.
+
+The standard AceCAST distribution uses an OpenMPI build that is included with the NVIDIA HPC SDK 
+installation (see :ref:`Installation`) and we recommend using the associated `mpirun` launcher program to 
+run `acecast.exe`. 
+
+::
+
+    Single-Node Usage: mpirun -n <NUM_GPUS> ./gpu-launch.sh ./acecast.exe
+    Multi-Node Usage:  mpirun [MPIRUN_OPTIONS] ./gpu-launch.sh ./acecase.exe
+
+Many users will find that a single node of GPUs provides plenty enough speed to run their simulations. The 
+multi-node usage requires the appropriate `MPIRUN_OPTIONS`, which will vary depending on the users system.
+If you would like to run AceCAST on multiple nodes check out the `Multi-Node Usage`_.
+
+For our example we run with 4 GPUs on a single node:
+
+::
+
+    add later
+    
+
+
+
+Multi-Node Usage
+================
+
+
+
+Next Steps
+==========
+
+
+
+
+
+
+
 

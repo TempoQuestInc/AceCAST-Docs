@@ -22,8 +22,10 @@ Index
    :caption: AceCast
 
    About.rst
+   BeforeYouBegin.rst
    Requirements.rst
    Installation.rst
+   Running.rst
    Releases.rst
    Benchmarks.rst
    Namelist.rst
