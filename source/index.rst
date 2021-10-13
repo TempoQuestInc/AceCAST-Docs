@@ -2,12 +2,6 @@
 Welcome to AceCastDocs homepage!
 ================================
 
-The documentation page for AceCast
-----------------------------------
-
-This documentation is currently under construction
---------------------------------------------------
-
 .. figure:: /Images/NWP_Logo.png
    :alt: You found me!
    :align: center
@@ -25,10 +19,11 @@ Index
    BeforeYouBegin.rst
    Requirements.rst
    Installation.rst
-   Running.rst
+   RunningAcecast.rst
+   GeneratingInputData.rst
+   CreatingNamelist.rst
    Releases.rst
    Benchmarks.rst
-   Namelist.rst
    Advanced.rst
    Troubleshooting.rst
    

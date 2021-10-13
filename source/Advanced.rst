@@ -3,11 +3,10 @@
 Advanced Topics
 ###############
 
-here we are
+Under Construction
 
 .. _ModifyingGpuLaunch:
 
 Modifying the gpu-launch.sh Script
 ==================================
 
-to-do
