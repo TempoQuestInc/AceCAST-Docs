@@ -15,11 +15,11 @@ restrictions are that they must be compatible with `WRF version 3.8.1` and the n
 AceCAST (see :ref:`Namelist`). Although you can use your own test data, to keep things simple it is highly 
 recommended to start with the input data from one of our :ref:`benchmark test cases <Benchmarks>`. In this example 
 we will use the :ref:`Easter500 benchmark <Easter500>`, which is a good test case for a small number of GPUs and for 
-convenience we download and unpack the benchmark data in the `AceCASTv1.3/benchmarks` directory:
+convenience we download and unpack the benchmark data in the `AceCAST/benchmarks` directory:
 
 ::
 
-    [acecast-user@localhost]$ cd AceCASTv1.3/benchmarks/
+    [acecast-user@localhost]$ cd AceCAST/benchmarks/
     [acecast-user@localhost]$ wget https://tqi-public.s3.us-east-2.amazonaws.com/datasets/easter500.tar.gz
     ...
     [acecast-user@localhost]$ tar -xf easter500.tar.gz 
@@ -35,7 +35,7 @@ convenience we download and unpack the benchmark data in the `AceCASTv1.3/benchm
 Setting Up the Simulation Run Directory
 =======================================
 
-Although you are free to run your simulations in the `AceCASTv1.3/run` directory, we suggest you create a new 
+Although you are free to run your simulations in the `AceCAST/run` directory, we suggest you create a new 
 directory and link/copy any files required at runtime to that directory. This includes the following:
 
     - AceCAST executable (`acecast.exe`)
@@ -51,12 +51,12 @@ directory and link/copy any files required at runtime to that directory. This in
     simultaneously if you have the compute resources to do so.
 
 For our example we will be running with 4 GPUs on a single compute node (`localhost`). Given this, we create 
-an appropriately named simulation run directory at `AceCASTv1.3/test/easter500-4GPU` and link the necessary
+an appropriately named simulation run directory at `AceCAST/test/easter500-4GPU` and link the necessary
 runtime files into this directory:
 
 ::
 
-    [acecast-user@localhost]$ cd AceCASTv1.3
+    [acecast-user@localhost]$ cd AceCAST
     [acecast-user@localhost]$ mkdir -p test/easter500-4GPU
     [acecast-user@localhost]$ cd test/easter500-4GPU/
     [acecast-user@localhost]$ ln -s ../../run/* .
@@ -111,47 +111,89 @@ This modifies your `PATH` and `LD_LIBRARY_PATH` variables so that `acecast.exe` 
 shared libraries for NetCDF, HDF5, etc..
 
 
-Single-Node Usage
-=================
+Launching AceCAST with MPI
+==========================
 
 AceCAST uses MPI to enable it to run on multiple GPUs just like WRF does (when compiled for `dmpar`) to run
-on multiple CPU cores. We always recommend that you use a single MPI process for each GPU you intend to run
-on.
+on multiple CPU cores. The standard AceCAST distribution uses an OpenMPI build that is included with the 
+NVIDIA HPC SDK installation (see :ref:`Installation`) and typically use the associated `mpirun` launcher to 
+run `acecast.exe`.
+
+.. note::
+    In some cases the NVIDIA HPC SDK build of OpenMPI may not be compatible with your system. If you run 
+    into any MPI-related issues or poor multi-GPU performance, please contact support@tempoquest.com to 
+    discuss alternative builds or other solutions.
+
+General AceCAST usage can be summarized as follows:
+
+::
+
+    Usage:  mpirun [MPIRUN_OPTIONS] ./gpu-launch.sh ./acecase.exe
+
+
+We always recommend that you use one MPI task per each GPU you intend to run on. This is accomplished 
+through the proper choice of `MPIRUN_OPTIONS` as well as the `gpu-launch.sh` MPI wrapper script. The goal 
+of the former is to launch the correct number of MPI tasks on each node. The `gpu-launch.sh` script (note 
+that this is run by each MPI task independently) then sets the `ACC_DEVICE_NUM` environment variable (see 
+`NVHPC Environment Variables <https://docs.nvidia.com/hpc-sdk/archive/20.7/compilers/openacc-gs/index.html#env-vars>`_)
+for each task to ensure the one-to-one mapping of GPUs to their respective tasks. For the majority of 
+users the `gpu-launch.sh` can be used as-is but there are some cases where this may need to be modified
+(example: running 4 simulations simultaneously each on their own GPU on a single node), in which case 
+users can find more information in :ref:`ModifyingGpuLaunch`.
 
 .. warning::
-    AceCAST doesn't stop you from running with multiple MPI processes per GPU, which can degrade performance
-    and GPU memory limitation isssues.
+    Currently, AceCAST doesn't prevent you from running with multiple MPI tasks per GPU, which can
+    degrade performance as well as cause significant GPU memory limitations. It is important to make sure 
+    you are using a single GPU per MPI task.
 
-The standard AceCAST distribution uses an OpenMPI build that is included with the NVIDIA HPC SDK 
-installation (see :ref:`Installation`) and we recommend using the associated `mpirun` launcher program to 
-run `acecast.exe`. 
 
-::
-
-    Single-Node Usage: mpirun -n <NUM_GPUS> ./gpu-launch.sh ./acecast.exe
-    Multi-Node Usage:  mpirun [MPIRUN_OPTIONS] ./gpu-launch.sh ./acecase.exe
-
-Many users will find that a single node of GPUs provides plenty enough speed to run their simulations. The 
-multi-node usage requires the appropriate `MPIRUN_OPTIONS`, which will vary depending on the users system.
-If you would like to run AceCAST on multiple nodes check out the `Multi-Node Usage`_.
-
-For our example we run with 4 GPUs on a single node:
+Note that although the multi-node usage can vary significantly from system to system, the single node use
+case can nearly always be generalized to:
 
 ::
 
-    add later
-    
+    Single Node Usage: mpirun -n <NUM_GPUS> ./gpu-launch.sh ./acecast.exe
+
+
+For our example we are run with 4 GPUs on a single node and can therefore follow this single node usage
+pattern.
+
+::
+
+    [acecast-user@localhost]$ mpirun -n 4 ./gpu-launch.sh ./acecast.exe
+     starting wrf task             0  of             4
+     starting wrf task             1  of             4
+     starting wrf task             2  of             4
+     starting wrf task             3  of             4
+
+
+If the run was successful, you should see a message stating `SUCCESS COMPLETE WRF` near the end of the
+`rsl.error.0000` file.
+
+::
+
+    [acecast-user@localhost]$ tail rsl.error.0000
+    Timing for main: time 2020-04-12_23:59:12 on domain   1:    0.13889 elapsed seconds
+    Timing for main: time 2020-04-12_23:59:24 on domain   1:    0.13829 elapsed seconds
+    Timing for main: time 2020-04-12_23:59:36 on domain   1:    0.13934 elapsed seconds
+    Timing for main: time 2020-04-12_23:59:48 on domain   1:    0.13824 elapsed seconds
+    Timing for main: time 2020-04-13_00:00:00 on domain   1:    0.14919 elapsed seconds
+    Timing for Writing wrfout_d01_2020-04-13_00_00_00 for domain        1:    1.76981 elapsed seconds
+    Timing for Writing restart for domain        1:    7.45465 elapsed seconds
+    d01 2020-04-13_00:00:00 wrf: SUCCESS COMPLETE WRF
+    Checking-in/releasing AceCAST Licenses
+    Successfully checked-in/released AceCAST Licenses.
 
 
 
-Multi-Node Usage
-================
+Summary and Next Steps
+======================
 
-
-
-Next Steps
-==========
-
+In this section we covered the basics of running AceCAST through an example where we ran the 
+:ref:`Easter500` benchmark test case with 4 GPUs on a single node. By using input data from one of our
+benchmark test cases, we were able to focus on the fundamental mechanics of running the AceCAST software
+before moving on to other critical topics such as generating input data and choosing a namelist. These 
+will be covered in the next sections :ref:`Namelist`.
 
 
 

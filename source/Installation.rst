@@ -23,13 +23,16 @@ release of AceCAST. Once the AceCAST tarball has been downloaded, unpack it usin
 
 ::
 
-    [ec2-user@gpu-node test]$ tar -xf AceCASTv1.3+linux.x86_64.tar.gz 
+    [acecast-user@localhost]$ tar -xf AceCASTv1.3+linux.x86_64.tar.gz 
 
-Once unpacked you should see a file structure like this:
+Package Contents
+================
+
+Once unpacked you should see a new `AceCAST` directory with a file structure similar to this:
 
 ::
 
-    AceCASTv1.3
+    AceCAST
     ├── benchmarks 
     │     - a directory intended to hold AceCAST benchmark test 
     │       case data
@@ -63,8 +66,9 @@ Once unpacked you should see a file structure like this:
     │   ├── RRTMG_SW_DATA
     │   ├── SOILPARM.TBL
     │   ├── VEGPARM.TBL
-    │   └── wrf.exe
-    │         - precompiled wrf.exe executable -- runs on CPU     
+    │   └── wrf_stats_ck
+    │         - utility script for getting basic performance
+    │           metrics of AceCAST/WRF runs
     └── scripts
         └── install_deps.sh
               - script for installing the shared libraries
@@ -79,9 +83,10 @@ Acquire a License
 =================
 
 AceCAST is a licensed software package and as such requires a valid license to run. A 60-day trial license can be acquired
-by registering at `<https://tempoquest.com/acecast-registration/>`_. After registering you should recieve an email 
-containing your trial license. We suggest placing this file in the `AceCASTv1.3/run` directory. If your 60-day trial has 
-ended please contact support@tempoquest.com to request an extension and/or a quote.
+by registering at the `TempoQuest Registration Page <https://tempoquest.com/binary-executable-for-64-bit-linux-x86/>`_. 
+After registering you should recieve an email containing your trial license. We suggest placing this file in the 
+`AceCAST/run` directory. If your 60-day trial has ended please contact support@tempoquest.com to request an extension 
+and/or a quote.
 
 
 Running the Installation Script
@@ -89,7 +94,7 @@ Running the Installation Script
 
 To ensure compatibility with the precompiled executables in the AceCAST distribution it is highly recommend to use the 
 dependency installation script to install the various compilers and shared libraries required at runtime (found at 
-`AceCASTv1.3/scripts/install_deps.sh`). This script installs the following components:
+`AceCAST/scripts/install_deps.sh`). This script installs the following components:
 
     - NVIDIA 20.7 (formerly PGI) compiler suite (includes NVIDIA-compiled, CUDA-aware OpenMPI build)
     - HDF5
@@ -113,8 +118,8 @@ Example:
 
 ::
 
-    [ec2-user@gpu-node test]$ cd AceCASTv1.3/scripts/
-    [ec2-user@gpu-node scripts]$ ./install_deps.sh 
+    [acecast-user@localhost]$ cd AceCAST/scripts/
+    [acecast-user@localhost]$ ./install_deps.sh 
     Welcome to the AceCAST Package Installer
     Checking for supported architecture
     Supported architecture detected arch=Linux_x86_64
@@ -149,7 +154,6 @@ Example:
     Success: Successfully installed parallel-netcdf version 1.12.1 in /home/ec2-user/tqi-build/20.7/pnetcdf
     Success: Successfully Installed AceCAST Dependency Packages
     Environment setup script generated at /home/ec2-user/tqi-build/20.7/env.sh
-    [ec2-user@gpu-node scripts]$ 
 
 
 We suggest running without the optional flags `--install-secondary-packages-rpm` or `--install-secondary-packages-deb`

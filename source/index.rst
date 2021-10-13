@@ -29,6 +29,7 @@ Index
    Releases.rst
    Benchmarks.rst
    Namelist.rst
+   Advanced.rst
    Troubleshooting.rst
    
 

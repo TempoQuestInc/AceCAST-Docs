@@ -11,14 +11,14 @@ Download
 
     To download the AceCAST v1.3 distribution package use the following link:
 
-        AceCAST v1.3 for Linux x86-64: `AceCASTv1.3+linux.x86_64.tar.gz <https://s3.console.aws.amazon.com/s3/object/tqi-s3bucket-testing?region=us-east-2&prefix=distros/AceCASTv1.3%2Blinux.x86_64.tar.gz>`_
+        AceCAST v1.3 for Linux x86-64: `AceCASTv1.3+linux.x86_64.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/AceCASTv1.3%2Blinux.x86_64.tar.gz>`_
 
     Alternatively, if you would like to download the package from the command line you can simply copy the url from above and use a tool such as 
     `wget` or `curl` to download the file. Example:
 
     ::
 
-        wget https://s3.console.aws.amazon.com/s3/object/tqi-s3bucket-testing?region=us-east-2&prefix=distros/AceCASTv1.3%2Blinux.x86_64.tar.gz
+        wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/AceCASTv1.3%2Blinux.x86_64.tar.gz
 
 
     .. important::
@@ -37,35 +37,35 @@ New Features
     +===================+=======================+===============================================================================================+
     | **&fdda  (grid and obs nudging)**                                                                                                         |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
-    | grid_fdda         | 0, 1*                 | grid-nudging fdda on (=0 off) for each domain                                                 |
+    | grid_fdda         | 0, **1*, 2***         | grid-nudging fdda on (=0 off) for each domain                                                 |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
-    | grid_sfdda        | 0, 1*                 | | surface fdda switch                                                                         |
+    | grid_sfdda        | 0, **1*, 2***         | | surface fdda switch                                                                         |
     |                   |                       | |   0: off;                                                                                   |
     |                   |                       | |   1: nudging selected surface fields;                                                       |
     |                   |                       | |   2: FASDAS (flux-adjusting surface data assimilation system)                               |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
     | **&stoch (Stochastic parameterization schemes)**                                                                                          |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
-    | skebs             | 0, 1*                 | stochastic forcing option: 0=none, 1=SKEBS                                                    |
+    | skebs             | 0, **1***             | stochastic forcing option: 0=none, 1=SKEBS                                                    |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
     | **&physics**                                                                                                                              |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
-    | fractional_seaice | 0, 1*                 | | treat sea-ice as fractional field (1) or ice/no-ice flag (0)                                |
+    | fractional_seaice | 0, **1***             | | treat sea-ice as fractional field (1) or ice/no-ice flag (0)                                |
     |                   |                       | |   works for sf_sfclay_physics=1,2,5,or 7.                                                   |
     |                   |                       | |   If fractional_seaice = 1, also set seaice_threshold = 0.                                  |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
-    | rdlai2d           | .false., .true.*      | | use LAI from input; false means using values from table                                     |
+    | rdlai2d           | .false., **.true.***  | | use LAI from input; false means using values from table                                     |
     |                   |                       | |  if sst_update=1, LAI will also be in wrflowinp file                                        |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
-    | ua_phys           | .false., .true.*      | | Option to activate UA Noah changes: a different snow-cover physics in                       |
+    | ua_phys           | .false., **.true.***  | | Option to activate UA Noah changes: a different snow-cover physics in                       |
     |                   |                       | |  Noah, aimed particularly toward improving treatment of snow as it relates                  |
     |                   |                       | |  to the vegetation canopy. Also uses new columns added in VEGPARM.TBL                       |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
-    | iz0tlnd           | 0, 1*                 | | thermal roughness length for sfclay and myjsfc (0 = old, 1 = veg dependent Chen-Zhang Czil) |
+    | iz0tlnd           | 0, **1***             | | thermal roughness length for sfclay and myjsfc (0 = old, 1 = veg dependent Chen-Zhang Czil) |
     |                   |                       | |      for mynn sfc (0=Zilitinkevitch,1=Chen-Zhang,2=mod Yang,3=const zt)                     |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
 
-        \* Indicates newly supported option
+        **\* Indicates newly supported option**
     
     *Stochastic Parameterization Schemes*
 
