@@ -22,8 +22,8 @@ Download
 
 
     .. important::
-        AceCAST requires a valid license file to run. Register for a free 60-day trial license `here <https://tempoquest.com/acecast-registration/>`_. 
-        Contact support@tempoquest.com for more licensing information.
+        AceCAST requires a valid license file to run. Register for a free 60-day trial license at 
+        `<https://tempoquest.com/binary-executable-for-64-bit-linux-x86/>`_. Contact support@tempoquest.com for more licensing information.
 
     
 
