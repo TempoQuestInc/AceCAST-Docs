@@ -37,7 +37,7 @@ New Features
     +===================+=======================+===============================================================================================+
     | **&fdda  (grid and obs nudging)**                                                                                                         |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
-    | grid_fdda         | 0, **1*, 2***         | grid-nudging fdda on (=0 off) for each domain                                                 |
+    | grid_fdda         | 0, **1***             | grid-nudging fdda on (=0 off) for each domain                                                 |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
     | grid_sfdda        | 0, **1*, 2***         | | surface fdda switch                                                                         |
     |                   |                       | |   0: off;                                                                                   |
@@ -155,8 +155,6 @@ Known Issues
         the new decomposition strategy users are unlikely to encounter this issue. Regardless we would like to make sure that users are
         aware that it exists.
 
-    **Performance Issue**
-    
 
 Version 1.2
 ===========
