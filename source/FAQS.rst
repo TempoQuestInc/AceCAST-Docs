@@ -21,7 +21,7 @@ Runtime
 
 #. Q: I downloaded AceCast, now what?
 
-   * A: Check out the :ref:`installation page <installationlink>` and the :ref:`how to use <howtouselink>` page to get started!
+   * A: Check out the :ref:`installation page <Installation>` and the :ref:`how to use <howtouselink>` page to get started!
 
 #. Q: What are the system requirements?
 
@@ -29,7 +29,7 @@ Runtime
 
 #. Q: Do I need any other software to run AceCast?
 
-   * A: There are some dependecies required. Please refer to :ref:`Installation <installationlink>`
+   * A: There are some dependecies required. Please refer to :ref:`Installation`
 
 
 Technical

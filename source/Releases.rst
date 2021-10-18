@@ -11,19 +11,19 @@ Download
 
     To download the AceCAST v1.3 distribution package use the following link:
 
-        AceCAST v1.3 for Linux x86-64: `AceCASTv1.3+linux.x86_64.tar.gz <https://s3.console.aws.amazon.com/s3/object/tqi-s3bucket-testing?region=us-east-2&prefix=distros/AceCASTv1.3%2Blinux.x86_64.tar.gz>`_
+        AceCAST v1.3 for Linux x86-64: `AceCASTv1.3+linux.x86_64.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/AceCASTv1.3%2Blinux.x86_64.tar.gz>`_
 
     Alternatively, if you would like to download the package from the command line you can simply copy the url from above and use a tool such as 
     `wget` or `curl` to download the file. Example:
 
     ::
 
-        wget https://s3.console.aws.amazon.com/s3/object/tqi-s3bucket-testing?region=us-east-2&prefix=distros/AceCASTv1.3%2Blinux.x86_64.tar.gz
+        wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/AceCASTv1.3%2Blinux.x86_64.tar.gz
 
 
     .. important::
-        AceCAST requires a valid license file to run. Register for a free 60-day trial license `here <https://tempoquest.com/acecast-registration/>`_. 
-        Contact support@tempoquest.com for more licensing information.
+        AceCAST requires a valid license file to run. Register for a free 60-day trial license at 
+        `<https://tempoquest.com/binary-executable-for-64-bit-linux-x86/>`_. Contact support@tempoquest.com for more licensing information.
 
     
 
@@ -37,58 +37,49 @@ New Features
     +===================+=======================+===============================================================================================+
     | **&fdda  (grid and obs nudging)**                                                                                                         |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
-    | grid_fdda         | 0, 1*                 | grid-nudging fdda on (=0 off) for each domain                                                 |
+    | grid_fdda         | 0, **1***             | grid-nudging fdda on (=0 off) for each domain                                                 |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
-    | grid_sfdda        | 0, 1*                 | | surface fdda switch                                                                         |
+    | grid_sfdda        | 0, **1*, 2***         | | surface fdda switch                                                                         |
     |                   |                       | |   0: off;                                                                                   |
     |                   |                       | |   1: nudging selected surface fields;                                                       |
     |                   |                       | |   2: FASDAS (flux-adjusting surface data assimilation system)                               |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
     | **&stoch (Stochastic parameterization schemes)**                                                                                          |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
-    | skebs             | 0, 1*                 | stochastic forcing option: 0=none, 1=SKEBS                                                    |
+    | skebs             | 0, **1***             | stochastic forcing option: 0=none, 1=SKEBS                                                    |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
     | **&physics**                                                                                                                              |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
-    | fractional_seaice | 0, 1*                 | | treat sea-ice as fractional field (1) or ice/no-ice flag (0)                                |
+    | fractional_seaice | 0, **1***             | | treat sea-ice as fractional field (1) or ice/no-ice flag (0)                                |
     |                   |                       | |   works for sf_sfclay_physics=1,2,5,or 7.                                                   |
     |                   |                       | |   If fractional_seaice = 1, also set seaice_threshold = 0.                                  |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
-    | rdlai2d           | .false., .true.*      | | use LAI from input; false means using values from table                                     |
+    | rdlai2d           | .false., **.true.***  | | use LAI from input; false means using values from table                                     |
     |                   |                       | |  if sst_update=1, LAI will also be in wrflowinp file                                        |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
-    | ua_phys           | .false., .true.*      | | Option to activate UA Noah changes: a different snow-cover physics in                       |
+    | ua_phys           | .false., **.true.***  | | Option to activate UA Noah changes: a different snow-cover physics in                       |
     |                   |                       | |  Noah, aimed particularly toward improving treatment of snow as it relates                  |
     |                   |                       | |  to the vegetation canopy. Also uses new columns added in VEGPARM.TBL                       |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
-    | iz0tlnd           | 0, 1*                 | | thermal roughness length for sfclay and myjsfc (0 = old, 1 = veg dependent Chen-Zhang Czil) |
+    | iz0tlnd           | 0, **1***             | | thermal roughness length for sfclay and myjsfc (0 = old, 1 = veg dependent Chen-Zhang Czil) |
     |                   |                       | |      for mynn sfc (0=Zilitinkevitch,1=Chen-Zhang,2=mod Yang,3=const zt)                     |
     +-------------------+-----------------------+-----------------------------------------------------------------------------------------------+
 
-        \* Indicates newly supported option
+        **\* Indicates newly supported option**
     
     *Stochastic Parameterization Schemes*
 
         Stochastic parameterization schemes can be used to identify areas of model uncertainty in ensemble simulations by applying small 
-        perturbations at every time step to each ensemble member. A perturbation field is generated by any parameterization scheme that is chosen. 
-        This perturbation field is characterized by spatial and temporal correlations, and the overall perturbation amplitude (which is explicitly
-        defined by the user in the namelist.input file). To apply a stochastic parameterization scheme to your simulation, please reference the 
-        WRF User's Guide at:
+        perturbations at every time step to each ensemble member. To apply a stochastic parameterization scheme to your simulation, please 
+        reference the WRF User's Guide at:
 
             `<https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.0/users_guide_chap5.html#stochastic>`_
 
     *Grid Nudging*
 
         Two computationally inexpensive Four-Dimensional Data Assimilation (FDDA) techniques, Analysis Nudging and Surface Analysis Nudging, are 
-        available in this version of AceCAST (Version 1.3). Nudging is the most simplistic data assimilation technique because it does not require 
-        the use of a variational data assimilation system, such as WRFDA. Nudging, also known as Newtonian Relaxation, uses an artificial tendency 
-        term in the prognostic equations (time varying meteorological fields) to relax each grid point toward the difference between the simulation 
-        fields, and the spatial and temporal interpolations of the reference state at each grid point (Bowden et al. 2021; Spero et al. 2018). 
-        This calculated difference, also known as the innovation, is between an interpolated analysis value and model value, and is used to construct
-        an additional term for the prognostic equations to nudge the model toward the analysis. This analysis could be the analyses aloft (if using 
-        only Analysis Nudging), or it could be the analyses at the surface (if using only Surface Analysis Nudging). In other words, Surface Analysis 
-        Nudging and Analysis Nudging nudge WRF towards a gridded analysis linearly interpolated in time between specified analyses. For more 
-        information on how to use analysis nudging please refer to the documentation at:
+        available in this version of AceCAST (Version 1.3). For more information on how to use analysis nudging please refer to the documentation 
+        at:
 
             `<https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.0/users_guide_chap5.html#gridnudge>`_
 
@@ -164,8 +155,6 @@ Known Issues
         the new decomposition strategy users are unlikely to encounter this issue. Regardless we would like to make sure that users are
         aware that it exists.
 
-    **Performance Issue**
-    
 
 Version 1.2
 ===========
