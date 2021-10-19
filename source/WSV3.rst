@@ -16,7 +16,7 @@ WSV3 is the visualization program that pairs with AceCAST. To learn more click `
 
 
 A quick overview of the capabilities of WSV3
----------------------------------------------
+--------------------------------------------
 
 Noteworthy features include but are not limited to:
 
@@ -82,7 +82,7 @@ Noteworthy features include but are not limited to:
 
 
 See the videos below for more details:
--------------------------------------
+--------------------------------------
 
 .. raw:: html
 
