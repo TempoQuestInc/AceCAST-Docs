@@ -12,13 +12,13 @@ Where to get input data
 Free
 ----
 
-#. 'NCEP <https://www.nco.ncep.noaa.gov/pmb/products/>'_
+#. `NCEP <https://www.nco.ncep.noaa.gov/pmb/products/>`_
 
 #. `UNIDATA THREDDS <https://thredds.ucar.edu/thredds/catalog.html>`_
 
 #. `Amazon Web Services <https://registry.opendata.aws/tag/meteorological/>`_
 
-	* `HRRR <https://registry.opendata.aws/noaa-hrrr-pds/>_`
+	* `HRRR <https://registry.opendata.aws/noaa-hrrr-pds/>`_
 
 #. `NOAA THREDDS <https://www.ncei.noaa.gov/thredds/catalog.html>`_
 
