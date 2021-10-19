@@ -59,3 +59,5 @@ html_css_files = [
 html_static_path = ['_static']
 
 html_logo = 'Images/AceCast_Logo.png'
+
+html_extra_path = ['googlee8342da0be0d362c.html']
