@@ -1,4 +1,8 @@
 
+.. meta::
+   :description: AceCast (GPU-Accelerated WRF) homepage, click for more
+   :keywords: AceCast, Documentation, TempoQuest, WRF, GPU, Accelerated, WSV3
+
 Welcome to AceCastDocs homepage!
 ================================
 
