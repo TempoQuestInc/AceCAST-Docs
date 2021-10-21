@@ -19,7 +19,7 @@ AceCast Online Documentation Homepage
 
 What is AceCAST?
 ----------------
-test
+
 TempoQuest's (TQI's) software product, **AceCAST, accelerates** the world's most widely used regional weather forecasting model, 
 known as the Weather Research and Forecasting (`WRF <https://www.mmm.ucar.edu/weather-research-and-forecasting-model>`_) model, 
 which is supported by the U.S. National Center for Atmospheric Research (NCAR). **WRF** is widely utilized by more than 36,000 
