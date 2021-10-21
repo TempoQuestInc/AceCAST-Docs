@@ -1,5 +1,10 @@
 .. _toolslink:
 
+.. meta::
+   :description: Tools for AceCast, click for more
+   :keywords: Tools, Support, Namelist, Benchmarks, Scaling, Advisor, AceCast, Documentation, TempoQuest
+
+
 Tools
 =====
 

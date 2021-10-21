@@ -1,3 +1,8 @@
+.. meta::
+   :description: External links for AceCast, click for more
+   :keywords: External, Links, AceCast, Documentation, TempoQuest
+
+
 External Links
 ==============
 

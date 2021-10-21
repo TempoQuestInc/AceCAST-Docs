@@ -1,5 +1,10 @@
 .. _requirementslink:
 
+.. meta::
+   :description: System requirements for AceCast, click for more
+   :keywords: Requirements, system, information, CUDA, GPU, AceCast, Documentation, TempoQuest
+
+
 System Requirements
 ===================
 

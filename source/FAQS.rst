@@ -1,3 +1,8 @@
+.. meta::
+   :description: FAQ's for AceCast, click for more
+   :keywords: Questions, FAQ, Technical, AceCast, Documentation, TempoQuest
+
+
 Frequenty Asked Questions
 =========================
 

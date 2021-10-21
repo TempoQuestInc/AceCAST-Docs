@@ -1,5 +1,10 @@
 .. _Licenselink:
 
+.. meta::
+   :description: License Information for AceCast, click for more
+   :keywords: License, AceCast, Documentation, TempoQuest
+
+
 License Information
 ===================
 

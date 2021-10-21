@@ -1,5 +1,9 @@
 .. _wsv3link:
 
+.. meta::
+   :description: WSV3 for AceCast, click for more
+   :keywords: WSV3, Visualization, Real-Time, AceCast, Documentation, TempoQuest
+
 About
 =====
 

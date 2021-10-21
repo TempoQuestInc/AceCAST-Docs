@@ -1,5 +1,10 @@
 .. _Installation:
 
+.. meta::
+   :description: Installation of AceCast, click for more
+   :keywords: Installation, prerequisites, download, package, license, running, script, dependencies, AceCast, Documentation, TempoQuest
+
+
 Installation
 ############
 

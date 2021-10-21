@@ -1,3 +1,8 @@
+.. meta::
+   :description: Gallery for AceCast, click for more
+   :keywords: Gallery, Pictures, Examples, AceCast, Documentation, TempoQuest
+
+
 Gallery
 =======
 

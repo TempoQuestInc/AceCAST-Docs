@@ -1,5 +1,10 @@
 .. _supportlink:
 
+.. meta::
+   :description: Support for AceCast, click for more
+   :keywords: Support, Contact, Questions, help, AceCast, Documentation, TempoQuest
+
+
 Support
 =======
 
