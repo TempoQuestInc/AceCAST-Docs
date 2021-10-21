@@ -1,9 +1,8 @@
-.. _Troubleshooting:
-
 .. meta::
    :description: Troubleshooting for AceCast, click for more
    :keywords: Help, error, library, check, AceCast, Documentation, TempoQuest
 
+.. _Troubleshooting:
 
 Troubleshooting
 ###############

@@ -1,9 +1,8 @@
-.. _Benchmarks:
-
 .. meta::
    :description: Benchmarks topics for AceCast, click for more
    :keywords: benchmarks, easter100, easter500, easter1500, AceCast, Documentation, TempoQuest
 
+.. _Benchmarks:
 
 Benchmarks
 ##########

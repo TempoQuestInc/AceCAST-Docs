@@ -1,9 +1,8 @@
-.. _Before You Begin:
-
 .. meta::
    :description: Before you begin for AceCast, click for more
    :keywords: Begin, AceCast, Documentation, TempoQuest
 
+.. _Before You Begin:
 
 Before You Begin
 ################

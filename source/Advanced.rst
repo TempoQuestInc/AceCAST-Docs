@@ -1,9 +1,8 @@
-.. _Advanced Topics:
-
 .. meta::
    :description: Advanced topics for AceCast, click for more
    :keywords: Advanced, gpu-launch, AceCast, Documentation, TempoQuest
 
+.. _Advanced Topics:
 
 Advanced Topics
 ###############
