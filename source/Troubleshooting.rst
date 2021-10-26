@@ -105,7 +105,7 @@ required library versions were installed properly on your system.
 	$ export TPFLAGS=-tp=pwr9
 
 
-Don't see your issue addressed? Let's have a :ref: `discussion <supportlink>` about it!
+Don't see your issue addressed? Let's have a :ref:`discussion <supportlink>` about it!
 
 
 
