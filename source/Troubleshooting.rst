@@ -8,6 +8,7 @@ Troubleshooting
 ###############
 
 #. General 
+
 * Please ensure that the installation script created the environment script (env.sh):: 
 	
 	$ cd ../tqi-build/20.7
@@ -23,10 +24,8 @@ Troubleshooting
 #. The install_deps.sh script keeps failing 
 
 Provided below is a list of required library dependencies for AceCAST. Please check to see if these libraries have already 
-been installed on your system.Please use the dependency installation script to ensure compatibility with the AceCAST 
-binary executable. Further instructions are provided below if needed:
-
-Required Dependencies Overview
+been installed on your system. Please use the dependency installation script to ensure compatibility with the AceCAST 
+binary executable:
 
 * NVIDIA HPC SDK (formerly PGI) compiler suite which includes NVIDIA-compiled, CUDA-aware OpenMPI build (2020, Version 20.7)
 * HDF5 (Version 1.12.0)
@@ -34,15 +33,11 @@ Required Dependencies Overview
 * NETCDF-Fortran (Version 4.5.3)
 * parallel-netcdf (Version 1.12.1)
 
-.. admonition:: Note
+Even if you have these libraries and versions already installed on your system, you will still have to run the dependency 
+installation script because this script not only installs the required library dependencies, but it also generates a script that 
+ensures a proper runtime environment for running AceCAST (env.sh).
    
-	Even if you have these libraries and versions already installed on your system, you will still have to run the dependency 
-	installation script because this script not only installs the required library dependencies, but it also generates a script that 
-	ensures a proper runtime environment for running AceCAST (env.sh).
-
-
-Secondary packages
-------------------
+Typically, most linux-based systems already have these optional packages pre-installed but you will also find it useful to have:
 
 * yum
 * apt-get
@@ -54,13 +49,7 @@ Secondary packages
 * which 
 * etc...
 
-.. admonition:: Note
-
-   Most linux-based systems already have these optional packages pre-installed.
-
-
 Library dependency check
-------------------------
 
 Run the following commands listed below to see if your system already has the required library versions and ensure that the 
 required library versions were installed properly on your system.
@@ -110,12 +99,13 @@ required library versions were installed properly on your system.
 	$ PnetCDF Version:        1.12.1
 
 
-* Power9 users, please issue the following commands before running the dependency installation script::
+* If you are using Power9, please issue the following commands before running the dependency installation script::
 
 	$ module purge
 	$ export TPFLAGS=-tp=pwr9
 
 
+Don't see your issue addressed? Let's have a :ref: 'discussion <supportlink>' about it!
 
 
 
