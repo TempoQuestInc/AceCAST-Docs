@@ -9,16 +9,16 @@ Troubleshooting
 
 #. General 
 
-* Please ensure that the installation script created the environment script (env.sh):: 
+	* Please ensure that the installation script created the environment script (env.sh):: 
 	
-	$ cd ../tqi-build/20.7
+		$ cd ../tqi-build/20.7
 
-* Once in this directory, type::
+	* Once in this directory, type::
 
-	  $ ls
+	  	$ ls
 
-* You should see an env.sh script in this directory. If you see this script and the message in the terminal, 
-  then AceCAST was installed successfully. 
+	* You should see an env.sh script in this directory. If you see this script and the message in the terminal, 
+  	  then AceCAST was installed successfully. 
 
 
 #. The install_deps.sh script keeps failing 
@@ -105,7 +105,7 @@ required library versions were installed properly on your system.
 	$ export TPFLAGS=-tp=pwr9
 
 
-Don't see your issue addressed? Let's have a :ref: 'discussion <supportlink>' about it!
+Don't see your issue addressed? Let's have a :ref: `discussion <supportlink>` about it!
 
 
 
