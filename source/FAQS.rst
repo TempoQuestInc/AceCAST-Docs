@@ -26,7 +26,7 @@ Runtime
 
 #. Q: I downloaded AceCast, now what?
 
-   * A: Check out the :ref:`installation page <Installation>` and the :ref:`how to use <howtouselink>` page to get started!
+   * A: Check out the :ref:`installation page <Installation>` to get started!
 
 #. Q: What are the system requirements?
 
@@ -57,8 +57,8 @@ Other
 -----
 #. Q: What are the recommended settings to use?
 
-   * A: This varies but generally you can check out these links for WRF `namelist.wps <https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wps.html/>`_
-     and `namelist.input <https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wrf.html/>`_ best practices.
+   * A: This varies but generally you can check out these links for WRF `namelist.wps <https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wps.html>`_
+     and `namelist.input <https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wrf.html>`_ best practices.
 
 
 

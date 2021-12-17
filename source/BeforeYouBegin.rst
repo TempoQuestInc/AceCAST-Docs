@@ -14,8 +14,6 @@ standard WRF functionality as possible. It is assumed that users are at least so
 standard WRF model prior to running AceCAST. If you are not familiar with the WRF model we suggest you explore 
 the various resources provided on the WRF users page before continuing.
 
-    `WRF Users Page <https://www2.mmm.ucar.edu/wrf/users/>`_
-
 This guide is intended to help existing WRF users become familiar with the mechanics of running AceCAST and how
 they can take advantage of AceCAST's performance advantages to enhance their modeling capabilities.
 

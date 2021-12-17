@@ -88,7 +88,7 @@ Acquire a License
 =================
 
 AceCAST is a licensed software package and as such requires a valid license to run. A 60-day trial license can be acquired
-by registering at the `TempoQuest Registration Page <https://tempoquest.com/binary-executable-for-64-bit-linux-x86/>`_. 
+by registering at the `TempoQuest Registration Page <https://tempoquest.com/acecast-registration/>`_. 
 After registering you should recieve an email containing your trial license. We suggest placing this file in the 
 `AceCAST/run` directory. If your 60-day trial has ended please contact support@tempoquest.com to request an extension 
 and/or a quote.

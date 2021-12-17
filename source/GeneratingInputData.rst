@@ -37,7 +37,7 @@ Paid
 Other
 -----
 
-#. `Air Resoruce Laboratory <https://www.ready.noaa.gov/archives.php>`_
+#. `Air Resource Laboratory <https://www.ready.noaa.gov/archives.php>`_
 
 
 
