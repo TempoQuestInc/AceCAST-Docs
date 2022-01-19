@@ -66,7 +66,7 @@
 |		     |                                         | (num_soil_layers = 6)             	           |
 +--------------------+-----------------------------------------+---------------------------------------------------+
 | Surface Layer      | 				               | (sf_sfclay_physics) surface layer option. The     |
-|		     |					       |  same value should be used for all domains   	   |
+|		     |					       | same value should be used for all domains   	   |
 +--------------------+-----------------------------------------+---------------------------------------------------+
 | 		     | 			1	               | Revised MM5 Monin-Obukhov scheme                  |
 |                    |                                         | (Jimenez, renamed in v3.6)                	   |
