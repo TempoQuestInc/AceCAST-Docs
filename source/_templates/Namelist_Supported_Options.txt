@@ -111,7 +111,7 @@
 |                    |                                         | Must use with mp_physics = 6 or 8                 |
 +--------------------+-----------------------------------------+---------------------------------------------------+
 | Lightning potential|			3		       | Predicting the potential for lightning activity   |
-|  prediction	     |				       	       | (based on Yair et al., 2010)  		           |
+| prediction	     |				       	       | (based on Yair et al., 2010)  		           |
 |  		     | 				               |                  			   	   |
 +--------------------+-----------------------------------------+---------------------------------------------------+
 | **&dynamics**      |                        		       | *Diffusion, damping options,advection options*    |
