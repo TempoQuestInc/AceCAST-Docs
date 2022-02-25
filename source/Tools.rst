@@ -13,6 +13,10 @@ Tools
 
 **Note:** Most options can be turned off with a value of 0, where applicable. 
 
+.. raw:: html
+   
+   <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfVZ_7KQSJ7pUrHPk3aKYvTqDklBm9g1bmnCRkou-zfmreLSA/viewform?embedded=true" 
+    width="900" height="470" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 
 Benchmarks
 ----------
