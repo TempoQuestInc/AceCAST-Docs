@@ -47,6 +47,14 @@ Here is how to write text in code::
 	This text will appear as code
 
 
+Embedding Google Forms example:
+
+.. raw:: html
+   
+   <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfVZ_7KQSJ7pUrHPk3aKYvTqDklBm9g1bmnCRkou-zfmreLSA/viewform?embedded=true" 
+    width="900" height="470" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+
+
 TOC Tree setup in index.rst (only here can you add the toctree syntax):
 
 .. toctree::
