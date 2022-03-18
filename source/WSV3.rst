@@ -7,9 +7,6 @@
 About
 =====
 
-Under Construction
-------------------
-
 WSV3 is the visualization program that pairs with AceCAST. To learn more click `here <https://wsv3.com/>`_
 
 .. raw:: html
@@ -66,7 +63,7 @@ Noteworthy features include but are not limited to:
 
 #. GOES-R GLM lightning data with add-on subscription
 
-#. Extensive foreecast model data system
+#. Extensive forecast model data system
 
    * Defaults include all major NCEP models (GFS, NAM, HRRR, RAP, HIRESW)
    
