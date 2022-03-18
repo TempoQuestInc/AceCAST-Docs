@@ -74,8 +74,8 @@ Index
    Benchmarks.rst
    Advanced.rst
    Troubleshooting.rst
+   Tutorials.rst
    
-
 .. toctree::
    :maxdepth: 2
    :caption: WSV3
@@ -90,7 +90,6 @@ Index
 
    Gallery.rst
    Tools.rst
-   Tutorials.rst
    External_Links.rst
    FAQS.rst
    Verification.rst
