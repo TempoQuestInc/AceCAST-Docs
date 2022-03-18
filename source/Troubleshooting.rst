@@ -7,7 +7,8 @@
 Troubleshooting
 ###############
 
-#. General 
+General 
+-------
 
 	* Please ensure that the installation script created the environment script (env.sh):: 
 	
@@ -17,15 +18,16 @@ Troubleshooting
 
 	  	$ ls
 
-	* You should see an env.sh script in this directory. If you see this script and the message in the terminal, 
+	* You should see an env.sh script in this directory. If you see this script and a message in the terminal, 
   	  then AceCAST was installed successfully. 
 
 
-#. The install_deps.sh script keeps failing 
+install_deps.sh fails 
+---------------------
 
 Provided below is a list of required library dependencies for AceCAST. Please check to see if these libraries have already 
-been installed on your system. Please use the dependency installation script to ensure compatibility with the AceCAST 
-binary executable:
+been installed on your system. Please use the dependency installation script, install_deps.sh, to ensure compatibility with 
+the AceCAST binary executable:
 
 * NVIDIA HPC SDK (formerly PGI) compiler suite which includes NVIDIA-compiled, CUDA-aware OpenMPI build (2020, Version 20.7)
 * HDF5 (Version 1.12.0)
@@ -50,9 +52,15 @@ Typically, most linux-based systems already have these optional packages pre-ins
 * etc...
 
 Library dependency check
+------------------------
 
 Run the following commands listed below to see if your system already has the required library versions and ensure that the 
 required library versions were installed properly on your system.
+
+* If you are using Power9, please issue the following commands before running the dependency installation script::
+
+	$ module purge
+	$ export TPFLAGS=-tp=pwr9
 
 #. Check to see if HDF5 (Version 1.12.0) is installed. Enter the following in the command line and press enter::
 
@@ -97,12 +105,6 @@ required library versions were installed properly on your system.
    * This command tells you the PnetCDF version that is installed on your system and should return::
 
 	$ PnetCDF Version:        1.12.1
-
-
-* If you are using Power9, please issue the following commands before running the dependency installation script::
-
-	$ module purge
-	$ export TPFLAGS=-tp=pwr9
 
 
 Don't see your issue addressed? Let's have a :ref:`discussion <supportlink>` about it!
