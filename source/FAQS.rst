@@ -12,9 +12,9 @@ General
 
    * A: Please get in touch with :ref:`sales <supportlink>`.
 
-#. Q: What is ACECAST?
+#. Q: What is AceCAST?
     
-   * A: ACECAST is like `WRF <https://www.mmm.ucar.edu/weather-research-and-forecasting-model>`_ but with GPU's instead of CPU's. This means that you can have higher quality results in a faster time!
+   * A: AceCAST is like `WRF <https://www.mmm.ucar.edu/weather-research-and-forecasting-model>`_ but with GPU's instead of CPU's. This means that you can have higher quality results in a faster time!
 
 #. Q: What kind of runtime improvements can I expect to see?
 
@@ -36,6 +36,9 @@ Runtime
 
    * A: There are some dependecies required. Please refer to :ref:`Installation`
 
+#. Q: Why is AceCAST running slower than WRF?
+
+   * A: One reason could be, if you are using an older version of AceCAST you may see both a wrf.exe and an acecast.exe. Although both work, only acecast.exe is optimized for speed, wrf.exe was previously included only for user convenience.
 
 Technical
 ---------
@@ -50,7 +53,7 @@ Technical
 
 #. Q: My license has expired what do I do?
 
-   * A: Send us an :ref:`email! <supportlink>`.
+   * A: Send us an :ref:`email, we would be happy to renew it for you! <supportlink>`.
 
 
 Other
