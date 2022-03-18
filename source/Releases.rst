@@ -7,12 +7,26 @@
 Releases
 ########
 
+
+Release Versioning Methodology
+------------------------------
+
+Version 2.0
+-----------
+
+(Coming May 2022)
+
+Version 2.0-beta
+----------------
+
+(Coming April 2022)
+
 Version 1.3
-===========
+-----------
 
 Download
---------
-
+^^^^^^^^
+ 
     To download the AceCAST v1.3 distribution package use the following link:
 
         AceCAST v1.3 for Linux x86-64: `AceCASTv1.3+linux.x86_64.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/AceCASTv1.3%2Blinux.x86_64.tar.gz>`_
@@ -32,7 +46,7 @@ Download
     
 
 New Features
-------------
+^^^^^^^^^^^^
     
     The following table summarizes the newly supported namelist options in version 1.3.
 
@@ -71,7 +85,7 @@ New Features
 
         **\* Indicates newly supported option**
     
-    *Stochastic Parameterization Schemes*
+	*Stochastic Parameterization Schemes*
 
         Stochastic parameterization schemes can be used to identify areas of model uncertainty in ensemble simulations by applying small 
         perturbations at every time step to each ensemble member. To apply a stochastic parameterization scheme to your simulation, please 
@@ -79,7 +93,7 @@ New Features
 
             `<https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.0/users_guide_chap5.html#stochastic>`_
 
-    *Grid Nudging*
+	*Grid Nudging*
 
         Two computationally inexpensive Four-Dimensional Data Assimilation (FDDA) techniques, Analysis Nudging and Surface Analysis Nudging, are 
         available in this version of AceCAST (Version 1.3). For more information on how to use analysis nudging please refer to the documentation 
@@ -88,7 +102,7 @@ New Features
             `<https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.0/users_guide_chap5.html#gridnudge>`_
 
 Improvements and Bug Fixes
---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
     **Noah LSM (sf_surface_physics = 2) Improvement**
         
@@ -111,7 +125,7 @@ Improvements and Bug Fixes
 
         We have reworked the noah lsm components and users should no longer see this issue moving forward.
 
-    **Adaptive Time Stepping (ADT) Bug Fix**
+	**Adaptive Time Stepping (ADT) Bug Fix**
         
         Ever since the release of ADT in version 1.1 we have encountered subtle issues for simulations using ADT with multiple GPUs. This 
         turned out to be an issue where the `num_sound_steps` was miscalculated causing numerical instabilities that resulted in CFL errors
@@ -151,7 +165,7 @@ Improvements and Bug Fixes
 
                 
 Known Issues
-------------
+^^^^^^^^^^^^
 
     **Easter1500 16x V100 GPU failure**
         
@@ -159,17 +173,24 @@ Known Issues
         the new decomposition strategy users are unlikely to encounter this issue. Regardless we would like to make sure that users are
         aware that it exists.
 
+Older Versions
+--------------
 
 Version 1.2
-===========
-* Nesting
+^^^^^^^^^^^
+
+Nesting
+*******
+
 	* This release includes a large number of new and improved features, the primary of which is nesting. Both 1-way and 2-way nesting
           is now fully supported with the only notable exceptions being the inability to use vertical nesting and restricting the user to
           using interp_method_type=2 (sint). If either of these are required for your simulations please contact support@tempoquest.com
           to ensure that we prioritize their development for future versions.
 
 
-* Physics Additions
+Physics Additions
+*****************
+
 	* cu_physics = 1, 11 (Kain-Fritsch and Multi-scale Kain-Fritsch cumulus schemes)
 	* cu_rad_feedback = .true. (Sub-grid cloud effect to the optical depth in radiation)
 	* kf_edrates = 1 (Add entrainment/detrainment rates and convective timescale output variables)
@@ -187,13 +208,17 @@ Version 1.2
 	* icloud = 2, 3 (cloud effect to the optical depth in radiation)
     
 
-* Dynamics Additions
+Dynamics Additions
+******************
+
 	* scalar_adv_opt = 2, 3, 4 (advection options for scalar variables)
 	* h_sca_adv_order = 6 (6th order horizontal scalar advection) 
 	* h_mom_adv_order = 6 (6th order horizontal momentum advection) 
 
 
-* Performance improvements
+Performance improvements
+************************
+
 	* The initialization overhead time has been an issue for users with short simulations. We have significantly improved the
           allocation and physics initialization routines (over 10X faster in many cases) to ensure this overhead is nearly negligible 
           when compared to the total runtime for any simulation, regardless of the simulation length.
@@ -207,7 +232,9 @@ Version 1.2
 	* We have made some universal memory optimizations that have shown up to 10% overall runtime speedups in some cases.
 
 
-* Improvements over the base WRF-CPU implementation
+Improvements over the base WRF-CPU implementation
+*************************************************
+
 	* There is a bug in the base WRF code (https://github.com/wrf-model/WRF) in all previous releases (currently version 4.2.2) 
           that caused issues when using multi-scale KF (cu_physics=11) on outer nests but not the inner nests (example for 2-domain 
           simulation: cu_physics = 11, 0). This is a common configuration for nested runs since the inner nests may run at 
@@ -219,13 +246,17 @@ Version 1.2
           in AceCAST.
 
 
-* Bug Fixes
+Bug Fixes
+*********
+
 	* Fixed issue with adaptive time stepping where the CFL condition was not calculated correctly causing longer time steps
           that would cause stability issues.
 	* Fixed issue where effective radii computed in mp schemes were incorrectly modified by RRTMG.
 
 
-* AceCAST Advisor Tool
+AceCAST Advisor Tool
+********************
+
 	* We have modified both the support-check and scaling-advisor tools to ensure they account for nested runs and 
           implicitly-defined options.
 
@@ -246,7 +277,8 @@ Version 1.2
 
 
 Version 1.1.2
-=============
+^^^^^^^^^^^^^
+
 * Release 1.1.2 adds beta support for IBM Power9 systems on Linux.
   This Power9 version is intended for research use only.
   TQI acknowledges computational resources of the Oak Ridge Leadership Computing Facility at the Oak Ridge National Laboratory, 
@@ -254,35 +286,46 @@ Version 1.1.2
 
 
 Version 1.1.1
-=============
+^^^^^^^^^^^^^
+
 * This release does not incorporate any new features. This release incorporates changes necessary to enable counting, floating 
   licenses. We have also cleaned up much of the output from the license checkout/checkin tasks.
 
 Version 1.1
-===========
+^^^^^^^^^^^
+
 * AceCAST has been compiled and tested with NVIDIA HPC SDK (20.7) and CUDA 11. This version has support for A100 architecture GPUs. 
 
 
-* Physics Additions
+Physics Additions
+*****************
+
 	* Thompson (mp_physics = 8) & Thompson aerosol-aware microphysics (mp_physics = 28)
 	* MYNN surface layer (sf_sfclay_physics = 5)
 	* MYNN 3rd level TKE scheme (bl_pbl_physics = 6)
 	* RUC land-surface model (sf_surface_physics = 3)
 
-* Dynamics Additions
+Dynamics Additions
+******************
+
 	* do_avgflx_em = 1 (Output time-averaged mass-coupled advective velocities)
 	* momentum_adv_opt = 3 (5th-order WENO) advection option
 	* moist_adv_opt = 2,3,4 advection options
 
-* Miscellaneous
+Miscellaneous
+*************
+
 	* Support for adaptive time stepping 
 
 		* diag_print = 1 (printing out time series of basic model diagnostics)
 		* Performance optimizations for WSM6 (mp_physics = 6), YSU PBL (bl_pbl_physics = 1), and BMJ (cu_physics = 2) schemes
 
 Version 1.0.1
-=============
-* Diagnostics
+^^^^^^^^^^^^^
+
+Diagnostics
+***********
+
 	* We have ported a significant selection of diagnostics options. The following options are now available to AceCAST.
         
 	* &time_control:
@@ -315,7 +358,8 @@ Version 1.0.1
 
     Please contact support@tempoquest.com if you would like us to consider supporting any other specific diagnostics options in future versions.
 
-* Physics
+Physics
+*******
 	* We have added support for the following physics options:
 
 		* Mellor-Yamada-Janjic TKE scheme (bl_pbl_physics = 2)
@@ -324,15 +368,19 @@ Version 1.0.1
 
 
 Version 1.0
-===========
-* Testing
+^^^^^^^^^^^
+
+Testing
+*******
 	* AceCAST v1.0 has been thoroughly tested at all stages of model development and ready for user evaluation. We 
   	  rigorously evaluated 12 main physics and majority of dynamics options for numerical and performance aspects using 
   	  numerous coarse and mesoscale simulations.  Additionally, scaling, domain size, boundary, resolution, integration 
   	  order, and IO sensitivity experiments have been performed to provide a robust high-performance NWP model.
 
 
-* Updates
+Updates
+*******
+
 	* Licensing Changes
 		* We have moved from providing a generic trial license within the distribution package itself to providing 
      	  	  individual trial licenses for each user. The trial licenses will be sent to the user via email after registering 
@@ -374,7 +422,7 @@ Version 1.0
 		* MYNN PBL (bl_pbl_physics = 5) - The MYNN PBL scheme has been reworked to exploit more parallelism.
 
 Version 1.0-beta
-================
+^^^^^^^^^^^^^^^^
 
 * Initial public release of AceCAST
     
