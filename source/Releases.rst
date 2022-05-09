@@ -14,12 +14,51 @@ Release Versioning Methodology
 Version 2.0
 -----------
 
-(Coming May 2022)
+(Coming June 2022)
 
 Version 2.0-beta
 ----------------
 
-(Coming April 2022)
+Download
+^^^^^^^^
+ 
+    To download the AceCAST v1.3 distribution package use the following link:
+
+        AceCAST v2.0.0-beta for Linux x86-64: `https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v2.0.0-beta.0%2Blinux.x86_64.haswell.tar.gz>`_
+
+    Alternatively, if you would like to download the package from the command line you can simply copy the url from above and use a tool such as 
+    `wget` or `curl` to download the file. Example:
+
+    ::
+
+        wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v2.0.0-beta.0%2Blinux.x86_64.haswell.tar.gz
+
+
+    .. important::
+        AceCAST requires a valid license file to run. Register for a free 60-day trial license by clicking  
+        `here <https://tempoquest.com/acecast-registration/>`_. Contact support@tempoquest.com for more licensing information.
+
+    
+
+New Features
+^^^^^^^^^^^^
+
+	* MAJOR change from WRF core version 3.8.1 to WRF core version 4.2.2
+	* TONS of QOL and optimization enhancements
+	* Added CPU UPP post-processing
+	* Added CPU WPS pre-processing
+	* Temporarily removed support for listed physics below for stability and further optimizations (These physics will return in a next version of AceCAST coming soon):
+		* PBL options 5 and 6
+		* Land Surface option 3
+		* Surface Layer options 2 and 5
+		* Cumulus options 2 and 11
+		* GRIMS Shallow Cumulus option
+		* Gravity wave drag parameterization
+		* Lightning potential prediction
+	* Bug fixes
+	* Performance tunings
+	* Prepared AceCAST for new TempoQuest products coming soon
+	* For issues, please support@tempoquest.com
 
 Version 1.3
 -----------
