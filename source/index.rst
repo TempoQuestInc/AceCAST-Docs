@@ -69,12 +69,8 @@ Index
    Installation.rst
    RunningAcecast.rst
    GeneratingInputData.rst
-   CreatingNamelist.rst
    Releases.rst
    Benchmarks.rst
-   Advanced.rst
-   Troubleshooting.rst
-   Tutorials.rst
    
 .. toctree::
    :maxdepth: 2
