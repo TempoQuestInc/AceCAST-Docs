@@ -77,6 +77,10 @@ Once unpacked you should see a new `AceCAST` directory with a file structure sim
 Many of these files should already look familiar to seasoned WRF users. We have added short annotations above describing
 files and directories that we believe are worth noting.
 
+WPS (preprocessing system) and UPP (post-processing system) are included in the download so as to provide 
+a convenient way for a user to conduct an end-to-end workflow. However, if a user chooses so, they do not 
+have to use the WPS and UPP that comes with the AceCAST download and may chose to conduct their own 
+preprocessing and postprocessing elsewhere.
 
 Acquire a License
 =================
