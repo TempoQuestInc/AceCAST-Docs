@@ -74,6 +74,7 @@ Index
    Benchmarks.rst
    Advanced.rst
    Troubleshooting.rst
+   Containers.rst
    
 
 .. toctree::
