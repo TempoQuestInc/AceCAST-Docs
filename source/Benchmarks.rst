@@ -15,7 +15,7 @@ Under Construction
 Easter100
 =========
 
-Input Files: `easter100.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/datasets/easter100.tar.gz>`_
+Input Files: `easter100.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/datasets/v2/easter100.tar.gz>`_
 
 
 .. _Easter500:
@@ -23,7 +23,7 @@ Input Files: `easter100.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/da
 Easter500
 =========
 
-Input Files: `easter500.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/datasets/easter500.tar.gz>`_
+Input Files: `easter500.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/datasets/v2/easter500.tar.gz>`_
 
 
 .. _Easter1500:
@@ -31,6 +31,6 @@ Input Files: `easter500.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/da
 Easter1500
 ==========
 
-Input Files: `easter1500.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/datasets/easter1500.tar.gz>`_
+Input Files: `easter1500.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/datasets/v2/easter1500.tar.gz>`_
 
 
