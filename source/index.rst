@@ -68,6 +68,7 @@ Index
    Requirements.rst
    Installation.rst
    RunningAcecast.rst
+   CreatingNamelist.rst
    GeneratingInputData.rst
    Releases.rst
    Benchmarks.rst
