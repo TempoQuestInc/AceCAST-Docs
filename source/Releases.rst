@@ -24,7 +24,7 @@ Download
  
     To download the AceCAST v1.3 distribution package use the following link:
 
-        AceCAST v2.0.0-beta for Linux x86-64: `https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v2.0.0-beta.0%2Blinux.x86_64.haswell.tar.gz>`_
+        AceCAST v2.0.0-beta for Linux x86-64: `AceCASTv2.0-beta.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v2.0.0-beta.0%2Blinux.x86_64.haswell.tar.gz>`_
 
     Alternatively, if you would like to download the package from the command line you can simply copy the url from above and use a tool such as 
     `wget` or `curl` to download the file. Example:
