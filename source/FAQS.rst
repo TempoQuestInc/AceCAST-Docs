@@ -26,15 +26,15 @@ Runtime
 
 #. Q: I downloaded AceCast, now what?
 
-   * A: Check out the :ref:`installation page <Installation>` to get started!
+   * A: Check out the :ref:`installationguide` to get started!
 
 #. Q: What are the system requirements?
 
-   * A: Refer to :ref:`System Requirements <requirementslink>`
+   * A: Refer to :ref:`requirementslink`
 
 #. Q: Do I need any other software to run AceCast?
 
-   * A: There are some dependecies required. Please refer to :ref:`Installation`
+   * A: There are some dependecies required. Please refer to :ref:`installationguide`
 
 #. Q: Why is AceCAST running slower than WRF?
 

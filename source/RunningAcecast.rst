@@ -7,8 +7,8 @@
 Running AceCAST
 ###############
 
-Before attempting to run make sure you have installed AceCAST properly and acquired a valid license to use the 
-software (see :ref:`Installation Guide <Installation>`).
+Before attempting to run, make sure AceCAST and its dependencies have been installed correctly and 
+that you have a valid AceCAST license to use the software (see :ref:`installationguide`).
 
 Input Data
 ==========
@@ -99,7 +99,7 @@ Launching AceCAST with MPI
 
 AceCAST uses MPI to enable it to run on multiple GPUs just like WRF does (when compiled for `dmpar`) to run
 on multiple CPU cores. The standard AceCAST distribution uses an OpenMPI build that is included with the 
-NVIDIA HPC SDK installation (see :ref:`Installation`) and typically use the associated `mpirun` launcher to 
+NVIDIA HPC SDK installation (see :ref:`installationguide`) and typically use the associated `mpirun` launcher to 
 run `acecast.exe`.
 
 .. note::
@@ -122,7 +122,7 @@ that this is run by each MPI task independently) then sets the `ACC_DEVICE_NUM` 
 for each task to ensure the one-to-one mapping of GPUs to their respective tasks. For the majority of 
 users the `gpu-launch.sh` can be used as-is but there are some cases where this may need to be modified
 (example: running 4 simulations simultaneously each on their own GPU on a single node), in which case 
-users can find more information in :ref:`ModifyingGpuLaunch`.
+users can find more information `THIS DOESNT EXIST ANYMORE`.
 
 .. warning::
     Currently, AceCAST doesn't prevent you from running with multiple MPI tasks per GPU, which can

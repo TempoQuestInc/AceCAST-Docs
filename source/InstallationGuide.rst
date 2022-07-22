@@ -32,7 +32,6 @@ Installation Guide
 This is a step-by-step guide to installing AceCAST and its software dependencies on your system 
 locally.
 
-
 .. _requirementslink:
 
 Platform Requirements
@@ -267,8 +266,8 @@ like the following:
         └─── ungrib.exe
 
 .. note::
-   You should see more files/directories than what is shown here. We are only showing a subset to 
-   give you a sense of the package contents.
+   You should see more files/directories than what is shown here. We are only showing a subset here 
+   to give users a sense of the package contents.
 
 Notice that we have added UPP and WPS packages for your convenience since they are frequently used 
 within AceCAST/WRF workflows.
