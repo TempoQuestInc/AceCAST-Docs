@@ -16,11 +16,15 @@
 
 .. _CUDA Installation Guide: 
    https://docs.nvidia.com/cuda/archive/11.4.1/cuda-installation-guide-linux/index.html
+
+.. _AceCAST Registration Page:
+    https://tempoquest.com/acecast-registration
    
 .. _AMD ROCM: 
    https://docs.amd.com/
 
 .. _installationguide:
+
 
 Installation Guide
 ##################
@@ -207,9 +211,12 @@ AceCAST requires installation of the NVIDIA HPC SDK version 21.9. You can either
     export NVCOMPILERS=$NVHPC_INSTALL_DIR
     export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/21.9/compilers/man
     export PATH=\$NVCOMPILERS/\$NVARCH/21.9/compilers/bin:\$PATH
+    export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/compilers/bin:\$LD_LIBRARY_PATH
 
     export PATH=\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/bin:\$PATH
-    export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/man" > $NVHPC_INSTALL_DIR/acecast_env.sh
+    export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/lib:\$LD_LIBRARY_PATH
+    export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/man
+    " > $NVHPC_INSTALL_DIR/acecast_env.sh
 
 .. note::
     This step can take a while depending on your internet speeds. The installation itself typically 
@@ -226,4 +233,159 @@ this script to setup your environment prior to running AceCAST. Example:
 Installing AceCAST
 ==================
 
-To-Do
+Download AceCAST Distribution Package
+-------------------------------------
+
+To install AceCAST itself, navigate to the :ref:`releaseslink` and copy the download url for 
+AceCAST. You can then download and unpack the distribution using the *wget* and *tar* commands as 
+follows:
+
+.. code-block:: shell
+
+    wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v2.0.0%2Blinux.x86_64.haswell.tar.gz
+    tar -xf acecast-v2.0.0+linux.x86_64.haswell.tar.gz
+
+If successful you should see a new directory *acecast-v2.0.0*. The directory structure should look 
+like the following:
+
+.. code-block:: output
+
+    acecast-v2.0.0
+    ├── acecast
+    │   └── run
+    │       ├── acecast.exe
+    │       ├── ideal.exe
+    │       ├── ndown.exe
+    │       ├── real.exe
+    │       └── tc.exe
+    ├── upp
+    │   └─── exec
+    │       └── unipost.exe
+    └── wps
+        ├── geogrid.exe
+        ├── metgrid.exe
+        └─── ungrib.exe
+
+.. note::
+   You should see more files/directories than what is shown here. We are only showing a subset to 
+   give you a sense of the package contents.
+
+Notice that we have added UPP and WPS packages for your convenience since they are frequently used 
+within AceCAST/WRF workflows.
+
+Verify Runtime Environment
+--------------------------
+
+One quick way to verify that you have installed and set up your environment correctly in the 
+previous steps is to print the shared libraries used by the *acecast.exe* executable with the
+*ldd* command.
+
+.. tabs::
+
+    .. tab:: command
+
+        .. code-block:: shell
+            
+            ldd acecast-v2.0.0/acecast/run/acecast.exe
+
+    .. tab:: successful output example
+        
+        .. code-block:: output
+            :emphasize-lines: 9
+
+            linux-vdso.so.1 (0x0000155555551000)
+            libstdc++.so.6 => /lib64/libstdc++.so.6 (0x0000155554f96000)
+            libutil.so.1 => /lib64/libutil.so.1 (0x0000155554d92000)
+            libz.so.1 => /lib64/libz.so.1 (0x0000155554b7b000)
+            libm.so.6 => /lib64/libm.so.6 (0x00001555547f9000)
+            libmpi_usempif08.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/libmpi_usempif08.so.40 (0x00001555545d0000)
+            libmpi_usempi_ignore_tkr.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/libmpi_usempi_ignore_tkr.so.40 (0x00001555543cb000)
+            libmpi_mpifh.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/libmpi_mpifh.so.40 (0x000015555417e000)
+            libmpi.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/libmpi.so.40 (0x0000155553d3f000)
+            libdl.so.2 => /lib64/libdl.so.2 (0x0000155553b3b000)
+            libpthread.so.0 => /lib64/libpthread.so.0 (0x000015555391b000)
+            librt.so.1 => /lib64/librt.so.1 (0x0000155553713000)
+            libc.so.6 => /lib64/libc.so.6 (0x0000155553350000)
+            /lib64/ld-linux-x86-64.so.2 (0x000015555532b000)
+            libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x0000155553138000)
+            libopen-rte.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/libopen-rte.so.40 (0x0000155552df4000)
+            libopen-pal.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/libopen-pal.so.40 (0x000015555292b000)
+            librdmacm.so.1 => /usr/lib64/librdmacm.so.1 (0x0000155552710000)
+            libibverbs.so.1 => /usr/lib64/libibverbs.so.1 (0x00001555524f1000)
+            libnuma.so.1 => /usr/lib64/libnuma.so.1 (0x00001555522e5000)
+            libnvf.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/../../../../compilers/lib/libnvf.so (0x0000155551cb0000)
+            libnvhpcatm.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/../../../../compilers/lib/libnvhpcatm.so (0x0000155551aa5000)
+            libatomic.so.1 => /usr/lib64/libatomic.so.1 (0x000015555189d000)
+            libnvcpumath.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/../../../../compilers/lib/libnvcpumath.so (0x0000155551468000)
+            libnvc.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/../../../../compilers/lib/libnvc.so (0x0000155551210000)
+            libnl-3.so.200 => /usr/lib64/libnl-3.so.200 (0x0000155550fed000)
+            libnl-route-3.so.200 => /usr/lib64/libnl-route-3.so.200 (0x0000155550d67000)
+
+
+        As you can see above all of the required libraries were found and are in the expected 
+        locations (for example notice the the mpi library libmpi.so.40 was found within the 
+        OpenMPI installation of the NVIDIA HPC SDK).
+
+    .. tab:: problematic output example
+        
+        .. code-block:: output
+            :emphasize-lines: 6,7,8,9
+
+            linux-vdso.so.1 (0x0000155555551000)
+            libstdc++.so.6 => /lib64/libstdc++.so.6 (0x0000155554f96000)
+            libutil.so.1 => /lib64/libutil.so.1 (0x0000155554d92000)
+            libz.so.1 => /lib64/libz.so.1 (0x0000155554b7b000)
+            libm.so.6 => /lib64/libm.so.6 (0x00001555547f9000)
+            libmpi_usempif08.so.40 => not found
+            libmpi_usempi_ignore_tkr.so.40 => not found
+            libmpi_mpifh.so.40 => not found
+            libmpi.so.40 => not found
+            libdl.so.2 => /lib64/libdl.so.2 (0x00001555545f5000)
+            libpthread.so.0 => /lib64/libpthread.so.0 (0x00001555543d5000)
+            librt.so.1 => /lib64/librt.so.1 (0x00001555541cd000)
+            libc.so.6 => /lib64/libc.so.6 (0x0000155553e0a000)
+            /lib64/ld-linux-x86-64.so.2 (0x000015555532b000)
+            libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x0000155553bf2000)
+
+        Notice here that the various required MPI libraries (*libmpi.so.40, libmpi_mpifh.so.40, 
+        etc.*) were not found. In this case either the NVIDIA HPC SDK was not installed correctly, 
+        or the environment was not set up correctly (i.e. the *acecast_env.sh* script was not 
+        created or not sourced).
+
+.. note::
+   The *ldd* command doesn't guarantee that AceCAST will run correctly but it can be extremely
+   helpful in identifying a number of common issues that users run into regularly.
+
+
+Acquire A License
+=================
+
+AceCAST is a licensed software package and as such requires a valid license to run. A 60-day trial 
+license can be acquired by registering at the `AceCAST Registration Page`_. After registering 
+you should recieve an email containing your trial license (*acecast-trial.lic*). We suggest placing 
+this file in the *acecast-v2.0.0/acecast/run* directory. If your 60-day trial has ended please 
+contact support@tempoquest.com to request an extension and/or a quote.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
