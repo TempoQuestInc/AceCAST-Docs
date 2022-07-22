@@ -12,7 +12,7 @@ Under Construction
 .. raw:: html
    .. :file: _static/nml_table.html
 
-   <iframe src="https://nml-support-table-app.herokuapp.com/" width=800 height=900>
-   .. <iframe src="http://127.0.0.1:8050/" width=800 height=900>
+   .. <iframe src="https://nml-support-table-app.herokuapp.com/" width=800 height=900>
+   <iframe src="http://127.0.0.1:8050/" width=800 height=900>
 
 

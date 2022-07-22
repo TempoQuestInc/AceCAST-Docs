@@ -1,6 +1,6 @@
 .. meta::
    :description: Version history of AceCast, click for more
-   :keywords: Version, history, releases, AceCast, Documentation, TempoQuest
+   :keywords: Version, history, releases, AceCast, Documentation, TempoQuest, download, downloads
 
 .. _releaseslink:
 

@@ -65,8 +65,7 @@ Index
    :caption: AceCast
 
    BeforeYouBegin.rst
-   Requirements.rst
-   Installation.rst
+   InstallationGuide.rst
    RunningAcecast.rst
    CreatingNamelist.rst
    GeneratingInputData.rst
