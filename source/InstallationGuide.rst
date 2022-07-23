@@ -221,6 +221,11 @@ AceCAST requires installation of the NVIDIA HPC SDK version 21.9. You can either
     This step can take a while depending on your internet speeds. The installation itself typically 
     takes 10 minuts or so.
 
+.. _environmentsetup:
+
+Environment Setup
+-----------------
+
 Notice that a new script is created at *$NVHPC_INSTALL_DIR/acecast_env.sh*. You will need to source
 this script to setup your environment prior to running AceCAST. Example:
 
@@ -355,6 +360,8 @@ previous steps is to print the shared libraries used by the *acecast.exe* execut
    The *ldd* command doesn't guarantee that AceCAST will run correctly but it can be extremely
    helpful in identifying a number of common issues that users run into regularly.
 
+
+.. _acquirealicense:
 
 Acquire A License
 =================
