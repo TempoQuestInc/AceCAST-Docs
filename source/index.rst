@@ -67,12 +67,19 @@ Index
    BeforeYouBegin.rst
    InstallationGuide.rst
    RunningAcecast.rst
-   CreatingNamelist.rst
+   NamelistConfiguration.rst
    GeneratingInputData.rst
    Releases.rst
    Benchmarks.rst
    Containers.rst
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Tools
+
+   NmlSupportTbl.rst
    
+
 .. toctree::
    :maxdepth: 2
    :caption: WSV3

@@ -16,7 +16,7 @@ Input Data
 The first step in any AceCAST/WRF workflow is to generate input data for the model. AceCAST intentionally uses the 
 same exact `namelist.input, wrfbdy*, wrfinput*, etc.` files that are used by the standard CPU-WRF model. The only 
 restrictions are that they must be compatible with `WRF version 3.8.1` and the namelist options must be supported by
-AceCAST (see :ref:`Generating Input Data` and :ref:`Creating A Namelist`). Although you can use your own test data, 
+AceCAST (see :ref:`Generating Input Data` and :ref:`namelistconfiguration`). Although you can use your own test data, 
 to keep things simple for this exercise it is highly recommended to start with the input data from one of our 
 :ref:`benchmark test cases <Benchmarks>`. In this example we will use the :ref:`Easter500 benchmark <Easter500>`, 
 which is a good test case for a small number of GPUs and for convenience we download and unpack the benchmark data 
@@ -176,7 +176,7 @@ In this section we covered the basics of running AceCAST through an example wher
 :ref:`Easter500` benchmark test case with 4 GPUs on a single node. By using input data from one of our
 benchmark test cases, we were able to focus on the fundamental mechanics of running the AceCAST software
 before moving on to other critical topics such as generating input data and choosing a namelist. These 
-will be covered in the next sections :ref:`Generating Input Data` and :ref:`Creating A Namelist`.
+will be covered in the next sections :ref:`Generating Input Data` and :ref:`namelistconfiguration`.
 
 
 
