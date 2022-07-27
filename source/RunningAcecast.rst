@@ -13,6 +13,9 @@
 Running AceCAST
 ###############
 
+This page will demonstrate how to run AceCAST by walking you through an example with the 
+:ref:`Easter500 benchmark <Easter500>` test case.
+
 Before attempting to run, make sure AceCAST and its dependencies have been installed correctly and 
 that you have a valid AceCAST license to use the software (see :ref:`installationguide`). Also make
 sure that you have a valid license file (see :ref:`acquirealicense`) and have placed it in your
@@ -112,7 +115,14 @@ Verify Namelist Configuration
 =============================
 
 At this point we can use the `acecast-advisor.sh` script to verify that all of the options 
-specified in the namelist are supported by AceCAST.
+specified in the namelist are supported by AceCAST. We have an entire section of the documentation
+dedicated to this topic (see :ref:`namelistconfiguration`) but we will keep things simple for this 
+example. 
+
+.. note::
+   The :ref:`Easter500 benchmark <Easter500>` is distributed with a fully supported namelist but
+   we recommend trying out the `acecast-advisor.sh` tool anyways to get a sense of how it works for
+   when you start using your own namelists rather than the one that we provide for this example.
 
 **AceCAST Advisor -- Support Check Tool**
 
