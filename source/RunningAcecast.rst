@@ -13,7 +13,7 @@
 Running AceCAST
 ###############
 
-This page will demonstrate how to run AceCAST by walking you through an example with the 
+This guide will demonstrate how to run AceCAST by walking you through an example with the 
 :ref:`Easter500 benchmark <Easter500>` test case.
 
 Before attempting to run, make sure AceCAST and its dependencies have been installed correctly and 
