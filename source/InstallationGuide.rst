@@ -240,7 +240,7 @@ Installing AceCAST
 Download AceCAST Distribution Package
 -------------------------------------
 
-To install AceCAST itself, navigate to the :ref:`releaseslink` and copy the download url for 
+To install AceCAST itself, navigate to the :ref:`latestlink` and copy the download url for 
 AceCAST. You can then download and unpack the distribution using the *wget* and *tar* commands as 
 follows:
 

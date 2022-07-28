@@ -7,6 +7,7 @@
 Releases
 ########
 
+Latest Version: :ref:`latestlink`
 
 Release and Versioning Methodology
 ==================================
@@ -28,13 +29,13 @@ will have a version number `MAJOR.MINOR.PATCH`, which can be understood as follo
 For any given version we will provide release notes and download information within its own 
 subsection on this page. 
 
-.. note::
+.. tip::
    Not sure what we mean by **supported namelist options**? Check out the 
    :ref:`namelistconfiguration` section.
 
-.. note::
-   We conceptualized this versioning scheme only after realizing it was necessary to do so while
-   working on AceCAST version **2.0.0**. You may notice some inconsistencies prior to this version.
+.. .. note::
+..    We conceptualized this versioning scheme only after realizing it was necessary to do so while
+..    working on AceCAST version **2.0.0**. You may notice some inconsistencies prior to this version.
 
 .. _latestlink:
 
@@ -62,9 +63,9 @@ Downloads
    If you would like to download the package from the command line you can use the `wget` or `curl`
    commands with the download link url from above.
 
-Version 1.3.0 and Older
-=======================
+Version 1.3 and Older
+=====================
 
 Due to the major changes from AceCAST version *1.** to version *2.**, it is best to use the 
-archived `acecast-v1 docs <https://acecast-docs.readthedocs.io/en/acecast-v1/>` version of the 
+archived `acecast-v1 docs <https://acecast-docs.readthedocs.io/en/acecast-v1/>`_ version of the 
 documentation.
