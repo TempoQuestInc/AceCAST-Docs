@@ -31,7 +31,12 @@ extensions = [
     'sphinx_copybutton',
     # 'sphinx_code_tabs',
     'sphinx_tabs.tabs',
+    'versionwarning.extension',
 ]
+
+# Currently not working
+versionwarning_project_version = '0.0.1'
+versionwarning_project_slug = 'sphinx-version-warning'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
