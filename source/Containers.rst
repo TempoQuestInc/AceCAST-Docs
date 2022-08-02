@@ -81,7 +81,7 @@ Running AceCAST in a Container
 
 Users are free to use containers to run AceCAST in whatever way they see fit. Note that you can use the host OS
 to manage your inputs/outputs and use a container simply to run acecast itself. In this example we have already
-downloaded the :ref:`Easter500` test case data as well as our acecast license file into the *inputs/* subdirectory.
+downloaded the :ref:`Easter500 <Benchmarks>` test case data as well as our acecast license file into the *inputs/* subdirectory.
 
 ::
     
