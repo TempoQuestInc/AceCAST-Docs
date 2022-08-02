@@ -7,6 +7,10 @@
 
    <br />
 
+
+Quick links: :ref:`Download <latestlink>` | `OnDemand <https://wrfondemand.com/>`_ | `WSV3 <https://wsv3.com/>`_ | `TempoQuest <https://tempoquest.com/>`_
+###########################################################################################################################################################
+
 AceCast Online Documentation Homepage
 #####################################
 
