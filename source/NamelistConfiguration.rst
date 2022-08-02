@@ -57,6 +57,14 @@ Interactive Namelist Support Table App
 For a complete list of supported namelist options available in AceCAST, we highly recommend 
 checking out the :ref:`nmlsupporttbl` tool. 
 
+Most options can be turned off with a value of 0, where applicable. AceCAST supports the same output 
+as WRF which includes but is not limited to netCDF and GRIB.
+
+.. raw:: html
+   
+   <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfVZ_7KQSJ7pUrHPk3aKYvTqDklBm9g1bmnCRkou-zfmreLSA/viewform?embedded=true" 
+    width="900" height="470" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+
 
 .. _nmlcfgnmlsupporttool:
 
