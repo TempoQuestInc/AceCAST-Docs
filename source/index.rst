@@ -93,7 +93,6 @@ Index
 
 
    Gallery.rst
-   Tools.rst
    External_Links.rst
    FAQS.rst
    Verification.rst
