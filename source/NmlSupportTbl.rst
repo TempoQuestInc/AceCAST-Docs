@@ -7,6 +7,8 @@
 Namelist Support Table App
 ##########################
 
+Not seeing your option(s)? :ref:`Let us know!  <nmlunsupported>`
+
 .. note::
    It may take a moment to load the application below.
 

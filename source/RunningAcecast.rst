@@ -14,7 +14,7 @@ Running AceCAST
 ###############
 
 This guide will demonstrate how to run AceCAST by walking you through an example with the 
-:ref:`Easter500 benchmark <Easter500>` test case.
+:ref:`Easter500 benchmark <Benchmarks>` test case.
 
 Before attempting to run, make sure AceCAST and its dependencies have been installed correctly and 
 that you have a valid AceCAST license to use the software (see :ref:`installationguide`). Also make
@@ -31,7 +31,7 @@ The first step in any AceCAST/WRF workflow is to generate input data for the mod
 the same `namelist.input, wrfbdy*, wrfinput*, etc.` files that are used by the standard CPU-WRF 
 model. The only restriction is that the specified namelist options must be supported by AceCAST 
 (see :ref:`namelistconfiguration`). In this guide we will use we will use the 
-:ref:`Easter500 benchmark <Easter500>` from our standard :ref:`Benchmarks`, which is typically a 
+:ref:`Easter500 benchmark <Benchmarks>` from our standard :ref:`Benchmarks`, which is typically a 
 good test case for a small number of GPUs.
 
 **Download Easter500 Test Case Data:**
@@ -120,7 +120,7 @@ dedicated to this topic (see :ref:`namelistconfiguration`) but we will keep thin
 example. 
 
 .. note::
-   The :ref:`Easter500 benchmark <Easter500>` is distributed with a fully supported namelist but
+   The :ref:`Easter500 benchmark <Benchmarks>` is distributed with a fully supported namelist but
    we recommend trying out the `acecast-advisor.sh` tool anyways to get a sense of how it works for
    when you start using your own namelists rather than the one that we provide for this example.
 
@@ -210,6 +210,22 @@ Setting Up Your Environment
 Prior to running the executables in the following sections you will need to make sure your 
 environment is set up correctly as described in the :ref:`installationguide` (see 
 :ref:`environmentsetup`).
+
+Modify OpenMPI Settings (Optional)
+----------------------------------
+
+The NVIDIA HPC SDK uses an older version of OpenMPI (version 3.1.5). This version is performant 
+and works well on a variety of systems but it can produce some confusing warnings when running MPI
+jobs. These warnings can be suppressed by setting the *btl_base_warn_component_unused=0* option 
+using the following commands.
+
+.. code-block:: shell
+    
+    mkdir -p ~/.openmpi
+    echo "btl_base_warn_component_unused = 0" > ~/.openmpi/mca-params.conf
+
+Note that this only needs to be done one time on any given system.
+
 
 Running Real
 ============
@@ -335,11 +351,11 @@ Summary and Next Steps
 ======================
 
 In this section we covered the basics of running AceCAST through an example where we ran the 
-:ref:`Easter500` benchmark test case with 4 GPUs on a single node. By using input data from one of 
-our benchmark test cases, we were able to focus on the fundamental mechanics of running the AceCAST 
-software before moving on to other critical topics such as generating input data and namelist 
-configuration. These will be covered in the next sections :ref:`Generating Input Data` and 
-:ref:`namelistconfiguration`.
+:ref:`Easter500 benchmark <Benchmarks>` test case with 4 GPUs on a single node. By using input 
+data from one of our benchmark test cases, we were able to focus on the fundamental mechanics 
+of running the AceCAST software before moving on to other critical topics such as generating 
+input data and namelist configuration. These will be covered in the next sections 
+:ref:`Generating Input Data` and :ref:`namelistconfiguration`.
 
 
 
