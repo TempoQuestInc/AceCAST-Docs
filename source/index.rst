@@ -76,6 +76,7 @@ Index
    Releases.rst
    Benchmarks.rst
    Containers.rst
+   AdvancedTopics.rst
 
 .. toctree::
    :maxdepth: 1

@@ -304,6 +304,9 @@ The `gpu-launch.sh` script sets the `ACC_DEVICE_NUM` environment variable (see
 `NVHPC OpenACC Environment Variables`_) to the specific GPU id for each MPI task prior to launching 
 the `acecast.exe` executable.
 
+.. note::
+   For more information about the `gpu-launch.sh` script check out :ref:`GPU Mapping`. 
+
 For our example we can run with 4 GPUs on a single node:
 
 .. tabs::
