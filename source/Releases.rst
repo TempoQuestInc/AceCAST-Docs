@@ -63,6 +63,34 @@ Downloads
    If you would like to download the package from the command line you can use the `wget` or `curl`
    commands with the download link url from above.
 
+Known Issues
+------------
+
+Fractional Seaice Issue
+***********************
+
+AceCAST fails with the following message when using the *fractional_seaice = 1* option together 
+with the *sf_sfclay_physics = 2* (eta similarity) or *sf_sfclay_physics = 5* (MYNN) surface layer 
+options:
+
+.. code-block:: output
+
+    -------------- FATAL CALLED ---------------
+    FATAL CALLED FROM FILE:  module_surface_driver.G  LINE:    4936
+    error -- routine not yet implemented
+    -------------------------------------------
+
+If you encounter this issue you can turn off the fractional seaice option (*fractional_seaice = 0*) 
+or use it with the *sf_sfclay_physics=1* surface layer option (Revised MM5). This issue will be 
+resolved in the next release of AceCAST.
+
+Incorrect Version Messaging in the AceCAST Advisor Script
+*********************************************************
+
+There is currently a bug in the `acecast-advisor.sh` script where the `AceCAST Version` is `1.2` 
+rather than `2.0.0` and the `WRF Compatibility Version` is `3.8.1` rather than `4.2.2`. The script 
+works correctly and the incorrect versions in the output can be ignored.
+
 Version 1.3 and Older
 =====================
 
