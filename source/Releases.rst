@@ -91,6 +91,18 @@ There is currently a bug in the `acecast-advisor.sh` script where the `AceCAST V
 rather than `2.0.0` and the `WRF Compatibility Version` is `3.8.1` rather than `4.2.2`. The script 
 works correctly and the incorrect versions in the output can be ignored.
 
+GPU Memory Utilization Issue
+****************************
+
+The RRTMG radiation options (*ra_sw_physics=4*, *ra_lw_physics=4*) require a significant amount of 
+GPU memory that would typically be highly restictive when users are running with large grids. To 
+mitigate this issue we use a *tiled* version of these RRTMG routines, which break down the grid 
+into smaller chunks that fit into the available GPU memory and perform the radiation calculations 
+for each of these chunks sequentially. **Due to a minor integer overflow issue, this dynamic tile 
+size calculation doesn't currently work for larger grid sizes.** This issue does not effect the 
+results of any simulations but does significantly limit the grid sizes that can be used for any 
+given GPU. This issue will be resolved in the new version of AceCAST.
+
 Version 1.3 and Older
 =====================
 
