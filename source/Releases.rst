@@ -101,7 +101,12 @@ Downloads
 Known Issues
 ------------
 
-We are not aware of any issues at this point.
+MYNN PBL Sub-Options
+********************
+
+Both the *icloud_bl = 0* and *bl_mynn_cloudpdf = 0* options fail when using the MYNN PBL option 
+(*bl_pbl_physics = 5*). If these options are critical for your simulations please contact us at 
+support@tempoquest.com to ensure that we prioritize fixing this issue.
 
 Version 2.0.0
 =============
