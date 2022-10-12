@@ -3,8 +3,10 @@
    :keywords: Gallery, Pictures, Examples, AceCast, Documentation, TempoQuest
 
 
-Gallery
+Gallery 
 =======
+
+Click each image for a larger view
 
 WSV3
 ----
@@ -58,8 +60,8 @@ NC/SC Snowstorm event January 2022
    :scale: 40%
 
 
-Upstate NY Lake Effect Snow
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Upstate New York Lake Effect Snow
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 .. image:: /Images/LakeEffect_UpstateNY/HRRR1km_SNOW_diff.png 
@@ -68,8 +70,8 @@ Upstate NY Lake Effect Snow
 .. image:: /Images/LakeEffect_UpstateNY/NAM1km_SNOW_diff.png 
    :scale: 100%
 
-NE Snowstorm
-^^^^^^^^^^^^
+Northeast CONUS Snowstorm
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: /Images/Snowstorm_Boston/TD_Kuchera_NAM3k_3km_202201300600Z.png
    :scale: 12%
@@ -81,7 +83,7 @@ NE Snowstorm
 Severe Weather
 --------------
 
-Illinois Tornado outbreak
+Illinois Tornado Outbreak
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: /Images/Illinois_Tornadoes/Sim_Reflectivity.png
@@ -94,18 +96,33 @@ Illinois Tornado outbreak
    :scale: 20%
 
 .. image:: /Images/Illinois_Tornadoes/UH_Values_OLD.png
-   :scale: 60%
+   :scale: 20%
 
 Tropical Weather
 ----------------
 
-Hurricane Michael
-^^^^^^^^^^^^^^^^^
+Hurricane Michael (2018)
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: /Images/Hurricane_Michael/Michael_dBZ.png
    :scale: 30%
 
 .. image:: /Images/Hurricane_Michael/Michael_dBZ_barb_crossV_Temp.png
+   :scale: 30%
+
+Hurricane Ian (2022)
+^^^^^^^^^^^^^^^^^^^^
+
+.. image:: /Images/Hurricane_Ian/Ian_1.png
+   :scale: 30%
+
+.. image:: /Images/Hurricane_Ian/Ian_2.png
+   :scale: 30%
+
+.. image:: /Images/Hurricane_Ian/Ian_3.png
+   :scale: 30%
+
+.. image:: /Images/Hurricane_Ian/Ian_4.png
    :scale: 30%
 
 
