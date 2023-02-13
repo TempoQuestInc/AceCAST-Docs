@@ -96,7 +96,7 @@ Illinois Tornado Outbreak
    :scale: 20%
 
 .. image:: /Images/Illinois_Tornadoes/UH_Values_OLD.png
-   :scale: 20%
+   :scale: 40%
 
 Tropical Weather
 ----------------
@@ -124,6 +124,5 @@ Hurricane Ian (2022)
 
 .. image:: /Images/Hurricane_Ian/Ian_4.png
    :scale: 30%
-
 
 
