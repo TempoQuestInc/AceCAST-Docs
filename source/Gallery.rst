@@ -96,7 +96,7 @@ Illinois Tornado Outbreak
    :scale: 20%
 
 .. image:: /Images/Illinois_Tornadoes/UH_Values_OLD.png
-   :scale: 40%
+   :scale: 60%
 
 Tropical Weather
 ----------------
