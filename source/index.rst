@@ -98,9 +98,9 @@ Index
 
 
    Gallery.rst
+   Extras.rst
    External_Links.rst
    FAQS.rst
    Verification.rst
    Support.rst
    License.rst
-
