@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'AceCast Docs'
-copyright = '2022, TempoQuest'
+copyright = '2023, TempoQuest'
 author = 'Jan Ising'
 
 
