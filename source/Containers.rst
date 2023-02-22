@@ -33,8 +33,8 @@ Once you have chosen the specific image you would like to use you can obtain the
 
 ::
 
-    [acecast-user@gpu-node]$ docker pull tempoquestinc/acecast:2.0.0
-    2.0.0: Pulling from tempoquestinc/acecast
+    [acecast-user@gpu-node]$ docker pull tempoquestinc/acecast:3.0.1
+    3.0.1: Pulling from tempoquestinc/acecast
     f70d60810c69: Already exists 
     545277d80005: Already exists 
     1e7f98e28850: Already exists 
@@ -48,8 +48,8 @@ Once you have chosen the specific image you would like to use you can obtain the
     619ac9d050cc: Pull complete 
     13f006ddd7e1: Pull complete 
     Digest: sha256:a6b5311c66200fe0b8c3f1b11d8856847f144565c9d0666b366f11ae8c733722
-    Status: Downloaded newer image for tempoquestinc/acecast:2.0.0
-    docker.io/tempoquestinc/acecast:2.0.0
+    Status: Downloaded newer image for tempoquestinc/acecast:3.0.1
+    docker.io/tempoquestinc/acecast:3.0.1
 
 Check that the image exists with the `docker images <https://docs.docker.com/engine/reference/commandline/images/>`_ 
 command, which lists some basic information about your local images:
@@ -57,7 +57,7 @@ command, which lists some basic information about your local images:
 ::
 
     REPOSITORY                 TAG              IMAGE ID       CREATED        SIZE
-    tempoquestinc/acecast      2.0.0        6d6882fef187       5 hours ago    17.6GB
+    tempoquestinc/acecast      3.0.1        6d6882fef187       5 hours ago    17.6GB
 
 The AceCAST image contains all of the software necessary for running AceCAST inside the container including the 
 *NVIDIA HPC SDK* and *AceCAST* itself. The AceCAST executables, static runtime data files, scripts, etc. are 
@@ -65,7 +65,7 @@ installed in the */opt/acecast/run/* directory inside the container.
 
 ::
 
-    [acecast-user@gpu-node]$ nvidia-docker run --rm tempoquestinc/acecast:2.0.0 ls /opt/acecast/run
+    [acecast-user@gpu-node]$ nvidia-docker run --rm tempoquestinc/acecast:3.0.1 ls /opt/acecast/run
     acecast.exe
     aerosol.formatted
     aerosol_lat.formatted
@@ -110,7 +110,7 @@ To run this script inside the container we use the *nvidia-docker run* command:
 
 ::
 
-    [acecast-user@gpu-node]$ nvidia-docker run --gpus all -v `pwd`:`pwd` -w `pwd` --rm tempoquestinc/acecast:2.0.0 ./run.sh 
+    [acecast-user@gpu-node]$ nvidia-docker run --gpus all -v `pwd`:`pwd` -w `pwd` --rm tempoquestinc/acecast:3.0.1 ./run.sh 
      starting wrf task             1  of             4
      starting wrf task             2  of             4
      starting wrf task             3  of             4

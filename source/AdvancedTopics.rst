@@ -56,3 +56,44 @@ by launching the `acecast.exe` executable with `mpirun` and the `gpu-launch.sh` 
             mpirun -np 3 ./gpu-launch.sh --gpu-list 0,1,3 ./acecast.exe
 
 
+.. _IO Quilting:
+
+.. Asynchronous I/O Using I/O Quilting
+.. ===================================
+..
+.. Depending on the simulation configuration, I/O can make up a large portion of AceCAST's overall
+.. runtime. There isn't much that can be done to improve reading input files, but on any given output
+.. interval, there is no need for AceCAST to wait for history files to be written before continuing.
+.. By using a feature called *I/O quilting*, AceCAST can utilize otherwise idle CPU cores to perform
+.. history writes while the GPUs continue running the simulation.
+..
+.. Although I/O quilting can be configured any way the user likes, we suggest using one "I/O process"
+.. per GPU. To do this you will need to set the following namelist options:
+..
+.. .. code-block:: fortran
+..
+..    &time_control
+..     ...
+..     io_form_history = 11
+..     ...
+..     /
+..    ...
+..    &domains
+..     ...
+..     nproc_x = 2
+..     nproc_y = 2
+..     ...
+..     /
+..    ...
+..    &io_quilt
+..     nio_tasks_per_group = 1
+..     nio_groups = 4
+..     /
+..    ...
+..
+
+
+
+
+
+

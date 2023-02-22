@@ -109,12 +109,12 @@ check if the options specified in an existing namelist are supported by AceCAST 
             ***********************************************************************************
             
             
-            WARNING: Namelist file not specified by user. Using default namelist file path: /home/samm.tempoquest/acecast-v2.0.0/acecast/easter500-4GPU/namelist.input 
+            WARNING: Namelist file not specified by user. Using default namelist file path: /home/samm.tempoquest/acecast-v3.0.1/acecast/easter500-4GPU/namelist.input 
 
             Support Check Configuration:
-                Namelist                    : /home/samm.tempoquest/acecast-v2.0.0/acecast/easter500-4GPU/namelist.input
-                AceCAST Version             : 1.2
-                WRF Compatibility Version   : 3.8.1
+                Namelist                    : /home/samm.tempoquest/acecast-v3.0.1/acecast/easter500-4GPU/namelist.input
+                AceCAST Version             : 3.0.1
+                WRF Compatibility Version   : 4.4.2
 
 
             NOTE: Namelist options may be determined implicitly if not specified in the given namelist.
@@ -136,19 +136,19 @@ check if the options specified in an existing namelist are supported by AceCAST 
             ***********************************************************************************
             
             
-            WARNING: Namelist file not specified by user. Using default namelist file path: /home/samm.tempoquest/acecast-v2.0.0/acecast/easter500-4GPU/namelist.input 
+            WARNING: Namelist file not specified by user. Using default namelist file path: /home/samm.tempoquest/acecast-v3.0.1/acecast/easter500-4GPU/namelist.input 
 
             Support Check Configuration:
-                Namelist                    : /home/samm.tempoquest/acecast-v2.0.0/acecast/easter500-4GPU/namelist.input
-                AceCAST Version             : 1.2
-                WRF Compatibility Version   : 3.8.1
+                Namelist                    : /home/samm.tempoquest/acecast-v3.0.1/acecast/easter500-4GPU/namelist.input
+                AceCAST Version             : 3.0.1
+                WRF Compatibility Version   : 4.4.2
 
 
             NOTE: Namelist options may be determined implicitly if not specified in the given namelist.
 
             SUPPORT CHECK FAILURE:
                 Unsupported option selected for namelist variable mp_physics in &physics: mp_physics=10
-                Supported options for namelist variable mp_physics: 1,6,8,28
+                Supported options for namelist variable mp_physics: 0,1,6,8,28
 
             SUPPORT CHECK FAILURE:
                 Unsupported option selected for namelist variable cu_physics in &physics: cu_physics=16
@@ -156,9 +156,4 @@ check if the options specified in an existing namelist are supported by AceCAST 
 
             Support Check Tool Failure: One or more options found that are not supported by AceCAST. Please modify your namelist selections based on the previous "SUPPORT CHECK FAILURE" messages and run this check again.
 
-
-.. note::
-   There is currently a bug in the `acecast-advisor.sh` script where the `AceCAST Version` is `1.2` 
-   rather than `2.0.0` and the `WRF Compatibility Version` is `3.8.1` rather than `4.2.2`. The 
-   script works correctly and the incorrect versions in the output can be ignored.
 

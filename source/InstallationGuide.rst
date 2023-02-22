@@ -246,15 +246,15 @@ follows:
 
 .. code-block:: shell
 
-    wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v2.0.0%2Blinux.x86_64.haswell.tar.gz
-    tar -xf acecast-v2.0.0+linux.x86_64.haswell.tar.gz
+    wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v3.0.1%2Blinux.x86_64.haswell.tar.gz
+    tar -xf acecast-v3.0.1+linux.x86_64.haswell.tar.gz
 
-If successful you should see a new directory *acecast-v2.0.0*. The directory structure should look 
+If successful you should see a new directory *acecast-v3.0.1*. The directory structure should look 
 like the following:
 
 .. code-block:: output
 
-    acecast-v2.0.0
+    acecast-v3.0.1
     ├── acecast
     │   └── run
     │       ├── acecast.exe
@@ -290,7 +290,7 @@ previous steps is to print the shared libraries used by the *acecast.exe* execut
 
         .. code-block:: shell
             
-            ldd acecast-v2.0.0/acecast/run/acecast.exe
+            ldd acecast-v3.0.1/acecast/run/acecast.exe
 
     .. tab:: successful output example
         
@@ -369,7 +369,7 @@ Acquire A License
 AceCAST is a licensed software package and as such requires a valid license to run. A 60-day trial 
 license can be acquired by registering at the `AceCAST Registration Page`_. After registering 
 you should recieve an email containing your trial license (*acecast-trial.lic*). We suggest placing 
-this file in the *acecast-v2.0.0/acecast/run* directory. If your 60-day trial has ended please 
+this file in the *acecast-v3.0.1/acecast/run* directory. If your 60-day trial has ended please 
 contact support@tempoquest.com to request an extension and/or a quote.
 
 
