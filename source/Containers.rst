@@ -11,6 +11,13 @@ Containers
 Containers are a useful solution that bundle applications along with any runtime dependencies that they require. 
 Containers have a number of advantages for application portability and deployment. 
 
+.. important::
+   This guide is intended to be a supplement addressing the specific topic of running AceCAST containers and as 
+   such does not explain other important topics already covered elsewhere. Container users should still take a 
+   look at the core topics prior to reading this guide. Of particular importance are the :ref:`Before You Begin`, 
+   :ref:`Running AceCAST` and :ref:`namelistconfiguration` pages although users intending to use containers 
+   exclusively can notably skip over the :ref:`installationguide`.
+
 Docker
 ======
 
