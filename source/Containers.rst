@@ -21,20 +21,19 @@ Prerequisites
 *************
 
 Prior to running the AceCAST containers on a GPU-enabled machine you will need to install the docker engine as well 
-as nvidia-docker and the necessary nvidia drivers for your system. More information on installing these components 
-can be found `here <https://github.com/NVIDIA/nvidia-docker/blob/master/README.md>`_.
+as the necessary nvidia drivers for your system. 
 
 Getting the AceCAST Docker Image
 ***********************************
 
-Our Docker-based AceCAST container images can be found on the `AceCAST DockerHub repository <https://hub.docker.com/repository/docker/sammelliott/acecast>`_. 
+Our Docker-based AceCAST container images can be found on the `AceCAST DockerHub repository <https://hub.docker.com/repository/docker/tempoquestinc/acecast:3.0.1>`_. 
 Once you have chosen the specific image you would like to use you can obtain the image with the 
 `docker pull <https://docs.docker.com/engine/reference/commandline/pull/>`_ command:
 
 ::
 
     [acecast-user@gpu-node]$ docker pull tempoquestinc/acecast:3.0.1
-    3.0.1: Pulling from tempoquestinc/acecast
+    3.0.1: Pulling from tempoquestinc/acecast:3.0.1
     f70d60810c69: Already exists 
     545277d80005: Already exists 
     1e7f98e28850: Already exists 
@@ -56,8 +55,9 @@ command, which lists some basic information about your local images:
 
 ::
 
+    [acecast-user@gpu-node]$ docker images
     REPOSITORY                 TAG              IMAGE ID       CREATED        SIZE
-    tempoquestinc/acecast      3.0.1        6d6882fef187       5 hours ago    17.6GB
+    tempoquestinc/acecast:3.0.1      3.0.1        6d6882fef187       5 hours ago    17.6GB
 
 The AceCAST image contains all of the software necessary for running AceCAST inside the container including the 
 *NVIDIA HPC SDK* and *AceCAST* itself. The AceCAST executables, static runtime data files, scripts, etc. are 
@@ -65,7 +65,7 @@ installed in the */opt/acecast/run/* directory inside the container.
 
 ::
 
-    [acecast-user@gpu-node]$ nvidia-docker run --rm tempoquestinc/acecast:3.0.1 ls /opt/acecast/run
+    [acecast-user@gpu-node]$ docker run --rm tempoquestinc/acecast:3.0.1 ls /opt/acecast/run
     acecast.exe
     aerosol.formatted
     aerosol_lat.formatted
@@ -79,9 +79,35 @@ installed in the */opt/acecast/run/* directory inside the container.
 Running AceCAST in a Container
 ******************************
 
+General docker run command usage for AceCAST:
+
+::
+
+    docker run [OPTIONS] tempoquestinc/acecast:3.0.1 COMMAND
+
+.. list-table:: Common Docker Run Command Options
+   :widths: 25 100
+   :header-rows: 0
+
+   * - Option
+     - Description
+   * - --gpus gpu-request
+     - GPU devices to add to the container ('all' to pass all GPUs)
+   * - --rm
+     - Automatically remove the container when it exits
+   * - -w string
+     - Working directory inside the container
+   * - -v
+     - Mount volumes from the specified container(s)
+
+For a full description of available options check out the `docker run command documentation <https://docs.docker.com/engine/reference/commandline/run/>`_ 
+or run *docker run --help* from the command line.
+
 Users are free to use containers to run AceCAST in whatever way they see fit. Note that you can use the host OS
 to manage your inputs/outputs and use a container simply to run acecast itself. In this example we have already
-downloaded the :ref:`Easter500 <Benchmarks>` test case data as well as our acecast license file into the *inputs/* subdirectory.
+downloaded the :ref:`Easter500 <Benchmarks>` test case data as well as our acecast license file into the *inputs/* 
+subdirectory. This current directory will be mounted inside the container using the *-v* option to the *docker run*
+command so all of the files you see here will be available inside the container when it is running.
 
 ::
     
@@ -91,26 +117,39 @@ downloaded the :ref:`Easter500 <Benchmarks>` test case data as well as our aceca
     acecast.lic met_em.d01.2020-04-11_12:00:00.nc  met_em.d01.2020-04-11_13:00:00.nc  namelist.input
 
 
-We also have a script in the current directory that is intended to run in the container:
+We also have a script in the current directory that will be run inside the container in the next step:
 
 ::
 
     [acecast-user@gpu-node]$ cat run.sh 
     #!/bin/bash
 
-    mkdir -p run outputs
+    # Create directory for running acecast in and cd into it
+    mkdir -p run
     cd run
-    ln -sf /opt/acecast/run/* .
-    ln -sf ../inputs/* .
+
+    # Link AceCAST executables and runtime data files into the run directory
+    # Note that these files only exist in the container so they won't be available from the 
+    # host system that is running the container after the script finishes executing
+    ln -sf /opt/acecast/run/* . 
+
+    # Link the input files that we made available to the docker container using the -v option
+    # that we passed to the docker run command
+    ln -sf ../inputs/* .        
+
+    # Run real.exe to generate the wrf input files
+    # Note that the --allow-run-as-root option for the mpirun command is necessary since the 
+    # user will be root inside the container
     mpirun -np 4 --allow-run-as-root ./real.exe
+
+    # Run acecast.exe
     mpirun -np 4 --allow-run-as-root ./gpu-launch.sh ./acecast.exe
-    mv wrfout* ../outputs/
 
-To run this script inside the container we use the *nvidia-docker run* command:
+To run this script inside the container we use the *docker run* command:
 
 ::
 
-    [acecast-user@gpu-node]$ nvidia-docker run --gpus all -v `pwd`:`pwd` -w `pwd` --rm tempoquestinc/acecast:3.0.1 ./run.sh 
+    [acecast-user@gpu-node]$ docker run --gpus all -v `pwd`:`pwd` -w `pwd` --rm tempoquestinc/acecast:3.0.1 ./run.sh 
      starting wrf task             1  of             4
      starting wrf task             2  of             4
      starting wrf task             3  of             4
@@ -121,14 +160,93 @@ To run this script inside the container we use the *nvidia-docker run* command:
      starting wrf task             0  of             4
 
 
-For a description of the options used above check out the `docker run command documentation <https://docs.docker.com/engine/reference/commandline/run/>`_.
-
-After the container finishes executing the script we should see the wrf output files in the *outputs/* subdirectory on the host OS:
+After the container finishes executing the script we should see the wrf output files in the *run/* 
+subdirectory on the host system:
 
 ::
 
-    [acecast-user@gpu-node]$ ls outputs/
+    [acecast-user@gpu-node]$ ls run/wrfout*
     wrfout_d01_2020-04-11_12:00:00
 
 
+Other Useful Examples
+*********************
+
+Running the AceCAST advisor script:
+
+::
+
+    [acecast-user@gpu-node]$ ls
+    namelist.input
+    [acecast-user@gpu-node]$ docker run -v `pwd`:`pwd` -w `pwd` --rm tempoquestinc/acecast:3.0.1 /opt/acecast/run/acecast-advisor.sh --tool support-check
+
+    ***********************************************************************************
+    *      ___           _____           _      ___      _       _                    *
+    *     / _ \         /  __ \         | |    / _ \    | |     (_)                   *
+    *    / /_\ \ ___ ___| /  \/ __ _ ___| |_  / /_\ \ __| |_   ___ ___  ___  ____     *
+    *    |  _  |/ __/ _ \ |    / _` / __| __| |  _  |/ _` \ \ / / / __|/ _ \|  __|    *
+    *    | | | | (_|  __/ \__/\ (_| \__ \ |_  | | | | (_| |\ V /| \__ \ (_) | |       *
+    *    \_| |_/\___\___|\____/\__,_|___/\__| \_| |_/\__,_| \_/ |_|___/\___/|_|       *
+    *                                                                                 *
+    ***********************************************************************************
+
+
+    WARNING: Namelist file not specified by user. Using default namelist file path: /home/samm/test_acecast/namelist.input
+
+    Support Check Configuration:
+        Namelist                    : /home/samm/test_acecast/namelist.input
+        AceCAST Version             : 3.0.1 (build: linux.x86_64.haswell)
+        WRF Compatibility Version   : 4.4.2
+
+
+    NOTE: Namelist options may be determined implicitly if not specified in the given namelist.
+
+    SUPPORT CHECK FAILURE:
+        Unsupported option selected for namelist variable ra_lw_physics in &physics: ra_lw_physics=1,1,1
+        Supported options for namelist variable ra_lw_physics: 0,4
+
+    SUPPORT CHECK FAILURE:
+        Unsupported option selected for namelist variable ra_sw_physics in &physics: ra_sw_physics=1,1,1
+        Supported options for namelist variable ra_sw_physics: 0,4
+
+    Support Check Tool Failure: One or more options found that are not supported by AceCAST. Please modify your namelist selections based on the previous "SUPPORT CHECK FAILURE" messages and run this check again.
+
+
+Verify that GPUs are available on the container:
+
+::
+
+    [acecast-user@gpu-node]$ docker run --gpus all --rm tempoquestinc/acecast:3.0.1 nvidia-smi
+    Wed Mar 15 18:14:34 2023       
+    +-----------------------------------------------------------------------------+
+    | NVIDIA-SMI 470.161.03   Driver Version: 470.161.03   CUDA Version: 11.4     |
+    |-------------------------------+----------------------+----------------------+
+    | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+    | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+    |                               |                      |               MIG M. |
+    |===============================+======================+======================|
+    |   0  NVIDIA A100-SXM...  Off  | 00000000:87:00.0 Off |                    0 |
+    | N/A   31C    P0    54W / 400W |      0MiB / 40536MiB |      0%      Default |
+    |                               |                      |             Disabled |
+    +-------------------------------+----------------------+----------------------+
+    |   1  NVIDIA A100-SXM...  Off  | 00000000:90:00.0 Off |                    0 |
+    | N/A   31C    P0    52W / 400W |      0MiB / 40536MiB |      0%      Default |
+    |                               |                      |             Disabled |
+    +-------------------------------+----------------------+----------------------+
+    |   2  NVIDIA A100-SXM...  Off  | 00000000:B7:00.0 Off |                    0 |
+    | N/A   29C    P0    53W / 400W |      0MiB / 40536MiB |      0%      Default |
+    |                               |                      |             Disabled |
+    +-------------------------------+----------------------+----------------------+
+    |   3  NVIDIA A100-SXM...  Off  | 00000000:BD:00.0 Off |                    0 |
+    | N/A   29C    P0    55W / 400W |      0MiB / 40536MiB |      0%      Default |
+    |                               |                      |             Disabled |
+    +-------------------------------+----------------------+----------------------+
+                                                                                   
+    +-----------------------------------------------------------------------------+
+    | Processes:                                                                  |
+    |  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+    |        ID   ID                                                   Usage      |
+    |=============================================================================|
+    |  No running processes found                                                 |
+    +-----------------------------------------------------------------------------+
 
