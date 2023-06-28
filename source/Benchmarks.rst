@@ -13,7 +13,7 @@ NCAR Standard Benchmark Test Cases
 ==================================
 
 The *CONUS 12km* and *CONUS 2.5km* benchmarks provided by NCAR are widely used for evaluating the 
-performance of WRF on various systems. For more information check out the `WRF V4.2.2 Benchmarks Page <https://www2.mmm.ucar.edu/wrf/users/benchmark/v42/benchdata_v422.html>`_.
+performance of WRF on various systems. For more information check out the `WRF V4.4 Benchmarks Page <https://www2.mmm.ucar.edu/wrf/users/benchmark/v44/benchdata_v44.html>`_.
 
 CONUS 12km
 **********
