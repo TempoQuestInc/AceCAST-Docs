@@ -211,6 +211,8 @@ AceCAST requires installation of the NVIDIA HPC SDK version 21.9. You can either
     export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/21.9/compilers/man
     export PATH=\$NVCOMPILERS/\$NVARCH/21.9/compilers/bin:\$PATH
     export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/compilers/lib:\$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/cuda/11.0/lib64:\$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/math_libs/11.0/lib64:\$LD_LIBRARY_PATH
 
     export PATH=\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/bin:\$PATH
     export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/lib:\$LD_LIBRARY_PATH
