@@ -186,6 +186,7 @@ version is at least 11.0 or higher in the *nvidia-smi* output. If this is not th
 the `CUDA Installation Guide`_ before moving on. Note that this step requires root access to 
 install.
 
+.. _nvhpc_install:
 
 Installing the NVIDIA HPC SDK
 =============================
@@ -196,30 +197,62 @@ AceCAST requires installation of the NVIDIA HPC SDK version 21.9. You can either
 
 **NVHPC v21.9 Quick Install:**
 
-.. code-block:: shell
-    
-    export NVHPC_INSTALL_DIR=$HOME/nvhpc     # feel free to change this path
-    export NVHPC_INSTALL_TYPE=single 
-    export NVHPC_SILENT=true 
-    wget https://developer.download.nvidia.com/hpc-sdk/21.9/nvhpc_2021_219_Linux_x86_64_cuda_multi.tar.gz
-    tar xpzf nvhpc_2021_219_Linux_x86_64_cuda_multi.tar.gz
-    nvhpc_2021_219_Linux_x86_64_cuda_multi/install
+.. tabs::
+
+    .. tab:: Quick Installation
+
+        .. code-block:: shell
+            
+            export NVHPC_INSTALL_DIR=$HOME/nvhpc     # feel free to change this path
+            export NVHPC_INSTALL_TYPE=single 
+            export NVHPC_SILENT=true 
+            wget https://developer.download.nvidia.com/hpc-sdk/21.9/nvhpc_2021_219_Linux_x86_64_cuda_multi.tar.gz
+            tar xpzf nvhpc_2021_219_Linux_x86_64_cuda_multi.tar.gz
+            nvhpc_2021_219_Linux_x86_64_cuda_multi/install
+                
+            echo '#!/bin/bash'"
+            export NVARCH=\`uname -s\`_\`uname -m\`
+            export NVCOMPILERS=$NVHPC_INSTALL_DIR
+            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/21.9/compilers/man
+            export PATH=\$NVCOMPILERS/\$NVARCH/21.9/compilers/bin:\$PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/compilers/lib:\$LD_LIBRARY_PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/cuda/11.0/lib64:\$LD_LIBRARY_PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/math_libs/11.0/lib64:\$LD_LIBRARY_PATH
+
+            export PATH=\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/bin:\$PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/lib:\$LD_LIBRARY_PATH
+            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/man
+            " > $NVHPC_INSTALL_DIR/acecast_env.sh
+
+        .. note::
+            This step can take a while depending on your internet speeds. The installation itself typically 
+            takes 10 minuts or so.
+
+    .. tab:: Updating Environment Script
         
-    echo '#!/bin/bash'"
-    export NVARCH=\`uname -s\`_\`uname -m\`
-    export NVCOMPILERS=$NVHPC_INSTALL_DIR
-    export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/21.9/compilers/man
-    export PATH=\$NVCOMPILERS/\$NVARCH/21.9/compilers/bin:\$PATH
-    export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/compilers/lib:\$LD_LIBRARY_PATH
+        .. note::
+            AceCAST v3.1.0 introduced changes that require updated paths in the environment. To ensure AceCAST
+            v3.1.0 and later link properly at runtime, users who set up the *acecast_env.sh* script prior to 
+            v3.1.0 with the Quick Installation commands should use this to update their acecast environment script.
 
-    export PATH=\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/bin:\$PATH
-    export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/lib:\$LD_LIBRARY_PATH
-    export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/man
-    " > $NVHPC_INSTALL_DIR/acecast_env.sh
+        .. code-block:: shell
+            
+            export NVHPC_INSTALL_DIR=$HOME/nvhpc     # make sure this is set to what it was when you ran the quick install
+                
+            echo '#!/bin/bash'"
+            export NVARCH=\`uname -s\`_\`uname -m\`
+            export NVCOMPILERS=$NVHPC_INSTALL_DIR
+            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/21.9/compilers/man
+            export PATH=\$NVCOMPILERS/\$NVARCH/21.9/compilers/bin:\$PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/compilers/lib:\$LD_LIBRARY_PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/cuda/11.0/lib64:\$LD_LIBRARY_PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/math_libs/11.0/lib64:\$LD_LIBRARY_PATH
 
-.. note::
-    This step can take a while depending on your internet speeds. The installation itself typically 
-    takes 10 minuts or so.
+            export PATH=\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/bin:\$PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/lib:\$LD_LIBRARY_PATH
+            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/man
+            " > $NVHPC_INSTALL_DIR/acecast_env.sh
+
 
 .. _environmentsetup:
 
