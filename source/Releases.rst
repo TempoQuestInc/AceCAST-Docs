@@ -39,6 +39,85 @@ subsection on this page.
 
 .. _latestlink:
 
+Version 3.1.0
+=============
+
+Skip to :ref:`v3_1_0_downloads_link`
+
+Release Notes
+-------------
+
+New in v3.1.0
+*************
+
+* Added support for the Purdue-Lin microphysics *mp_physics=2*. This is a sophisticated scheme that has ice, snow and graupel processes, suitable for real-data high-resolution simulations.
+* Added support for all AFWA diagnostics options. For more information on these options check out (http://www2.mmm.ucar.edu/wrf/users/docs/AFWA_Diagnostics_in_WRF.pdf).
+* Added support for spectral nudging *grid_fdda=2*. See `WRF user guide - Analysis Nudging Runs <https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.4/users_guide_chap5.html#gridnudge>`_ for more information.
+* Added support for isotropic diffusion *mix_isotropic=1*.
+* Added support for Morrison microphysics *mp_physics=10*. Double-moment ice, snow, rain and graupel for cloud-resolving simulations.
+* Added support for the wind turbine drag parameterization scheme *windfarm_opt=1*. It represents sub-grid effects of specified turbines on wind and TKE fields. For more information on using this option see `WRF README.windturbine <https://github.com/wrf-model/WRF/blob/master/doc/README.windturbine>`_.
+* Added support for restart runs *restart=T*.
+* Added support for Morrison double-moment microphysics with CESM aerosols *mp_physics = 40*.
+* Added support for the *insert_init_cloud = T* option, which turns on estimation of initial model clouds.
+* Added support for *ra_call_offset = -1* (calls radiation before output).
+* Added support for all user-specified values of the *blend_width* option. The *blend_width* option determines the number of grid points in the terrain blending zone from the coarse grid to the fine grid for nested domains.
+* Added support for all aerosol input options to RRTMG *aer_opt=1*, *aer_opt=2* and *aer_opt=3*.
+* AceCAST has been modified to enable use within the `UEMS forecasting framework <https://strc.comet.ucar.edu/software/uems/>`_. Please contact `support@tempoquest.com` for more information regarding using AceCAST in UEMS.
+* AceCAST executables now link to the NVIDIA HPC SDK and CUDA libraries dynamically. Users who have already installed the NVIDIA HPC SDK v21.9 for AceCAST may need to update their environment setup scripts accordingly to ensure the correct libraries are found at runtime (see :ref:`nvhpc_install`). 
+
+Improvements
+************
+
+* Using the runtime I/O field modifications with the *iofields_filename* option was incredibly slow when users had significant numbers of changes since the associated routines were called on every history interval unnecessarily. This is now done a single time at the start of the simulation removing nearly all overhead associated with this option.
+
+Known Issues
+------------
+
+Illegal address during kernel execution in RRTMG
+************************************************
+
+A number of users have reported an issue where AceCAST fails with the following message:
+
+.. code-block:: output
+
+    WRF TILE   1 IS      1 IE    500 JS      1 JE    500
+    WRF NUMBER OF TILES =   1
+    an illegal memory access was encountered in ../UWisc/RRTMG_LW/rrtmg_lwrad_cuda.cu at line 698
+
+We believe this may be a problem with the CUDA rutime/drivers and are investigating the issue. One 
+thing that may help users in the meantime is to use different values for the RRTMG tile size by 
+setting the *ACECAST_RRTMG_LW_NUM_TILES* environment variable and running again:
+
+.. code-block:: bash
+
+    # Example setting the number of tiles to 3
+    export ACECAST_RRTMG_LW_NUM_TILES=3
+    mpirun -n 4 ./gpu-launch.sh ./acecast.exe
+
+We suggest trying tile sizes of anything between 1 and 20. In some cases this doesn't fix the issue.
+
+MYNN PBL Sub-Options
+********************
+
+Both the *icloud_bl = 0* and *bl_mynn_cloudpdf = 0* options fail when using the MYNN PBL option 
+(*bl_pbl_physics = 5*). If these options are critical for your simulations please contact us at 
+support@tempoquest.com to ensure that we prioritize fixing this issue.
+
+
+.. _v3_1_0_downloads_link:
+
+Downloads
+---------
+ 
+* AceCAST version 3.1.0 for Linux x86-64: `AceCASTv3.1.0.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v3.1.0%2Blinux.x86_64.haswell.tar.gz>`_
+
+.. important::
+   Check out the :ref:`installationguide` for further installation instructions.
+
+.. tip::
+   If you would like to download the package from the command line you can use the `wget` or `curl`
+   commands with the download link url from above.
+
 Version 3.0.1
 =============
 
