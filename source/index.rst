@@ -83,6 +83,7 @@ Index
    :caption: Tools
 
    NmlSupportTbl.rst
+   NmlAdvisorApp.rst
    
 
 .. toctree::
