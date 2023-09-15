@@ -18,7 +18,7 @@ General
 
 #. Q: What kind of runtime improvements can I expect to see?
 
-   * A: This varies, please get in touch with :ref:`sales <supportlink>` for specific details.
+   * A: Typically we have seen cost savings of 2-3x cheaper and runtime savings averaging x10 faster than CPU-equivalent simulations, however the exact value varies, please get in touch with :ref:`sales <supportlink>` for further details.
 
 
 Runtime
@@ -40,6 +40,10 @@ Runtime
 
    * A: One reason could be, if you are using an older version of AceCAST you may see both a wrf.exe and an acecast.exe. Although both work, only acecast.exe is optimized for speed, wrf.exe was previously included only for user convenience.
 
+#. Q: What kind of input is needed to run AceCAST?
+
+   * A: AceCAST is WRF but on GPU's, so any `compatible input <https://forum.mmm.ucar.edu/threads/what-fields-are-mandatory-for-running-wrf.5381/>`_ to WRF should also work for AceCAST.
+
 Technical
 ---------
 
@@ -53,8 +57,23 @@ Technical
 
 #. Q: My license has expired what do I do?
 
-   * A: Send us an :ref:`email, we would be happy to renew it for you! <supportlink>`.
+   * A: Send us an :ref:`email, we would be happy to renew it for you! <supportlink>`
 
+#. Q: WRF has many "submodels" which one's are supported by AceCAST?
+
+   * A: Currently, TempoQuest only supports WRF-ARW, however we have plans to port WRF-DA and WRF-Chem to GPU's in the future. If you are interested in this please reach out to us and we can prioritize the porting.
+
+#. Q: What hardware do I need to run AceCAST?
+
+   * A: Since AceCAST is a GPU application, GPU's are needed. Theoretically any modern GPU would be compatible but we have found the best results and compatibility with "modern" HPC GPU's such as NVIDIA P100, V100, and A100 types.
+
+#. Q: Can I run AceCAST in the cloud?
+
+   * A: Yes! `See our WRFOnDemand page <https://wrfondemand.com/>`_ to get started
+
+#. Q: What namelist options are supported by AceCAST?
+
+   * A: WRF (AceCAST) has a large array of options many of which are only used by a small percentage of users, thus we only support the major/most commonly used options. See the :ref:`nmlsupporttbl` to get a sense of which one's those are. If there is an option you are looking for that we do not yet support, we can port it for you. 
 
 Other
 -----
@@ -62,9 +81,6 @@ Other
 
    * A: This varies but generally you can check out these links for WRF `namelist.wps <https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wps.html>`_
      and `namelist.input <https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wrf.html>`_ best practices.
-
-
-
 
 #. Q: Where can I learn more?
 
