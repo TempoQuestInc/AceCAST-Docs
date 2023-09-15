@@ -7,7 +7,7 @@
 Releases
 ########
 
-Latest Version: :ref:`latestlink`
+Jump to most recent AceCAST version: :ref:`latestlink`
 
 Release and Versioning Methodology
 ==================================
