@@ -28,6 +28,7 @@ author = 'Jan Ising'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx_rtd_theme',
     'sphinx_copybutton',
     # 'sphinx_code_tabs',
     'sphinx_tabs.tabs',
