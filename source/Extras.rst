@@ -15,3 +15,4 @@ Below is a list of short presentations created by TempoQuest for additional info
 * `About WRFOnDemand <_static/About_WRF_On_Demand.pdf>`_
 * `General <_static/AceCAST_Presentation.pdf>`_
 * `AceCAST at WRF/MPAS 2023 <_static/AceCAST-WRFMPAS2023.pdf>`_
+* `The Winds of Tomorrow - A Case Study <_static/AceCast_Validation.pdf>`_
