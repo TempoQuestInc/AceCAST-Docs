@@ -39,6 +39,58 @@ subsection on this page.
 
 .. _latestlink:
 
+Version 3.2.2
+=============
+
+Skip to :ref:`v3_2_2_downloads_link`
+
+Release Notes
+-------------
+
+New in v3.2.2
+*************
+
+* Added support for observational nudging (obs_nudge_opt = 1) and all associated sub-options. Observational nudging is a method of nudging the model where point near observations are nudged based on model error at the observation site. For more information on observational nudging check out https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.4/users_guide_chap5.html#obsnudge.
+* Added support for the *multi_bdy_files = T* option. This option can be used to run the preprocessing components (ungrib, metgrid, real) to generate the AceCAST boundary conditions asynchronously during the execution of the WRF/AceCAST simulation itself. For more information on its usage see `WRF Docs - Use of Multiple Lateral Condition Files <https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.4/users_guide_chap5.html#LBC>`_).
+* Added support for the widely used NoahMP land surface option *sf_surface_physics = 4*. This includes support for all of the NoahMP-related sub-options including all valid choices for *dveg*, *opt_crs*, *opt_btr*, *opt_run*, *opt_sfc*, *opt_frz*, *opt_inf*, *opt_rad*, *opt_alb*, *opt_snf*, *opt_tbot*, *opt_stc*, *opt_gla*, *opt_rsf*, *opt_soil*, *opt_pedo*, *opt_crop*, *opt_irr*, *opt_irrm*, *opt_infdv*, *opt_tdrn*, and *noahmp_output* in the *&noah_mp* namelist section. The exceptions to this are that *opt_crop = 2* and *opt_run = 5* are not supported. Note that we made some important improvements to NoahMP that are outlined in the Improvements and Bug Fixes section below.
+* Added support for the IEVA (Implicit Explicit Vertical Advection) option *zadvect_implicit = 1*. For grids with large aspect ratios (dx/dz >> 1) that permit explicit convection, the large time step is limited by the strongest updraft that occurs during integration. This results in time step often 20-30% smaller, or requires the use of w-filtering, such as latent-heat tendency limiting. Regions of large vertical velocities are also often very small relative to the domain. The IEVA scheme permits a larger time step by partitioning the vertical transport into an explicit piece, which uses the normal vertical schemes present in WRF, and a implicit piece which uses implicit transport (which is unconditionally stable). The combined scheme permits a larger time step than has been previously been used and reduced w-filtering. (Wicker and Skamarock, 2020, MWR)
+
+Improvements and Bug Fixes
+**************************
+
+* The NoahMP implementation in WRF v4.2.2 has significant bugs that needed to be addressed (see https://forum.mmm.ucar.edu/threads/strange-t2-bias-in-newer-wrf-versions.12259/). Due to this we have decided to implement the newest NoahMP version for the WRF code which will likely be included in WRF version 4.5.2 or later. This includes bug fixes and a number of significant improvements that are important for anyone using the NoahMP surface layer scheme in AceCAST (*sf_surface_physics* option 4).
+* Implemented a tiled version of the MYNN PBL schemes (both bl_pbl_physics = 5 and bl_pbl_physics = 6). The previous implementations had massive GPU memory requirements that were overly restrictive for users of these schemes. The new tiled implementation will dynamically determine tile sizes based on the available GPU memory at runtime.
+* Fixed issue in Revised MM5 surface layer scheme (sf_sfclay_physics = 1) where in certain conditions the model would hang due to an infinite loop.
+* Revised MM5 will now report an error and forcefully exit if it attempts to use an invalid index into a lookup table during the surface layer calculation. This occurs when the model is becoming unstable and unrealistic values are being passed through the model. Previously, in both WRF and AceCAST, this situation would have caused an obscure seg-fault with no explanation. We thought it would be helpful instead to report when this issue occurs and stop the simulation afterwards.
+* AceCAST now reports where significant CFL violations occur, which can be very useful when users encounter issues with numerical instabilities in their simulations.
+* Fixed a bug that was introduced in WRF v4.4.2 in the AFWA diagnostics that caused all of the CAPE-related fields to be zero. These fields are now calculated correctly.
+* In version 3.0 we introduced optimizations that improved RRTMG performance. Due to a CUDA compiler bug this ended up causing the model to crash in many cases when running on GPUs with compute capabilities older than 8.0. These performance optimizations have been reverted in this version to ensure portability of the code on older GPUs and will be reintroduced in a future version of AceCAST when the CUDA compiler issues are resolved by NVIDIA.
+
+
+Known Issues
+------------
+
+MYNN PBL Sub-Options
+********************
+
+Both the *icloud_bl = 0* and *bl_mynn_cloudpdf = 0* options fail when using the MYNN PBL option 
+(*bl_pbl_physics = 5*). If these options are critical for your simulations please contact us at 
+support@tempoquest.com to ensure that we prioritize fixing this issue.
+
+.. _v3_2_2_downloads_link:
+
+Downloads
+---------
+ 
+* AceCAST version 3.2.2 for Linux x86-64: `AceCASTv3.2.2.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v3.2.2%2Blinux.x86_64.haswell.tar.gz>`_
+
+.. important::
+   Check out the :ref:`installationguide` for further installation instructions.
+
+.. tip::
+   If you would like to download the package from the command line you can use the `wget` or `curl`
+   commands with the download link url from above.
+
 Version 3.1.0
 =============
 
