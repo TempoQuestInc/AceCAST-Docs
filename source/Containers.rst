@@ -33,14 +33,14 @@ as the necessary nvidia drivers for your system.
 Getting the AceCAST Docker Image
 ***********************************
 
-Our Docker-based AceCAST container images can be found on the `AceCAST DockerHub repository <https://hub.docker.com/repository/docker/tempoquestinc/acecast:3.0.1>`_. 
+Our Docker-based AceCAST container images can be found on the `AceCAST DockerHub repository <https://hub.docker.com/repository/docker/tempoquestinc/acecast:3.2.2>`_. 
 Once you have chosen the specific image you would like to use you can obtain the image with the 
 `docker pull <https://docs.docker.com/engine/reference/commandline/pull/>`_ command:
 
 ::
 
-    [acecast-user@gpu-node]$ docker pull tempoquestinc/acecast:3.0.1
-    3.0.1: Pulling from tempoquestinc/acecast:3.0.1
+    [acecast-user@gpu-node]$ docker pull tempoquestinc/acecast:3.2.2
+    3.2.2: Pulling from tempoquestinc/acecast:3.2.2
     f70d60810c69: Already exists 
     545277d80005: Already exists 
     1e7f98e28850: Already exists 
@@ -54,8 +54,8 @@ Once you have chosen the specific image you would like to use you can obtain the
     619ac9d050cc: Pull complete 
     13f006ddd7e1: Pull complete 
     Digest: sha256:a6b5311c66200fe0b8c3f1b11d8856847f144565c9d0666b366f11ae8c733722
-    Status: Downloaded newer image for tempoquestinc/acecast:3.0.1
-    docker.io/tempoquestinc/acecast:3.0.1
+    Status: Downloaded newer image for tempoquestinc/acecast:3.2.2
+    docker.io/tempoquestinc/acecast:3.2.2
 
 Check that the image exists with the `docker images <https://docs.docker.com/engine/reference/commandline/images/>`_ 
 command, which lists some basic information about your local images:
@@ -64,7 +64,7 @@ command, which lists some basic information about your local images:
 
     [acecast-user@gpu-node]$ docker images
     REPOSITORY                 TAG              IMAGE ID       CREATED        SIZE
-    tempoquestinc/acecast:3.0.1      3.0.1        6d6882fef187       5 hours ago    17.6GB
+    tempoquestinc/acecast:3.2.2      3.2.2        6d6882fef187       5 hours ago    17.6GB
 
 The AceCAST image contains all of the software necessary for running AceCAST inside the container including the 
 *NVIDIA HPC SDK* and *AceCAST* itself. The AceCAST executables, static runtime data files, scripts, etc. are 
@@ -72,7 +72,7 @@ installed in the */opt/acecast/run/* directory inside the container.
 
 ::
 
-    [acecast-user@gpu-node]$ docker run --rm tempoquestinc/acecast:3.0.1 ls /opt/acecast/run
+    [acecast-user@gpu-node]$ docker run --rm tempoquestinc/acecast:3.2.2 ls /opt/acecast/run
     acecast.exe
     aerosol.formatted
     aerosol_lat.formatted
@@ -90,7 +90,7 @@ General docker run command usage for AceCAST:
 
 ::
 
-    docker run [OPTIONS] tempoquestinc/acecast:3.0.1 COMMAND
+    docker run [OPTIONS] tempoquestinc/acecast:3.2.2 COMMAND
 
 .. list-table:: Common Docker Run Command Options
    :widths: 25 100
@@ -156,7 +156,7 @@ To run this script inside the container we use the *docker run* command:
 
 ::
 
-    [acecast-user@gpu-node]$ docker run --gpus all -v `pwd`:`pwd` -w `pwd` --rm tempoquestinc/acecast:3.0.1 ./run.sh 
+    [acecast-user@gpu-node]$ docker run --gpus all -v `pwd`:`pwd` -w `pwd` --rm tempoquestinc/acecast:3.2.2 ./run.sh 
      starting wrf task             1  of             4
      starting wrf task             2  of             4
      starting wrf task             3  of             4
@@ -185,7 +185,7 @@ Running the AceCAST advisor script:
 
     [acecast-user@gpu-node]$ ls
     namelist.input
-    [acecast-user@gpu-node]$ docker run -v `pwd`:`pwd` -w `pwd` --rm tempoquestinc/acecast:3.0.1 /opt/acecast/run/acecast-advisor.sh --tool support-check
+    [acecast-user@gpu-node]$ docker run -v `pwd`:`pwd` -w `pwd` --rm tempoquestinc/acecast:3.2.2 /opt/acecast/run/acecast-advisor.sh --tool support-check
 
     ***********************************************************************************
     *      ___           _____           _      ___      _       _                    *
@@ -202,7 +202,7 @@ Running the AceCAST advisor script:
 
     Support Check Configuration:
         Namelist                    : /home/samm/test_acecast/namelist.input
-        AceCAST Version             : 3.0.1 (build: linux.x86_64.haswell)
+        AceCAST Version             : 3.2.2 (build: linux.x86_64.haswell)
         WRF Compatibility Version   : 4.4.2
 
 
@@ -223,7 +223,7 @@ Verify that GPUs are available on the container:
 
 ::
 
-    [acecast-user@gpu-node]$ docker run --gpus all --rm tempoquestinc/acecast:3.0.1 nvidia-smi
+    [acecast-user@gpu-node]$ docker run --gpus all --rm tempoquestinc/acecast:3.2.2 nvidia-smi
     Wed Mar 15 18:14:34 2023       
     +-----------------------------------------------------------------------------+
     | NVIDIA-SMI 470.161.03   Driver Version: 470.161.03   CUDA Version: 11.4     |

@@ -231,9 +231,9 @@ AceCAST requires installation of the NVIDIA HPC SDK version 21.9. You can either
     .. tab:: Updating Environment Script
         
         .. note::
-            AceCAST v3.1.0 introduced changes that require updated paths in the environment. To ensure AceCAST
-            v3.1.0 and later link properly at runtime, users who set up the *acecast_env.sh* script prior to 
-            v3.1.0 with the Quick Installation commands should use this to update their acecast environment script.
+            AceCAST v3.2.2 introduced changes that require updated paths in the environment. To ensure AceCAST
+            v3.2.2 and later link properly at runtime, users who set up the *acecast_env.sh* script prior to 
+            v3.2.2 with the Quick Installation commands should use this to update their acecast environment script.
 
         .. code-block:: shell
             
@@ -279,15 +279,15 @@ follows:
 
 .. code-block:: shell
 
-    wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v3.1.0%2Blinux.x86_64.haswell.tar.gz
-    tar -xf acecast-v3.1.0+linux.x86_64.haswell.tar.gz
+    wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v3.2.2%2Blinux.x86_64.haswell.tar.gz
+    tar -xf acecast-v3.2.2+linux.x86_64.haswell.tar.gz
 
-If successful you should see a new directory *acecast-v3.1.0*. The directory structure should look 
+If successful you should see a new directory *acecast-v3.2.2*. The directory structure should look 
 like the following:
 
 .. code-block:: output
 
-    acecast-v3.1.0
+    acecast-v3.2.2
     ├── acecast
     │   └── run
     │       ├── acecast.exe
@@ -323,7 +323,7 @@ previous steps is to print the shared libraries used by the *acecast.exe* execut
 
         .. code-block:: shell
             
-            ldd acecast-v3.1.0/acecast/run/acecast.exe
+            ldd acecast-v3.2.2/acecast/run/acecast.exe
 
     .. tab:: successful output example
         
@@ -402,7 +402,7 @@ Acquire A License
 AceCAST is a licensed software package and as such requires a valid license to run. A 30-day trial 
 license can be acquired by registering at the `AceCAST Registration Page`_. After registering 
 you should recieve an email containing your trial license (*acecast-trial.lic*). We suggest placing 
-this file in the *acecast-v3.1.0/acecast/run* directory. If your 30-day trial has ended please 
+this file in the *acecast-v3.2.2/acecast/run* directory. If your 30-day trial has ended please 
 contact support@tempoquest.com to request an extension and/or a quote.
 
 
