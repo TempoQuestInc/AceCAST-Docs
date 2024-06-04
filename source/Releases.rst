@@ -26,12 +26,38 @@ will have a version number `MAJOR.MINOR.PATCH`, which can be understood as follo
 * **PATCH**: Changes in the **PATCH** version indicate a bug fix related to a supported 
   namelist option or feature.
 
+.. list-table:: AceCAST GPU WRF vs NCAR CPU WRF Version Equivalency
+   :widths: 40 40
+   :header-rows: 1
+
+   * - AceCAST Version
+     - Corresponding WRF Version
+   * - 1.0
+     - 3.8.1
+   * - 1.1
+     - 3.8.1
+   * - 1.2
+     - 3.8.1
+   * - 1.3
+     - 3.8.1
+   * - 2.0
+     - 4.2.2
+   * - 2.1
+     - 4.2.2
+   * - 3.0
+     - 4.4.2
+   * - 3.1
+     - 4.4.2
+   * - 3.2
+     - 4.4.2
+
 For any given version we will provide release notes and download information within its own 
 subsection on this page. 
 
 .. tip::
    Not sure what we mean by **supported namelist options**? Check out the 
    :ref:`namelistconfiguration` section.
+
 
 .. .. note::
 ..    We conceptualized this versioning scheme only after realizing it was necessary to do so while
