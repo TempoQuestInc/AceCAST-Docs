@@ -6,16 +6,16 @@
    https://developer.nvidia.com/hpc-sdk
 
 .. _NVHPC Installation Guide: 
-   https://docs.nvidia.com/hpc-sdk/archive/21.9/hpc-sdk-install-guide/index.html
+   https://docs.nvidia.com/hpc-sdk/archive/24.3/hpc-sdk-install-guide/index.html
 
-.. _NVHPC 21.9 Downloads: 
-   https://developer.nvidia.com/nvidia-hpc-sdk-219-downloads
+.. _NVHPC 24.3 Downloads: 
+   https://developer.nvidia.com/nvidia-hpc-sdk-243-downloads
 
 .. _NVHPC platform requirements: 
-   https://docs.nvidia.com/hpc-sdk/archive/21.9/hpc-sdk-release-notes/index.html#platform-requirements
+   https://docs.nvidia.com/hpc-sdk/archive/24.3/hpc-sdk-release-notes/index.html#platform-requirements
 
 .. _CUDA Installation Guide: 
-   https://docs.nvidia.com/cuda/archive/11.4.1/cuda-installation-guide-linux/index.html
+   https://docs.nvidia.com/cuda/archive/12.3.0/cuda-installation-guide-linux/index.html
 
 .. _AceCAST Registration Page:
     https://tempoquest.com/acecast-registration
@@ -103,7 +103,7 @@ Make sure your OS/CPU architecture combination is supported by the `NVIDIA HPC S
 Check for CUDA-capable GPUS
 ---------------------------
 
-AceCAST can only be run on CUDA-capable GPUs with a compute capability of 3.5 or above. To check 
+AceCAST can only be run on CUDA-capable GPUs with a compute capability of 5.0 or above. To check 
 for CUDA-capable GPUs run the following:
 
 **Checking for GPUs:**
@@ -131,8 +131,8 @@ capability `here <https://developer.nvidia.com/cuda-gpus>`_.
 Installing the NVIDIA CUDA Driver
 =================================
 
-Prior to istalling the `NVIDIA HPC SDK`_ you will need to make sure the proper CUDA driver (version 
-11.0 or higher) is installed. To check if the CUDA driver is already installed on your system you 
+Prior to installing the `NVIDIA HPC SDK`_ you will need to make sure the proper CUDA driver (version 
+12.0 or higher) is installed. To check if the CUDA driver is already installed on your system you 
 can try running the following:
 
 **NVIDIA SMI Command:**
@@ -149,40 +149,28 @@ can try running the following:
         
         .. code-block:: output
 
-            +-----------------------------------------------------------------------------+
-            | NVIDIA-SMI 470.57.02    Driver Version: 470.57.02    CUDA Version: 11.4     |
-            |-------------------------------+----------------------+----------------------+
-            | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-            | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-            |                               |                      |               MIG M. |
-            |===============================+======================+======================|
-            |   0  NVIDIA A100-SXM...  On   | 00000000:01:00.0 Off |                    0 |
-            | N/A   28C    P0    50W / 400W |      0MiB / 40536MiB |      0%      Default |
-            |                               |                      |             Disabled |
-            +-------------------------------+----------------------+----------------------+
-            |   1  NVIDIA A100-SXM...  On   | 00000000:41:00.0 Off |                    0 |
-            | N/A   26C    P0    48W / 400W |      0MiB / 40536MiB |      0%      Default |
-            |                               |                      |             Disabled |
-            +-------------------------------+----------------------+----------------------+
-            |   2  NVIDIA A100-SXM...  On   | 00000000:81:00.0 Off |                    0 |
-            | N/A   28C    P0    50W / 400W |      0MiB / 40536MiB |      0%      Default |
-            |                               |                      |             Disabled |
-            +-------------------------------+----------------------+----------------------+
-            |   3  NVIDIA A100-SXM...  On   | 00000000:C1:00.0 Off |                    0 |
-            | N/A   26C    P0    48W / 400W |      0MiB / 40536MiB |      0%      Default |
-            |                               |                      |             Disabled |
-            +-------------------------------+----------------------+----------------------+
-                                                                                           
-            +-----------------------------------------------------------------------------+
-            | Processes:                                                                  |
-            |  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
-            |        ID   ID                                                   Usage      |
-            |=============================================================================|
-            |  No running processes found                                                 |
-            +-----------------------------------------------------------------------------+
+            +---------------------------------------------------------------------------------------+
+            | NVIDIA-SMI 535.183.01             Driver Version: 535.183.01   CUDA Version: 12.2     |
+            |-----------------------------------------+----------------------+----------------------+
+            | GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+            | Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+            |                                         |                      |               MIG M. |
+            |=========================================+======================+======================|
+            |   0  NVIDIA A10G                    On  | 00000000:00:1E.0 Off |                    0 |
+            |  0%   31C    P8              23W / 300W |      0MiB / 23028MiB |      0%      Default |
+            |                                         |                      |                  N/A |
+            +-----------------------------------------+----------------------+----------------------+
+                                                                                                     
+            +---------------------------------------------------------------------------------------+
+            | Processes:                                                                            |
+            |  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+            |        ID   ID                                                             Usage      |
+            |=======================================================================================|
+            |  No running processes found                                                           |
+            +---------------------------------------------------------------------------------------+
 
 If the command runs without any issues the CUDA drivers are already installed. Make sure the cuda 
-version is at least 11.0 or higher in the *nvidia-smi* output. If this is not the case then follow
+version is at least 12.0 or higher in the *nvidia-smi* output. If this is not the case then follow
 the `CUDA Installation Guide`_ before moving on. Note that this step requires root access to 
 install.
 
@@ -191,11 +179,14 @@ install.
 Installing the NVIDIA HPC SDK
 =============================
 
-AceCAST requires installation of the NVIDIA HPC SDK version 21.9. You can either follow the 
+AceCAST requires installation of the NVIDIA HPC SDK version 24.3. You can either follow the 
 `NVHPC Installation Guide`_ (make sure to use the archived downloads page at 
-`NVHPC 21.9 Downloads`_) or you can try our quick method below:
+`NVHPC 24.3 Downloads`_) or you can try our quick method below:
 
-**NVHPC v21.9 Quick Install:**
+.. important::
+   AceCAST v4.0.1 uses the NVHPC SDK version 24.3. Previous versions of AceCAST required the NVHPC SDK version 21.9. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST.
+
+**NVHPC v24.3 Quick Install:**
 
 .. tabs::
 
@@ -204,55 +195,29 @@ AceCAST requires installation of the NVIDIA HPC SDK version 21.9. You can either
         .. code-block:: shell
             
             export NVHPC_INSTALL_DIR=$HOME/nvhpc     # feel free to change this path
-            export NVHPC_INSTALL_TYPE=single 
-            export NVHPC_SILENT=true 
-            wget https://developer.download.nvidia.com/hpc-sdk/21.9/nvhpc_2021_219_Linux_x86_64_cuda_multi.tar.gz
-            tar xpzf nvhpc_2021_219_Linux_x86_64_cuda_multi.tar.gz
-            nvhpc_2021_219_Linux_x86_64_cuda_multi/install
-                
+            export NVHPC_INSTALL_TYPE=single
+            export NVHPC_SILENT=true
+            wget https://developer.download.nvidia.com/hpc-sdk/24.3/nvhpc_2024_243_Linux_x86_64_cuda_multi.tar.gz
+            tar xpzf nvhpc_2024_243_Linux_x86_64_cuda_multi.tar.gz
+            nvhpc_2024_243_Linux_x86_64_cuda_multi/install
+
             echo '#!/bin/bash'"
             export NVARCH=\`uname -s\`_\`uname -m\`
             export NVCOMPILERS=$NVHPC_INSTALL_DIR
-            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/21.9/compilers/man
-            export PATH=\$NVCOMPILERS/\$NVARCH/21.9/compilers/bin:\$PATH
-            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/compilers/lib:\$LD_LIBRARY_PATH
-            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/cuda/11.0/lib64:\$LD_LIBRARY_PATH
-            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/math_libs/11.0/lib64:\$LD_LIBRARY_PATH
+            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/24.3/compilers/man
+            export PATH=\$NVCOMPILERS/\$NVARCH/24.3/compilers/bin:\$PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/24.3/compilers/lib:\$LD_LIBRARY_PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/24.3/cuda/12.3/lib64:\$LD_LIBRARY_PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/24.3/math_libs/12.3/lib64:\$LD_LIBRARY_PATH
 
-            export PATH=\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/bin:\$PATH
-            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/lib:\$LD_LIBRARY_PATH
-            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/man
+            export PATH=\$NVCOMPILERS/\$NVARCH/24.3/comm_libs/openmpi/openmpi-3.1.5/bin:\$PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/24.3/comm_libs/openmpi/openmpi-3.1.5/lib:\$LD_LIBRARY_PATH
+            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/24.3/comm_libs/openmpi/openmpi-3.1.5/man
             " > $NVHPC_INSTALL_DIR/acecast_env.sh
 
         .. note::
             This step can take a while depending on your internet speeds. The installation itself typically 
-            takes 10 minuts or so.
-
-    .. tab:: Updating Environment Script
-        
-        .. note::
-            AceCAST v3.2.2 introduced changes that require updated paths in the environment. To ensure AceCAST
-            v3.2.2 and later link properly at runtime, users who set up the *acecast_env.sh* script prior to 
-            v3.2.2 with the Quick Installation commands should use this to update their acecast environment script.
-
-        .. code-block:: shell
-            
-            export NVHPC_INSTALL_DIR=$HOME/nvhpc     # make sure this is set to what it was when you ran the quick install
-                
-            echo '#!/bin/bash'"
-            export NVARCH=\`uname -s\`_\`uname -m\`
-            export NVCOMPILERS=$NVHPC_INSTALL_DIR
-            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/21.9/compilers/man
-            export PATH=\$NVCOMPILERS/\$NVARCH/21.9/compilers/bin:\$PATH
-            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/compilers/lib:\$LD_LIBRARY_PATH
-            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/cuda/11.0/lib64:\$LD_LIBRARY_PATH
-            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/math_libs/11.0/lib64:\$LD_LIBRARY_PATH
-
-            export PATH=\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/bin:\$PATH
-            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/lib:\$LD_LIBRARY_PATH
-            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/21.9/comm_libs/mpi/man
-            " > $NVHPC_INSTALL_DIR/acecast_env.sh
-
+            takes 10 minutes.
 
 .. _environmentsetup:
 
@@ -279,15 +244,15 @@ follows:
 
 .. code-block:: shell
 
-    wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v3.2.2%2Blinux.x86_64.haswell.tar.gz
-    tar -xf acecast-v3.2.2+linux.x86_64.haswell.tar.gz
+    wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.0.1%2Blinux.x86_64.haswell.nvhpc24.3.tar.gz
+    tar -xf acecast-v4.0.1+linux.x86_64.haswell.nvhpc24.3.tar.gz
 
-If successful you should see a new directory *acecast-v3.2.2*. The directory structure should look 
+If successful you should see a new directory *acecast-v4.0.1*. The directory structure should look 
 like the following:
 
 .. code-block:: output
 
-    acecast-v3.2.2
+    acecast-v4.0.1
     ├── acecast
     │   └── run
     │       ├── acecast.exe
@@ -323,40 +288,45 @@ previous steps is to print the shared libraries used by the *acecast.exe* execut
 
         .. code-block:: shell
             
-            ldd acecast-v3.2.2/acecast/run/acecast.exe
+            ldd acecast-v4.0.1/acecast/run/acecast.exe
 
     .. tab:: successful output example
         
         .. code-block:: output
             :emphasize-lines: 9
 
-            linux-vdso.so.1 (0x0000155555551000)
-            libstdc++.so.6 => /lib64/libstdc++.so.6 (0x0000155554f96000)
-            libutil.so.1 => /lib64/libutil.so.1 (0x0000155554d92000)
-            libz.so.1 => /lib64/libz.so.1 (0x0000155554b7b000)
-            libm.so.6 => /lib64/libm.so.6 (0x00001555547f9000)
-            libmpi_usempif08.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/libmpi_usempif08.so.40 (0x00001555545d0000)
-            libmpi_usempi_ignore_tkr.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/libmpi_usempi_ignore_tkr.so.40 (0x00001555543cb000)
-            libmpi_mpifh.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/libmpi_mpifh.so.40 (0x000015555417e000)
-            libmpi.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/libmpi.so.40 (0x0000155553d3f000)
-            libdl.so.2 => /lib64/libdl.so.2 (0x0000155553b3b000)
-            libpthread.so.0 => /lib64/libpthread.so.0 (0x000015555391b000)
-            librt.so.1 => /lib64/librt.so.1 (0x0000155553713000)
-            libc.so.6 => /lib64/libc.so.6 (0x0000155553350000)
-            /lib64/ld-linux-x86-64.so.2 (0x000015555532b000)
-            libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x0000155553138000)
-            libopen-rte.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/libopen-rte.so.40 (0x0000155552df4000)
-            libopen-pal.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/libopen-pal.so.40 (0x000015555292b000)
-            librdmacm.so.1 => /usr/lib64/librdmacm.so.1 (0x0000155552710000)
-            libibverbs.so.1 => /usr/lib64/libibverbs.so.1 (0x00001555524f1000)
-            libnuma.so.1 => /usr/lib64/libnuma.so.1 (0x00001555522e5000)
-            libnvf.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/../../../../compilers/lib/libnvf.so (0x0000155551cb0000)
-            libnvhpcatm.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/../../../../compilers/lib/libnvhpcatm.so (0x0000155551aa5000)
-            libatomic.so.1 => /usr/lib64/libatomic.so.1 (0x000015555189d000)
-            libnvcpumath.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/../../../../compilers/lib/libnvcpumath.so (0x0000155551468000)
-            libnvc.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/21.9/comm_libs/mpi/lib/../../../../compilers/lib/libnvc.so (0x0000155551210000)
-            libnl-3.so.200 => /usr/lib64/libnl-3.so.200 (0x0000155550fed000)
-            libnl-route-3.so.200 => /usr/lib64/libnl-route-3.so.200 (0x0000155550d67000)
+            linux-vdso.so.1 (0x00007ffe0a7fa000)
+            libstdc++.so.6 => /lib64/libstdc++.so.6 (0x00007f049c9d0000)
+            libutil.so.1 => /lib64/libutil.so.1 (0x00007f049c7cd000)
+            libz.so.1 => /lib64/libz.so.1 (0x00007f049c5b8000)
+            libatomic.so.1 => /lib64/libatomic.so.1 (0x00007f049c3b0000)
+            libm.so.6 => /lib64/libm.so.6 (0x00007f049c070000)
+            libmpi_usempif08.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/comm_libs/mpi/lib/libmpi_usempif08.so.40 (0x00001555545d0000)
+            libmpi_usempi_ignore_tkr.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/comm_libs/mpi/lib/libmpi_usempi_ignore_tkr.so.40 (0x00001555543cb000)
+            libmpi_mpifh.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/comm_libs/mpi/lib/libmpi_mpifh.so.40 (0x000015555417e000)
+            libmpi.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/comm_libs/mpi/lib/libmpi.so.40 (0x0000155553d3f000)
+            libnvhpcwrapcufft.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libnvhpcwrapcufft.so (0x00007f049be6e000)
+            libcufft.so.11 => /usr/local/cuda-12.2/targets/x86_64-linux/lib/libcufft.so.11 (0x00007f049113e000)
+            libcudart.so.12 => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/cuda/12.3/lib64/libcudart.so.12 (0x00007f0490e90000)
+            libcudafor_120.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libcudafor_120.so (0x00007f048af67000)
+            libcudafor.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libcudafor.so (0x00007f048ad52000)
+            libacchost.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libacchost.so (0x00007f048aaed000)
+            libaccdevaux.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libaccdevaux.so (0x00007f048a8d1000)
+            libacccuda.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libacccuda.so (0x00007f048a5a0000)
+            libdl.so.2 => /lib64/libdl.so.2 (0x00007f048a39c000)
+            libcudadevice.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libcudadevice.so (0x00007f048a185000)
+            libcudafor2.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libcudafor2.so (0x00007f0489f82000)
+            libnvf.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libnvf.so (0x00007f048985f000)
+            libnvomp.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libnvomp.so (0x00007f048885e000)
+            libnvhpcatm.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libnvhpcatm.so (0x00007f0488653000)
+            libpthread.so.0 => /lib64/libpthread.so.0 (0x00007f0488435000)
+            libnvcpumath-avx2.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libnvcpumath-avx2.so (0x00007f0487ff1000)
+            libnvc.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libnvc.so (0x00007f0487d8d000)
+            librt.so.1 => /lib64/librt.so.1 (0x00007f0487b85000)
+            libc.so.6 => /lib64/libc.so.6 (0x00007f04877d8000)
+            libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x00007f04875c2000)
+            /lib64/ld-linux-x86-64.so.2 (0x00007f049cd52000)
+            libnvcpumath.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libnvcpumath.so (0x00007f048717e000)
 
 
         As you can see above all of the required libraries were found and are in the expected 
@@ -402,7 +372,7 @@ Acquire A License
 AceCAST is a licensed software package and as such requires a valid license to run. A 30-day trial 
 license can be acquired by registering at the `AceCAST Registration Page`_. After registering 
 you should recieve an email containing your trial license (*acecast-trial.lic*). We suggest placing 
-this file in the *acecast-v3.2.2/acecast/run* directory. If your 30-day trial has ended please 
+this file in the *acecast-v4.0.1/acecast/run* directory. If your 30-day trial has ended please 
 contact support@tempoquest.com to request an extension and/or a quote.
 
 

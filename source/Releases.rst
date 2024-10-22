@@ -50,6 +50,8 @@ will have a version number `MAJOR.MINOR.PATCH`, which can be understood as follo
      - 4.4.2
    * - 3.2
      - 4.4.2
+   * - 4.0
+     - 4.6.0
 
 For any given version we will provide release notes and download information within its own 
 subsection on this page. 
@@ -59,11 +61,50 @@ subsection on this page.
    :ref:`namelistconfiguration` section.
 
 
-.. .. note::
-..    We conceptualized this versioning scheme only after realizing it was necessary to do so while
-..    working on AceCAST version **2.0.0**. You may notice some inconsistencies prior to this version.
-
 .. _latestlink:
+
+Version 4.0.1
+=============
+
+Skip to :ref:`v4_0_1_downloads_link`
+
+Release Notes
+-------------
+
+.. important::
+   AceCAST v4.0.1 uses the NVHPC SDK version 24.3. Previous versions of AceCAST required the NVHPC SDK version 21.9. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST. To do this please follow the instructions in the :ref:`installationguide`.
+
+New in v4.0.1
+*************
+
+* Added support for Digital Filter Initialization (DFI). Digital filter initialization is a method to remove initial model imbalance as, for example, measured by the surface pressure tendency. This may be important when one is interested in the 0 – 6 hour simulation/forecast. It runs a digital filter during a short model integration, backward and forward, and then starts the forecast (WRF Users Guide).
+* Added support for *mp_physics = 38* (Thompson Hail/Graupel/Aerosol Microphysics). Similar to option 28, but computes two-moment prognostics for graupel and hail and includes a predicted density graupel category.
+* Added support for *use_aero_icbc. = .true.*.
+
+Improvements and Bug Fixes
+**************************
+
+* Fixed an issue where the *output_ready_flag=1* option wasn't writing the wrfoutReady* files when using the parallel netcdf option (*io_form_history = 11*).
+* Added a tiled implementation of all Thompson microphysics options ( *mp_physics = 8, 28, 38*) that will reduce the memory overheads of using these options.
+* Reimplemented the gravity wave drag option (*gwd_opt =1*) to be consistent with the CPU WRF Common Community Physics Package (CCPP) implementation of the option.
+* Reimplemented the MYNN PBL option (*bl_pbl_physics = 5*) to be consistent with the CPU WRF Common Community Physics Package (CCPP) implementation of the option. For more information regarding the major changes to MYNN please refer to https://github.com/wrf-model/WRF/pull/1788.
+* Reimplemented the YSU PBL option (*bl_pbl_physics = 1*) to be consistent with the CPU WRF Common Community Physics Package (CCPP) implementation of the option.
+* Reimplemented the revised MM5 surface layer option (*sf_sfclay_physics =1*) to be consistent with the CPU WRF Common Community Physics Package (CCPP) implementation of the option.
+
+
+.. _v4_0_1_downloads_link:
+
+Downloads
+---------
+ 
+* AceCAST version 4.0.1 for Linux x86-64: `AceCASTv4.0.1.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.0.1%2Blinux.x86_64.haswell.nvhpc24.3.tar.gz>`_
+
+.. important::
+   Check out the :ref:`installationguide` for further installation instructions.
+
+.. tip::
+   If you would like to download the package from the command line you can use the `wget` or `curl`
+   commands with the download link url from above.
 
 Version 3.2.2
 =============
