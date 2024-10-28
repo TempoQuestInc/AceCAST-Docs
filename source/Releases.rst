@@ -74,6 +74,13 @@ Release Notes
 .. important::
    AceCAST v4.0.1 uses the NVHPC SDK version 24.3. Previous versions of AceCAST required the NVHPC SDK version 21.9. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST. To do this please follow the instructions in the :ref:`installationguide`.
 
+The AceCAST version 4.0.1 release includes major updates to implement the equivalent 
+`CPU-WRF version 4.6.0 release <https://github.com/wrf-model/WRF/releases/tag/v4.6.0>`_. For reference, the previous version of AceCAST (version 3.2) implemented the 
+`CPU-WRF version 4.4.2 release <https://github.com/wrf-model/WRF/releases/tag/v4.4.2>`_. If you 
+would like more information regarding the WRF updates that were implemented in this new version of 
+AceCAST, check out the 
+`release notes for WRF versions 4.4.2 through 4.6.0 <https://github.com/wrf-model/WRF/releases>`_.
+
 New in v4.0.1
 *************
 
