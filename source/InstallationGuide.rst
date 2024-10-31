@@ -184,7 +184,7 @@ AceCAST requires installation of the NVIDIA HPC SDK version 24.3. You can either
 `NVHPC 24.3 Downloads`_) or you can try our quick method below:
 
 .. important::
-   AceCAST v4.0.1 uses the NVHPC SDK version 24.3. Previous versions of AceCAST required the NVHPC SDK version 21.9. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST.
+   AceCAST v4.0.2 uses the NVHPC SDK version 24.3. Previous versions of AceCAST required the NVHPC SDK version 21.9. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST.
 
 **NVHPC v24.3 Quick Install:**
 
@@ -244,15 +244,15 @@ follows:
 
 .. code-block:: shell
 
-    wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.0.1%2Blinux.x86_64.haswell.nvhpc24.3.tar.gz
-    tar -xf acecast-v4.0.1+linux.x86_64.haswell.nvhpc24.3.tar.gz
+    wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.0.2%2Blinux.x86_64.haswell.nvhpc24.3.tar.gz
+    tar -xf acecast-v4.0.2+linux.x86_64.haswell.nvhpc24.3.tar.gz
 
-If successful you should see a new directory *acecast-v4.0.1*. The directory structure should look 
+If successful you should see a new directory *acecast-v4.0.2*. The directory structure should look 
 like the following:
 
 .. code-block:: output
 
-    acecast-v4.0.1
+    acecast-v4.0.2
     ├── acecast
     │   └── run
     │       ├── acecast.exe
@@ -288,7 +288,7 @@ previous steps is to print the shared libraries used by the *acecast.exe* execut
 
         .. code-block:: shell
             
-            ldd acecast-v4.0.1/acecast/run/acecast.exe
+            ldd acecast-v4.0.2/acecast/run/acecast.exe
 
     .. tab:: successful output example
         
@@ -372,7 +372,7 @@ Acquire A License
 AceCAST is a licensed software package and as such requires a valid license to run. A 30-day trial 
 license can be acquired by registering at the `AceCAST Registration Page`_. After registering 
 you should recieve an email containing your trial license (*acecast-trial.lic*). We suggest placing 
-this file in the *acecast-v4.0.1/acecast/run* directory. If your 30-day trial has ended please 
+this file in the *acecast-v4.0.2/acecast/run* directory. If your 30-day trial has ended please 
 contact support@tempoquest.com to request an extension and/or a quote.
 
 

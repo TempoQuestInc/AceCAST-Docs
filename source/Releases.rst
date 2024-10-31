@@ -63,25 +63,25 @@ subsection on this page.
 
 .. _latestlink:
 
-Version 4.0.1
+Version 4.0.2
 =============
 
-Skip to :ref:`v4_0_1_downloads_link`
+Skip to :ref:`v4_0_2_downloads_link`
 
 Release Notes
 -------------
 
 .. important::
-   AceCAST v4.0.1 uses the NVHPC SDK version 24.3. Previous versions of AceCAST required the NVHPC SDK version 21.9. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST. To do this please follow the instructions in the :ref:`installationguide`.
+   AceCAST v4.0.2 uses the NVHPC SDK version 24.3. Previous versions of AceCAST required the NVHPC SDK version 21.9. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST. To do this please follow the instructions in the :ref:`installationguide`.
 
-The AceCAST version 4.0.1 release includes major updates to implement the equivalent 
+The AceCAST version 4.0.2 release includes major updates to implement the equivalent 
 `CPU-WRF version 4.6.0 release <https://github.com/wrf-model/WRF/releases/tag/v4.6.0>`_. For reference, the previous version of AceCAST (version 3.2) implemented the 
 `CPU-WRF version 4.4.2 release <https://github.com/wrf-model/WRF/releases/tag/v4.4.2>`_. If you 
 would like more information regarding the WRF updates that were implemented in this new version of 
 AceCAST, check out the 
 `release notes for WRF versions 4.4.2 through 4.6.0 <https://github.com/wrf-model/WRF/releases>`_.
 
-New in v4.0.1
+New in v4.0.2
 *************
 
 * Added support for Digital Filter Initialization (DFI). Digital filter initialization is a method to remove initial model imbalance as, for example, measured by the surface pressure tendency. This may be important when one is interested in the 0 – 6 hour simulation/forecast. It runs a digital filter during a short model integration, backward and forward, and then starts the forecast (WRF Users Guide).
@@ -99,12 +99,17 @@ Improvements and Bug Fixes
 * Reimplemented the revised MM5 surface layer option (*sf_sfclay_physics =1*) to be consistent with the CPU WRF Common Community Physics Package (CCPP) implementation of the option.
 
 
-.. _v4_0_1_downloads_link:
+Known Issues
+************
+
+* The YSU PBL scheme fails randomly with a "*variable in data clause is partially present on the device*" error for some configurations.
+
+.. _v4_0_2_downloads_link:
 
 Downloads
 ---------
  
-* AceCAST version 4.0.1 for Linux x86-64: `AceCASTv4.0.1.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.0.1%2Blinux.x86_64.haswell.nvhpc24.3.tar.gz>`_
+* AceCAST version 4.0.2 for Linux x86-64: `AceCASTv4.0.2.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.0.2%2Blinux.x86_64.haswell.nvhpc24.3.tar.gz>`_
 
 .. important::
    Check out the :ref:`installationguide` for further installation instructions.
