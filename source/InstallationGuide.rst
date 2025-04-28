@@ -6,13 +6,13 @@
    https://developer.nvidia.com/hpc-sdk
 
 .. _NVHPC Installation Guide: 
-   https://docs.nvidia.com/hpc-sdk/archive/24.3/hpc-sdk-install-guide/index.html
+   https://docs.nvidia.com/hpc-sdk/archive/25.3/hpc-sdk-install-guide/index.html
 
-.. _NVHPC 24.3 Downloads: 
-   https://developer.nvidia.com/nvidia-hpc-sdk-243-downloads
+.. _NVHPC 25.3 Downloads: 
+   https://developer.nvidia.com/nvidia-hpc-sdk-253-downloads
 
 .. _NVHPC platform requirements: 
-   https://docs.nvidia.com/hpc-sdk/archive/24.3/hpc-sdk-release-notes/index.html#platform-requirements
+   https://docs.nvidia.com/hpc-sdk/archive/25.3/hpc-sdk-release-notes/index.html#platform-requirements
 
 .. _CUDA Installation Guide: 
    https://docs.nvidia.com/cuda/archive/12.3.0/cuda-installation-guide-linux/index.html
@@ -179,14 +179,14 @@ install.
 Installing the NVIDIA HPC SDK
 =============================
 
-AceCAST requires installation of the NVIDIA HPC SDK version 24.3. You can either follow the 
+AceCAST requires installation of the NVIDIA HPC SDK version 25.3. You can either follow the 
 `NVHPC Installation Guide`_ (make sure to use the archived downloads page at 
-`NVHPC 24.3 Downloads`_) or you can try our quick method below:
+`NVHPC 25.3 Downloads`_) or you can try our quick method below:
 
 .. important::
-   AceCAST v4.0.2 uses the NVHPC SDK version 24.3. Previous versions of AceCAST required the NVHPC SDK version 21.9. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST.
+   AceCAST v5.0.* uses the NVHPC SDK version 25.3. Previous versions of AceCAST required older versions of the NVHPC SDK. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST.
 
-**NVHPC v24.3 Quick Install:**
+**NVHPC v25.3 Quick Install:**
 
 .. tabs::
 
@@ -197,22 +197,22 @@ AceCAST requires installation of the NVIDIA HPC SDK version 24.3. You can either
             export NVHPC_INSTALL_DIR=$HOME/nvhpc     # feel free to change this path
             export NVHPC_INSTALL_TYPE=single
             export NVHPC_SILENT=true
-            wget https://developer.download.nvidia.com/hpc-sdk/24.3/nvhpc_2024_243_Linux_x86_64_cuda_multi.tar.gz
-            tar xpzf nvhpc_2024_243_Linux_x86_64_cuda_multi.tar.gz
-            nvhpc_2024_243_Linux_x86_64_cuda_multi/install
+            wget https://developer.download.nvidia.com/hpc-sdk/25.3/nvhpc_2025_253_Linux_x86_64_cuda_12.8.tar.gz
+            tar xpzf nvhpc_2025_253_Linux_x86_64_cuda_12.8.tar.gz
+            nvhpc_2025_253_Linux_x86_64_cuda_12.8/install
 
             echo '#!/bin/bash'"
             export NVARCH=\`uname -s\`_\`uname -m\`
             export NVCOMPILERS=$NVHPC_INSTALL_DIR
-            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/24.3/compilers/man
-            export PATH=\$NVCOMPILERS/\$NVARCH/24.3/compilers/bin:\$PATH
-            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/24.3/compilers/lib:\$LD_LIBRARY_PATH
-            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/24.3/cuda/12.3/lib64:\$LD_LIBRARY_PATH
-            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/24.3/math_libs/12.3/lib64:\$LD_LIBRARY_PATH
+            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/25.3/compilers/man
+            export PATH=\$NVCOMPILERS/\$NVARCH/25.3/compilers/bin:\$PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/25.3/compilers/lib:\$LD_LIBRARY_PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/25.3/cuda/lib64:\$LD_LIBRARY_PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/25.3/math_libs/lib64:\$LD_LIBRARY_PATH
 
-            export PATH=\$NVCOMPILERS/\$NVARCH/24.3/comm_libs/openmpi/openmpi-3.1.5/bin:\$PATH
-            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/24.3/comm_libs/openmpi/openmpi-3.1.5/lib:\$LD_LIBRARY_PATH
-            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/24.3/comm_libs/openmpi/openmpi-3.1.5/man
+            export PATH=\$NVCOMPILERS/\$NVARCH/25.3/comm_libs/hpcx/bin:\$PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/25.3/comm_libs/hpcx/lib:\$LD_LIBRARY_PATH
+            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/25.3/comm_libs/hpcx/man
             " > $NVHPC_INSTALL_DIR/acecast_env.sh
 
         .. note::
@@ -244,8 +244,8 @@ follows:
 
 .. code-block:: shell
 
-    wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.0.2%2Blinux.x86_64.haswell.nvhpc24.3.tar.gz
-    tar -xf acecast-v4.0.2+linux.x86_64.haswell.nvhpc24.3.tar.gz
+    wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.0.2%2Blinux.x86_64.haswell.nvhpc25.3.tar.gz
+    tar -xf acecast-v4.0.2+linux.x86_64.haswell.nvhpc25.3.tar.gz
 
 If successful you should see a new directory *acecast-v4.0.2*. The directory structure should look 
 like the following:
