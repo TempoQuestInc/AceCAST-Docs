@@ -7,7 +7,21 @@
 License Information
 ===================
 
-* After `registering to use AceCAST <https://tempoquest.com/acecast-registration/>`_ , you should have received an email with information on downloading AceCAST as well as a license file (ex. acecast-trial.lic). This file will be checked by the acecast.exe executable at runtime to ensure the user has a valid license.
+AceCAST Trial License
+*********************
+
+If you would like to request a trial license, please fill out the `AceCAST Trial Request Form <https://tempoquest.com/acecast-registration/>`_ justifying your request. Once we have received your request we will contact you within 24 hours (weekdays) with a 30-day trial license if your request is approved.
+
+AceCAST License Requests
+************************
+
+Please contact support@tempoquest.com for any other licensing requests.
+
+AceCAST Licence Usage
+*********************
+
+Once you have received a license file, this file will be checked by the acecast.exe executable at runtime to ensure the user has a valid license.
+
 * To ensure that AceCAST can evaluate your license at runtime there are *two* options:
 
 	#. Copy the license file to the run directory you are executing acecast.exe in
@@ -21,7 +35,7 @@ License Information
 		RLM license checkout:
 		------------------------
 		Product: acecast
-		Version: 1
-		Count:   4
+		Version: 4
+		Count:   8
 		------------------------
 		Successfully checked out licenses.

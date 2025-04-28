@@ -369,14 +369,20 @@ previous steps is to print the shared libraries used by the *acecast.exe* execut
 Acquire A License
 =================
 
-AceCAST is a licensed software package and as such requires a valid license to run. A 30-day trial 
-license can be acquired by registering at the `AceCAST Registration Page`_. After registering 
-you should recieve an email containing your trial license (*acecast-trial.lic*). We suggest placing 
-this file in the *acecast-v4.0.2/acecast/run* directory. If your 30-day trial has ended please 
-contact support@tempoquest.com to request an extension and/or a quote.
+AceCAST Trial License
+---------------------
 
+AceCAST is a licensed software package and as such requires a valid license to run. If you would like to request a trial license, please fill out the `AceCAST Trial Request Form <https://tempoquest.com/acecast-registration/>`_ justifying your request. Once we have received your request we will contact you within 24 hours (weekdays) with a 30-day trial license if your request is approved.
 
+AceCAST License Requests
+------------------------
 
+Please contact support@tempoquest.com for any other licensing requests.
+
+Licence File
+------------
+
+Once you have recieved your license file, we suggest placing it in the *acecast-v4.0.2/acecast/run* directory.
 
 
 
