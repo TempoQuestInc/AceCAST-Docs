@@ -213,6 +213,8 @@ AceCAST requires installation of the NVIDIA HPC SDK version 25.3. You can either
             export PATH=\$NVCOMPILERS/\$NVARCH/25.3/comm_libs/hpcx/bin:\$PATH
             export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/25.3/comm_libs/hpcx/lib:\$LD_LIBRARY_PATH
             export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/25.3/comm_libs/hpcx/man
+
+            ulimit -s unlimited
             " > $NVHPC_INSTALL_DIR/acecast_env.sh
 
         .. note::
