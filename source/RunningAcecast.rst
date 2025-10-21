@@ -18,11 +18,11 @@ This guide will demonstrate how to run AceCAST by walking you through an example
 
 Before attempting to run, make sure AceCAST and its dependencies have been installed correctly and 
 that you have a valid AceCAST license to use the software (see :ref:`installationguide`). Also make
-sure that you have a valid license file (see :ref:`acquirealicense`) and have placed it in your
-`acecast-v4.0.2/acecast/run/` directory.
+sure that you have a valid license file (see :ref:`acquirealicense`) and have set the RLM_LICENSE
+environment variable to point to it.
 
 For this example we will assume your AceCAST installation is in your home directory (i.e. at 
-`~/acecast-v4.0.2`). If it is somewhere else you will need to modify the code examples accordingly.
+`~/acecast-v4.3.0`). If it is somewhere else you will need to modify the code examples accordingly.
 
 Input Data
 ==========
@@ -38,7 +38,7 @@ good test case for a small number of GPUs.
 
 .. code-block:: shell
 
-    cd ~/acecast-v4.0.2/acecast
+    cd ~/acecast-v4.3.0/acecast
     mkdir benchmarks
     cd benchmarks
     wget https://tqi-public.s3.us-east-2.amazonaws.com/datasets/v2/easter500.tar.gz
@@ -48,7 +48,7 @@ At this point your acecast directory should look like this:
 
 .. code-block:: output
 
-    ~/acecast-v4.0.2/acecast
+    ~/acecast-v4.3.0/acecast
     ├── benchmarks
     │   ├── easter500
     │   │   ├── met_em.d01.2020-04-12_00:00:00.nc
@@ -71,13 +71,12 @@ Setting Up the Simulation Run Directory
 Next we would like to create a new directory to run the simulation in containing all of the 
 necessary runtime and input files. This will typically include the following:
 
-    - AceCAST Run Files (always found in `~/acecast-v4.0.2/acecast/run/`):
+    - AceCAST Run Files (always found in `~/acecast-v4.3.0/acecast/run/`):
         - executables (`real.exe, acecast.exe, etc.`)
         - acecast advisor script (`acecast-advisor.sh`)
-        - license file (`acecast.lic` or `acecast-trial.lic`)
         - MPI wrapper script (`gpu_launch.sh`)
         - static data files (`CCN_ACTIVATE.BIN, GENPARM.TBL, LANDUSE.TBL, etc.`)
-    - Simulation Specific Input Data and Configuration Files (found in `~/acecast-v4.0.2/acecast/benchmarks/easter500` for this example):
+    - Simulation Specific Input Data and Configuration Files (found in `~/acecast-v4.3.0/acecast/benchmarks/easter500` for this example):
         - namelist file (`namelist.input`)
         - `real.exe` or `acecast.exe` input data (`met_em*` or `wrfbdy*, wrfinput*, etc.`)
 
@@ -87,13 +86,13 @@ necessary runtime and input files. This will typically include the following:
     to run multiple simulations simultaneously if you have the compute resources to do so.
 
 For our example we will be using 4 GPUs and will set up this simulation run directory at 
-`~/acecast-v4.0.2/acecast/easter500-4GPU`:
+`~/acecast-v4.3.0/acecast/easter500-4GPU`:
 
 .. code-block:: shell
 
     # Create and cd to new run directory
-    mkdir ~/acecast-v4.0.2/acecast/easter500-4GPU
-    cd ~/acecast-v4.0.2/acecast/easter500-4GPU
+    mkdir ~/acecast-v4.3.0/acecast/easter500-4GPU
+    cd ~/acecast-v4.3.0/acecast/easter500-4GPU
 
     # Link static acecast run files
     ln -s ../run/* .
@@ -151,11 +150,11 @@ example.
             ***********************************************************************************
             
             
-            WARNING: Namelist file not specified by user. Using default namelist file path: /home/samm.tempoquest/acecast-v4.0.2/acecast/easter500-4GPU/namelist.input 
+            WARNING: Namelist file not specified by user. Using default namelist file path: /home/samm.tempoquest/acecast-v4.3.0/acecast/easter500-4GPU/namelist.input 
 
             Support Check Configuration:
-                Namelist                    : /home/samm.tempoquest/acecast-v4.0.2/acecast/easter500-4GPU/namelist.input
-                AceCAST Version             : 4.0.2
+                Namelist                    : /home/samm.tempoquest/acecast-v4.3.0/acecast/easter500-4GPU/namelist.input
+                AceCAST Version             : 4.3.0
                 WRF Compatibility Version   : 4.6.0
 
 
@@ -178,11 +177,11 @@ example.
             ***********************************************************************************
             
             
-            WARNING: Namelist file not specified by user. Using default namelist file path: /home/samm.tempoquest/acecast-v4.0.2/acecast/easter500-4GPU/namelist.input 
+            WARNING: Namelist file not specified by user. Using default namelist file path: /home/samm.tempoquest/acecast-v4.3.0/acecast/easter500-4GPU/namelist.input 
 
             Support Check Configuration:
-                Namelist                    : /home/samm.tempoquest/acecast-v4.0.2/acecast/easter500-4GPU/namelist.input
-                AceCAST Version             : 4.0.2
+                Namelist                    : /home/samm.tempoquest/acecast-v4.3.0/acecast/easter500-4GPU/namelist.input
+                AceCAST Version             : 4.3.0
                 WRF Compatibility Version   : 4.6.0
 
 

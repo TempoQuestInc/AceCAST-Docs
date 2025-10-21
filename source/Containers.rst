@@ -112,8 +112,8 @@ or run *docker run --help* from the command line.
 
 Users are free to use containers to run AceCAST in whatever way they see fit. Note that you can use the host OS
 to manage your inputs/outputs and use a container simply to run acecast itself. In this example we have already
-downloaded the :ref:`Easter500 <Benchmarks>` test case data as well as our acecast license file into the *inputs/* 
-subdirectory. This current directory will be mounted inside the container using the *-v* option to the *docker run*
+downloaded the :ref:`Easter500 <Benchmarks>` test case data into the *inputs/* subdirectory. 
+We also assume that you have set the RLM_LICENSE environment variable to point to your license file. This current directory will be mounted inside the container using the *-v* option to the *docker run*
 command so all of the files you see here will be available inside the container when it is running.
 
 ::
@@ -121,7 +121,7 @@ command so all of the files you see here will be available inside the container 
     [acecast-user@gpu-node]$ ls
     inputs  run.sh
     [acecast-user@gpu-node]$ ls inputs/
-    acecast.lic met_em.d01.2020-04-11_12:00:00.nc  met_em.d01.2020-04-11_13:00:00.nc  namelist.input
+    met_em.d01.2020-04-11_12:00:00.nc  met_em.d01.2020-04-11_13:00:00.nc  namelist.input
 
 
 We also have a script in the current directory that will be run inside the container in the next step:
@@ -130,6 +130,9 @@ We also have a script in the current directory that will be run inside the conta
 
     [acecast-user@gpu-node]$ cat run.sh 
     #!/bin/bash
+
+    # Set the RLM_LICENSE environment variable
+    export RLM_LICENSE=/path/to/your/license.lic
 
     # Create directory for running acecast in and cd into it
     mkdir -p run
