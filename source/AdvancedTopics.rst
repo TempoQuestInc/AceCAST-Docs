@@ -87,7 +87,7 @@ To create the joiner namelists, run the helper script from your WRF run director
    Successfully generated namelist.join.wrfout_d01
 
 This command reads your ``namelist.input`` file and produces a corresponding
-``namelist.join.wrfout_dXX`` file for each active domain. These namelists contain
+``namelist.join.wrfout_dXX`` file for each WRF domain. These namelists contain
 the decomposition parameters required by ``joinwrf`` to correctly reconstruct the output.
 
 Running the JoinWRF Program
@@ -104,7 +104,7 @@ to merge all domain outputs:
 
 Each invocation of ``joinwrf`` will read the tiled NetCDF files (e.g.,
 ``wrfout_d01_0001``, ``wrfout_d01_0002``, etc.) and write a joined file such as
-``wrfout_d01_joined_YYYY-MM-DD_HH:MM:SS``.
+``wrfout_d01_YYYY-MM-DD_HH:MM:SS``.
 
 Example Workflow
 ----------------
@@ -113,11 +113,21 @@ Example Workflow
 
    .. code-block:: fortran
 
-      &io
+      &time_control
+        ...
         io_form_history = 102
+        ...
       /
 
-   This produces separate tile files per processor for each history interval.
+      &domains
+        ...
+        nproc_x = 2
+        nproc_y = 2
+        ...
+      /
+
+   .. note::
+      When running WRF with distributed I/O, you must specify ``nproc_x`` and ``nproc_y`` in the ``&domains`` section of the WRF namelist. These values determine the processor decomposition for the simulation and must be consistent with the total number of MPI ranks.
 
 2. Generate the joiner namelists:
 
