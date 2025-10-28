@@ -72,7 +72,7 @@ Release Notes
 -------------
 
 .. important::
-   AceCAST v4.3.0 uses the NVHPC SDK version 25.3. Previous versions of AceCAST required the NVHPC SDK version 24.3. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST. To do this please follow the instructions in the :ref:`installationguide`.
+   AceCAST v4.3.0 uses the NVHPC SDK version 25.9. Previous versions of AceCAST required older versions of the NVHPC SDK. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST. To do this please follow the instructions in the :ref:`installationguide`.
 
 New in v4.3.0
 *************
@@ -81,19 +81,19 @@ New in v4.3.0
 * Improvements to the wind turbine drag parameterization scheme (windfarm_opt = 1) were made based on the results described in "Brief communication: A simple axial induction modification to the Weather Research and Forecasting Fitch wind farm parameterization" (see https://wes.copernicus.org/articles/9/1689/2024/wes-9-1689-2024.pdf). Note that this is a divergence from the standard WRF model implementation of this scheme.
 * AceCAST now offers an experimental option allowing users to specify 8 or 10 soil layers in addition to the standard 4 soil layers when running the NoahMP land surface model. Early testing suggests that using a finer vertical soil structure can improve surface fluxes for light to moderate rainfall events, which can significantly improve boundary layer dynamics.
 * Added support for a number of options associated with ideal test cases. This includes periodic boundary conditions (periodic_x = T, periodic_y = T), idealized land mask selection (ideal_xland = 1 or ideal_xland = 2) and the Coriolis perturbation option (pert_coriolis = T).
+* AceCAST is now available for trial on NVIDIA Grace Hopper and Grace Blackwell GPU-based aarch64 systems. To request access, please contact support@tempoquest.com.
 
 **Performance**
 ***************
 
 * This release delivers a major performance enhancement to the Thompson microphysics scheme on GPU. The main kernel has been restructured to take full advantage of 3D parallelization where possible, resulting in significantly faster execution for simulations using this microphysics scheme. Internal testing shows substantial speed improvements with no loss of numerical accuracy.
-* Comprehensive performance optimizations were applied across multiple model components, resulting in overall runtime reductions exceeding 20% in most configurations.
+* Comprehensive performance optimizations were applied across multiple model components, resulting in overall runtime reductions exceeding 20% in most configurations and potentially significantly more.
+* Added the joinwrf utility (in the standard run/ directory) to support the io_form_history = 102 option. This mode writes each MPI rank’s output to a separate file, significantly reducing parallel I/O overhead. The joinwrf utility can then be used to merge these patch files into standard WRF output. The generate_namelist_join.py script is included to create the joinwrf namelists automatically from a WRF namelist. For details on merging tiled WRF outputs, see the :ref:`JoinWRF` section.
 
 Improvements and Bug Fixes
 **************************
 
 * When using I/O quilting, AceCAST now correctly counts only compute processes—rather than both compute and I/O processes—when determining the total number of GPUs used for licensing purposes.
-* AceCAST is now available for trial on NVIDIA Grace Hopper and Grace Blackwell GPU-based aarch64 systems. To request access, please contact support@tempoquest.com.
-* Added the joinwrf utility (in the standard run/ directory) to support the io_form_history = 102 option. This mode writes each MPI rank’s output to a separate file, significantly reducing parallel I/O overhead. The joinwrf utility can then be used to merge these patch files into standard WRF output. The generate_namelist_join.py script is included to create the joinwrf namelists automatically from a WRF namelist. (reference??)
 * Fixed an issue where radar reflectivity and other diagnostics were not computed when output was directed to non-history streams. The diagnostic flag logic has been updated to check all active output alarms rather than only the history alarm, ensuring that diagnostics are properly generated for auxiliary history streams under runtime I/O configurations. This resolves cases where reflectivity fields appeared as zero outside of the primary history output interval.
 
 .. _v4_3_0_downloads_link:

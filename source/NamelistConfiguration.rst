@@ -44,7 +44,7 @@ see if the namelist is supported or not, check out the :ref:`nmlcfgnmlsupporttoo
 below.
 
 If you are interested in using AceCAST but the options specified in your namelist aren't currently
-supported by AceCAST and there aren't any acceptable alternatives, we would greatly appreciate if 
+supported by AceCAST and there aren't any acceptable alternatives, we would appreciate if 
 you could contact us at support@tempoquest.com to discuss the possibility of supporting those 
 options in future releases.
 
@@ -59,14 +59,6 @@ checking out the :ref:`nmlsupporttbl` tool.
 
 Most options can be turned off with a value of 0, where applicable. AceCAST supports the same output 
 as WRF which includes but is not limited to netCDF and GRIB.
-
-.. _nmlunsupported:
-
-.. raw:: html
-   
-   <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfVZ_7KQSJ7pUrHPk3aKYvTqDklBm9g1bmnCRkou-zfmreLSA/viewform?embedded=true" 
-    width="900" height="470" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-
 
 .. _nmlcfgnmlsupporttool:
 

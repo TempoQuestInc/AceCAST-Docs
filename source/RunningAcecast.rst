@@ -205,22 +205,6 @@ Prior to running the executables in the following sections you will need to make
 environment is set up correctly as described in the :ref:`installationguide` (see 
 :ref:`environmentsetup`).
 
-Modify OpenMPI Settings (Optional)
-----------------------------------
-
-The NVIDIA HPC SDK uses an older version of OpenMPI (version 3.1.5). This version is performant 
-and works well on a variety of systems but it can produce some confusing warnings when running MPI
-jobs. These warnings can be suppressed by setting the *btl_base_warn_component_unused=0* option 
-using the following commands.
-
-.. code-block:: shell
-    
-    mkdir -p ~/.openmpi
-    echo "btl_base_warn_component_unused = 0" > ~/.openmpi/mca-params.conf
-
-Note that this only needs to be done one time on any given system.
-
-
 Running Real
 ============
 
