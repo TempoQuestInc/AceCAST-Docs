@@ -71,24 +71,21 @@ Skip to :ref:`v4_3_0_downloads_link`
 Release Notes
 -------------
 
-.. important::
-   AceCAST v4.3.0 uses the NVHPC SDK version 25.9. Previous versions of AceCAST required older versions of the NVHPC SDK. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST. To do this please follow the instructions in the :ref:`installationguide`.
-
-New in v4.3.0
-*************
-
-* Added support for Blackwell GPUs.
-* Improvements to the wind turbine drag parameterization scheme (windfarm_opt = 1) were made based on the results described in "Brief communication: A simple axial induction modification to the Weather Research and Forecasting Fitch wind farm parameterization" (see https://wes.copernicus.org/articles/9/1689/2024/wes-9-1689-2024.pdf). Note that this is a divergence from the standard WRF model implementation of this scheme.
-* AceCAST now offers an experimental option allowing users to specify 8 or 10 soil layers in addition to the standard 4 soil layers when running the NoahMP land surface model. Early testing suggests that using a finer vertical soil structure can improve surface fluxes for light to moderate rainfall events, which can significantly improve boundary layer dynamics.
-* Added support for a number of options associated with ideal test cases. This includes periodic boundary conditions (periodic_x = T, periodic_y = T), idealized land mask selection (ideal_xland = 1 or ideal_xland = 2) and the Coriolis perturbation option (pert_coriolis = T).
-* AceCAST is now available for trial on NVIDIA Grace Hopper and Grace Blackwell GPU-based aarch64 systems. To request access, please contact support@tempoquest.com.
-
 **Performance**
 ***************
 
 * This release delivers a major performance enhancement to the Thompson microphysics scheme on GPU. The main kernel has been restructured to take full advantage of 3D parallelization where possible, resulting in significantly faster execution for simulations using this microphysics scheme. Internal testing shows substantial speed improvements with no loss of numerical accuracy.
 * Comprehensive performance optimizations were applied across multiple model components, resulting in overall runtime reductions exceeding 20% in most configurations and potentially significantly more.
 * Added the joinwrf utility (in the standard run/ directory) to support the io_form_history = 102 option. This mode writes each MPI rank’s output to a separate file, significantly reducing parallel I/O overhead. The joinwrf utility can then be used to merge these patch files into standard WRF output. The generate_namelist_join.py script is included to create the joinwrf namelists automatically from a WRF namelist. For details on merging tiled WRF outputs, see the :ref:`JoinWRF` section.
+
+New in v4.3.0
+*************
+
+* Added support for Blackwell GPUs.
+* AceCAST is now available for trial on NVIDIA Grace Hopper and Grace Blackwell GPU-based aarch64 systems. To request access, please contact support@tempoquest.com.
+* Improvements to the wind turbine drag parameterization scheme (windfarm_opt = 1) were made based on the results described in "Brief communication: A simple axial induction modification to the Weather Research and Forecasting Fitch wind farm parameterization" (see https://wes.copernicus.org/articles/9/1689/2024/wes-9-1689-2024.pdf). Note that this is a divergence from the standard WRF model implementation of this scheme.
+* AceCAST now offers an experimental option allowing users to specify 8 or 10 soil layers in addition to the standard 4 soil layers when running the NoahMP land surface model. Early testing suggests that using a finer vertical soil structure can improve surface fluxes for light to moderate rainfall events, which can significantly improve boundary layer dynamics.
+* Added support for a number of options associated with ideal test cases. This includes periodic boundary conditions (periodic_x = T, periodic_y = T), idealized land mask selection (ideal_xland = 1 or ideal_xland = 2) and the Coriolis perturbation option (pert_coriolis = T).
 
 Improvements and Bug Fixes
 **************************
@@ -102,6 +99,9 @@ Downloads
 ---------
  
 * AceCAST version 4.3.0 for Linux x86-64: `AceCASTv4.3.0.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.3.0%2Blinux.x86_64.nvhpc25.3.tar.gz>`_
+
+.. important::
+   AceCAST v4.3.0 uses the NVHPC SDK version 25.9. Previous versions of AceCAST required older versions of the NVHPC SDK. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST. To do this please follow the instructions in the :ref:`installationguide`.
 
 .. important::
    Check out the :ref:`installationguide` for further installation instructions.
