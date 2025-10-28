@@ -127,7 +127,7 @@ Example Workflow
       /
 
    .. note::
-      When running WRF with distributed I/O, you must specify ``nproc_x`` and ``nproc_y`` in the ``&domains`` section of the WRF namelist. These values determine the processor decomposition for the simulation and must be consistent with the total number of MPI ranks.
+      The ``generate_namelist_join.py`` script requires that ``nproc_x`` and ``nproc_y`` are specified in the ``&domains`` section of the WRF namelist. For AceCAST runs, these parameters define the 2D grid of GPUs that the domain is decomposed onto. This information is needed by the script to create the correct joiner namelists.
 
 2. Generate the joiner namelists:
 
@@ -155,11 +155,9 @@ Example Workflow
 Limitations
 -----------
 
-- The ``joinwrf`` program operates **only** on history output files.
+- The ``joinwrf`` program can operate on other output streams, but the ``generate_namelist_join.py`` script only considers the standard history output stream when creating the joinwrf namelists.
 - The tiling layout and processor decomposition used during model execution
   must match the settings embedded in the generated joiner namelists.
-- The tool assumes consistent precision between WRF output and the joiner build
-  (single-precision by default in AceCAST).
 
 References
 ----------
