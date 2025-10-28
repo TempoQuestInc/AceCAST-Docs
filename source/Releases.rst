@@ -52,6 +52,8 @@ will have a version number `MAJOR.MINOR.PATCH`, which can be understood as follo
      - 4.4.2
    * - 4.0
      - 4.6.0
+   * - 4.3
+     - 4.6.0
 
 For any given version we will provide release notes and download information within its own 
 subsection on this page. 
