@@ -100,7 +100,7 @@ Improvements and Bug Fixes
 Downloads
 ---------
  
-* AceCAST version 4.3.0 for Linux x86-64: `AceCASTv4.3.0.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.3.0%2Blinux.x86_64.nvhpc25.3.tar.gz>`_
+* AceCAST version 4.3.0 for Linux x86-64: `AceCASTv4.3.0.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.3.0%2Blinux.x86_64.nvhpc25.9.tar.gz>`_
 
 .. important::
    AceCAST v4.3.0 uses the NVHPC SDK version 25.9. Previous versions of AceCAST required older versions of the NVHPC SDK. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST. To do this please follow the instructions in the :ref:`installationguide`.
