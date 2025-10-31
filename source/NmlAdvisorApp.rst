@@ -7,7 +7,7 @@
 Namelist Advisor App
 ####################
 
-Not seeing your option(s)? :ref:`Let us know!  <nmlunsupported>`
+
 
 .. raw:: html
 

@@ -92,8 +92,13 @@ New in v4.3.0
 Improvements and Bug Fixes
 **************************
 
-* When using I/O quilting, AceCAST now correctly counts only compute processes—rather than both compute and I/O processes—when determining the total number of GPUs used for licensing purposes.
 * Fixed an issue where radar reflectivity and other diagnostics were not computed when output was directed to non-history streams. The diagnostic flag logic has been updated to check all active output alarms rather than only the history alarm, ensuring that diagnostics are properly generated for auxiliary history streams under runtime I/O configurations. This resolves cases where reflectivity fields appeared as zero outside of the primary history output interval.
+
+Licensing Changes
+*****************
+
+* AceCAST now requires that you point to the license file with the *RLM_LICENSE* environment variable rather than placing the license file in the run directory. For a full description of license usage check out the :ref:`Licenselink` page.
+* When using I/O quilting, AceCAST now correctly counts only compute processes rather than both compute and I/O processes—when determining the total number of GPUs used for licensing purposes.
 
 .. _v4_3_0_downloads_link:
 

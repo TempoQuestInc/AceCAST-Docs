@@ -366,29 +366,7 @@ previous steps is to print the shared libraries used by the *acecast.exe* execut
    helpful in identifying a number of common issues that users run into regularly.
 
 
-.. _acquirealicense:
 
-Acquire A License
-=================
-
-AceCAST Trial License
----------------------
-
-AceCAST is a licensed software package and as such requires a valid license to run. If you would like to request a trial license, please fill out the `AceCAST Trial Request Form <https://tempoquest.com/acecast-registration/>`_ justifying your request. Once we have received your request we will contact you within 24 hours (weekdays) with a 30-day trial license if your request is approved.
-
-AceCAST License Requests
-------------------------
-
-Please contact support@tempoquest.com for any other licensing requests.
-
-License File
-------------
-
-Once you have recieved your license file, you will need to set the RLM_LICENSE environment variable to point to it. For example:
-
-.. code-block:: shell
-
-    export RLM_LICENSE=/path/to/your/license.lic
 
 
 

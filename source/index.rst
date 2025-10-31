@@ -10,8 +10,8 @@
 AceCast Online Documentation Homepage
 #####################################
 
-Quick links: :ref:`Download <latestlink>` | `OnDemand <https://wrfondemand.com/>`_ | `WSV3 <https://wsv3.com/>`_ | `TempoQuest <https://tempoquest.com/>`_
-###########################################################################################################################################################
+Quick links: :ref:`Download <latestlink>` | `TempoQuest <https://tempoquest.com/>`_
+###################################################################################
 
 
 .. figure:: /Images/NWP_Logo.png
@@ -23,43 +23,13 @@ Quick links: :ref:`Download <latestlink>` | `OnDemand <https://wrfondemand.com/>
 
 What is AceCAST?
 ----------------
+TempoQuest’s software product, AceCAST, accelerates the world’s most widely used regional weather forecasting system—the Weather Research and Forecasting (`WRF <https://www.mmm.ucar.edu/weather-research-and-forecasting-model>`_) model—developed and supported by the U.S. National Center for Atmospheric Research (NCAR). WRF is a next-generation mesoscale Numerical Weather Prediction (NWP) system designed for both operational forecasting and atmospheric research. It incorporates multiple dynamical cores and a modular architecture that supports extensive parallelization and configurability. With over 36,000 registered users across 162 countries, WRF is employed for applications spanning scales from meters to thousands of kilometers.
 
-TempoQuest's (TQI's) software product, **AceCAST, accelerates** the world's most widely used regional weather forecasting model, 
-known as the Weather Research and Forecasting (`WRF <https://www.mmm.ucar.edu/weather-research-and-forecasting-model>`_) model, 
-which is supported by the U.S. National Center for Atmospheric Research (NCAR). **WRF** is widely utilized by more than 36,000 
-registered users located in 162 countries, and is a next-generation mesoscale **Numerical Weather Prediction** (NWP) system designed
-to serve both operational forecasting and atmospheric research needs. WRF features multiple dynamical cores and a software 
-architecture allowing for computational parallelism and system extensibility. WRF is suitable for a broad spectrum of applications 
-across scales ranging from meters to thousands of kilometers.
+While the standard NCAR WRF distribution is designed for traditional CPU-based computing and does not natively support GPU acceleration, AceCAST extends WRF with full GPU capability. Developed through years of targeted research and optimization, AceCAST enables users to achieve performance gains of up to an order of magnitude faster than CPU-only implementations by exploiting the massive parallelism and high memory bandwidth of GPUs.
 
-AceCAST is a powerful cutting-edge software **powered by Graphics Processing Units (GPUs)** that enable acceleration of the WRF model. 
-AceCAST is the product of half-a-decade of punctilious research and development that empowers WRF users to secure striking 
-performance optimizations using the superior massive parallelism of GPU hardware versus traditional CPU computation. AceCAST 
-encompasses an ample set of refactored common WRF physics and dynamics modules, and namelist options with NVIDIA CUDA or 
-OpenACC GPU programming techniques, allowing a wide swath of users to adopt AceCAST painlessly as a **drop-in replacement 
-for existing WRF configurations**. 
+GPUs deliver exceptional computational throughput through thousands of concurrent cores and superior memory subsystems. Their combination of high parallelism, scalability, and energy efficiency makes GPU-based computing an ideal platform for next-generation NWP. AceCAST incorporates refactored WRF physics and dynamics modules—implemented with CUDA and OpenACC—and is designed as a drop-in replacement for existing WRF configurations, allowing seamless adoption without major workflow changes.
 
-GPUs enable exceptional acceleration by using multi-threaded, many-core processors with tremendous computational speed 
-and very high memory bandwidth. The combined features of general-purpose supercomputing, high parallelism, high memory 
-bandwidth, **low cost**, and compact size are what make a GPU-based system an appealing alternative to a massively parallel 
-system made up of commodity CPU clusters. TempoQuest's software is a result of specialized programming and optimization 
-techniques coupled with a deep understanding of high-performance computing, NWP, atmospheric science, WRF configurations, 
-GPUs, and CUDA code. The TQI developed CUDA-based GPU WRF is currently the world's fastest and highest resolution weather 
-forecasting model.
-
-
-How will AceCAST Benefit You?
-------------------------------
-
-Weather forecasts have a critical impact on the economy and extreme weather events are one of the greatest risks in the world.
-High quality weather forecasts require a tremendous amount of computational power, which TempoQuest has addressed by accelerating
-the WRF model by utilizing GPUs. Compared to standard computing methods, AceCAST is currently the world's fastest and highest 
-resolution weather forecasting model. Running WRF via AceCAST enables users to run forecast and research simulations 
-with accelerated time-to-solution processes at higher resolutions, lower cost, and deeper insight. The capabilities of AceCAST 
-provides meteorologists and end-users the products derived by WRF that deliver greater awareness of localized weather phenomena 
-that global weather models are unable to discern, or which are missed at lower resolutions. The compute performance improvement 
-makes high resolution deterministic and probabilistic forecasts practical at lower cost than running WRF on Central Processing 
-Units (CPUs), and the forecast simulation acceleration **has consistently improved forecast processing speed by a factor of five**.
+The result is a GPU-accelerated WRF that delivers significantly faster runtimes and higher spatial resolution than CPU-only implementations, enabling operational forecasting at resolutions and timescales previously impractical on conventional computing systems.
 
 Index
 =====
@@ -70,6 +40,7 @@ Index
 
    BeforeYouBegin.rst
    InstallationGuide.rst
+   License.rst
    RunningAcecast.rst
    NamelistConfiguration.rst
    GeneratingInputData.rst
@@ -104,4 +75,3 @@ Index
    FAQS.rst
    Verification.rst
    Support.rst
-   License.rst

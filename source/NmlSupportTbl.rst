@@ -11,7 +11,7 @@ The namelist support table app can be used to search for available namelist opti
 to Check out the :ref:`nmladvisorapp` where you can upload your namelist and see if it is 
 supported by AceCAST.
 
-Not seeing your option(s)? :ref:`Let us know! <nmlunsupported>`
+We strive to support all user namelist configurations. If your options are not yet supported by the latest AceCAST release, contact us at support@tempoquest.com.
 
 .. note::
    It may take a moment to load the application below.
@@ -19,6 +19,8 @@ Not seeing your option(s)? :ref:`Let us know! <nmlunsupported>`
 .. raw:: html
 
    <iframe src="https://nml-support-table-app.herokuapp.com/" width=875 height=950></iframe>
+
+
 
 
 

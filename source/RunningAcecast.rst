@@ -16,10 +16,12 @@ Running AceCAST
 This guide will demonstrate how to run AceCAST by walking you through an example with the 
 :ref:`Easter500 benchmark <Benchmarks>` test case.
 
-Before attempting to run, make sure AceCAST and its dependencies have been installed correctly and 
-that you have a valid AceCAST license to use the software (see :ref:`installationguide`). Also make
-sure that you have a valid license file (see :ref:`acquirealicense`) and have set the RLM_LICENSE
-environment variable to point to it.
+.. note::
+    AceCAST is a licensed software and requires a valid license to run. Please see the :ref:`Licenselink` page for more information on how to obtain a license.
+
+Before attempting to run, make sure AceCAST and its dependencies have been installed correctly. 
+Also make sure that you have a valid license file (see :ref:`Licenselink`) and have set the 
+RLM_LICENSE environment variable to point to it.
 
 For this example we will assume your AceCAST installation is in your home directory (i.e. at 
 `~/acecast-v4.3.0`). If it is somewhere else you will need to modify the code examples accordingly.
