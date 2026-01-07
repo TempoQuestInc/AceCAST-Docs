@@ -65,7 +65,7 @@ subsection on this page.
 
 .. _latestlink:
 
-Version 4.3.1
+Version 4.3.4
 =============
 
 Skip to :ref:`v4_3_1_downloads_link`
@@ -80,7 +80,7 @@ Release Notes
 * Comprehensive performance optimizations were applied across multiple model components, resulting in overall runtime reductions exceeding 20% in most configurations and potentially significantly more.
 * Added the joinwrf utility (in the standard run/ directory) to support the io_form_history = 102 option. This mode writes each MPI rank’s output to a separate file, significantly reducing parallel I/O overhead. The joinwrf utility can then be used to merge these patch files into standard WRF output. The generate_namelist_join.py script is included to create the joinwrf namelists automatically from a WRF namelist. For details on merging tiled WRF outputs, see the :ref:`JoinWRF` section.
 
-New in v4.3.1
+New in v4.3.4
 *************
 
 * Added support for Blackwell GPUs.
@@ -92,8 +92,11 @@ New in v4.3.1
 Improvements and Bug Fixes
 **************************
 
+* DFI runs now free the temporary DFI buffers as soon as initialization finishes, reducing memory use before the forecast starts.
 * Fixed an issue where radar reflectivity and other diagnostics were not computed when output was directed to non-history streams. The diagnostic flag logic has been updated to check all active output alarms rather than only the history alarm, ensuring that diagnostics are properly generated for auxiliary history streams under runtime I/O configurations. This resolves cases where reflectivity fields appeared as zero outside of the primary history output interval.
 * Resolved an indexing error in the NoahMP snowpack melt logic that could misapply snow compaction and melt tendencies in AceCAST-GPU runs. This fix improves the timing of snowmelt and associated surface fluxes, reducing localized cold biases in near-surface air temperature over melting snowpacks.
+* Fixed an issue where do_radar_ref = 1 could yield missing/incorrect wet-snow reflectivity (spurious -35 dBZ holes). Reflectivity for melting snow is now handled correctly.
+* Added a new runtime environment variable that can be used to add GPU memory diagnostic reporting throughout the simulation by setting "ACECAST_REPORT_MEM=true".
 
 Licensing Changes
 *****************
@@ -106,10 +109,10 @@ Licensing Changes
 Downloads
 ---------
  
-* AceCAST version 4.3.1 for Linux x86-64: `AceCASTv4.3.1.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.3.1%2Blinux.x86_64.nvhpc25.9.tar.gz>`_
+* AceCAST version 4.3.4 for Linux x86-64: `AceCASTv4.3.4.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.3.4%2Blinux.x86_64.nvhpc25.9.tar.gz>`_
 
 .. important::
-   AceCAST v4.3.1 uses the NVHPC SDK version 25.9. Previous versions of AceCAST required older versions of the NVHPC SDK. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST. To do this please follow the instructions in the :ref:`installationguide`.
+   AceCAST v4.3.4 uses the NVHPC SDK version 25.9. Previous versions of AceCAST required older versions of the NVHPC SDK. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST. To do this please follow the instructions in the :ref:`installationguide`.
 
 .. important::
    Check out the :ref:`installationguide` for further installation instructions.

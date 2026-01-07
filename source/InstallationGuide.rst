@@ -184,7 +184,7 @@ AceCAST requires installation of the NVIDIA HPC SDK version 25.9. You can either
 `NVHPC 25.9 Downloads`_) or you can try our quick method below:
 
 .. important::
-   AceCAST v4.3.1 and later uses the NVHPC SDK version 25.9. Previous versions of AceCAST required older versions of the NVHPC SDK. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST.
+   AceCAST v4.3.4 and later uses the NVHPC SDK version 25.9. Previous versions of AceCAST required older versions of the NVHPC SDK. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST.
 
 **NVHPC v25.9 Quick Install:**
 
@@ -246,15 +246,15 @@ follows:
 
 .. code-block:: shell
 
-    wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.3.1%2Blinux.x86_64.nvhpc25.9.tar.gz
-    tar -xf acecast-v4.3.1+linux.x86_64.nvhpc25.9.tar.gz
+    wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.3.4%2Blinux.x86_64.nvhpc25.9.tar.gz
+    tar -xf acecast-v4.3.4+linux.x86_64.nvhpc25.9.tar.gz
 
-If successful you should see a new directory *acecast-v4.3.1*. The directory structure should look 
+If successful you should see a new directory *acecast-v4.3.4*. The directory structure should look 
 like the following:
 
 .. code-block:: output
 
-    acecast-v4.3.1
+    acecast-v4.3.4
     ├── acecast
     │   └── run
     │       ├── acecast.exe
@@ -290,7 +290,7 @@ previous steps is to print the shared libraries used by the *acecast.exe* execut
 
         .. code-block:: shell
             
-            ldd acecast-v4.3.1/acecast/run/acecast.exe
+            ldd acecast-v4.3.4/acecast/run/acecast.exe
 
     .. tab:: successful output example
         
