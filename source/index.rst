@@ -42,6 +42,7 @@ Index
    InstallationGuide.rst
    License.rst
    RunningAcecast.rst
+   CommonIssues.rst
    NamelistConfiguration.rst
    GeneratingInputData.rst
    Releases.rst
