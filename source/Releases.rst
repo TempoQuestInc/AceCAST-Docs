@@ -54,6 +54,8 @@ will have a version number `MAJOR.MINOR.PATCH`, which can be understood as follo
      - 4.6.0
    * - 4.3
      - 4.6.0
+   * - 4.5
+     - 4.6.0
 
 For any given version we will provide release notes and download information within its own 
 subsection on this page. 
@@ -64,6 +66,42 @@ subsection on this page.
 
 
 .. _latestlink:
+
+Version 4.5.0
+=============
+
+Skip to :ref:`v4_5_0_downloads_link`
+
+Release Notes
+-------------
+
+New in v4.5.0
+*************
+
+* Added support for the RUC land surface model (*sf_surface_physics = 3*) in AceCAST, including the related RUC options *mosaic_lu*, *mosaic_soil*, and *flag_sm_adj*. The RUC LSM is a widely used land-surface option in operational forecasting, including in systems such as RAP and HRRR. It uses a multi-layer soil formulation with enhanced near-surface vertical resolution, along with treatment of snow, frozen soil, sea ice, and irrigation-related land-surface effects. Recommended RUC configurations generally use *num_soil_layers = 9*, with *mosaic_lu = 1* and *mosaic_soil = 1* when mosaic mode is desired.
+* Added support for *lightning_option = 3* (LPI-based lightning diagnostics), which predicts a gridded Lightning Potential Index (LPI) field indicating where atmospheric conditions are favorable for lightning activity.
+* Added support for KIAPS SAS cumulus scheme (KSAS, *cu_physics = 14*), the scale-aware new mass-flux convection scheme with deep and shallow components and momentum transport.
+* Added tiled implementations of YSU and WSM6 to significantly reduce memory overhead when using these schemes.
+
+Improvements and Bug Fixes
+**************************
+
+* Fixed an issue that could cause the model to crash shortly after DFI completed.
+* GPU runtime failures now provide clearer diagnostics to help users identify where a run failed. Error output now includes a stack trace and, when available, readable source-level locations, making it faster to troubleshoot GPU crashes across MPI runs.
+
+.. _v4_5_0_downloads_link:
+
+Downloads
+---------
+
+* AceCAST version 4.5.0 for Linux x86-64: `AceCASTv4.5.0.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.5.0%2Blinux.x86_64.nvhpc25.9.tar.gz>`_
+
+.. important::
+   Check out the :ref:`installationguide` for further installation instructions.
+
+.. tip::
+   If you would like to download the package from the command line you can use the `wget` or `curl`
+   commands with the download link url from above.
 
 Version 4.3.4
 =============
