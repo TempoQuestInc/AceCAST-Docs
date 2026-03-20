@@ -40,15 +40,15 @@ Index
 
    BeforeYouBegin.rst
    InstallationGuide.rst
-   License.rst
    RunningAcecast.rst
-   CommonIssues.rst
+   License.rst
+   Releases.rst
    NamelistConfiguration.rst
    GeneratingInputData.rst
-   Releases.rst
    Benchmarks.rst
    Containers.rst
    AdvancedTopics.rst
+   CommonIssues.rst
 
 .. toctree::
    :maxdepth: 1
