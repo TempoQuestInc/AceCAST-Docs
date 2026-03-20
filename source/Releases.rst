@@ -88,6 +88,12 @@ Improvements and Bug Fixes
 
 * Fixed an issue that could cause the model to crash shortly after DFI completed.
 * GPU runtime failures now provide clearer diagnostics to help users identify where a run failed. Error output now includes a stack trace and, when available, readable source-level locations, making it faster to troubleshoot GPU crashes across MPI runs.
+* Fixed an issue with the Thompson Hail/Graupel/Aerosol Microphysics option (*mp_physics = 38*) where a race condition affected graupel lookup-table prefactors. Based on internal testing this appears to have been extremely infrequent, but in affected situations it could theoretically produce non-deterministic differences in mixed-phase graupel/hail process rates.
+
+Known Issues
+************
+
+* We have identified an issue affecting hail-diameter diagnostics when *nwp_diagnostics = 1* is enabled. When this option is enabled, the *HAIL_MAXK1* and *HAIL_MAX2D* diagnostic variables may be underestimated by about 50%.
 
 .. _v4_5_0_downloads_link:
 
