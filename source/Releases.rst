@@ -56,6 +56,8 @@ will have a version number `MAJOR.MINOR.PATCH`, which can be understood as follo
      - 4.6.0
    * - 4.5
      - 4.6.0
+   * - 4.6
+     - 4.6.0
 
 For any given version we will provide release notes and download information within its own 
 subsection on this page. 
@@ -67,10 +69,58 @@ subsection on this page.
 
 .. _latestlink:
 
+Version 4.6.0
+=============
+
+Downloads
+---------
+
+* AceCAST version 4.6.0 for Linux x86-64: `AceCASTv4.6.0.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.6.0%2Blinux.x86_64.nvhpc25.9.tar.gz>`_
+
+Command line download:
+
+.. code-block:: shell
+
+   wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.6.0%2Blinux.x86_64.nvhpc25.9.tar.gz
+
+.. important::
+   Check out the :ref:`installationguide` for further installation instructions.
+
+Release Notes
+-------------
+
+New in v4.6.0
+*************
+
+* Extended the standard AceCAST timer infrastructure to optionally emit NVTX ranges for NVIDIA profiler timelines. To enable this at runtime, set both *ACECAST_USE_TIMERS=true* and *ACECAST_USE_NVTX_RANGES=true* before launching AceCAST under Nsight Systems. For usage details and an example Nsight Systems launch command, see :ref:`performanceprofiling`.
+* AceCAST internal profiling now provides richer visibility into large GPU-GPU communication phases, including clearer MPI metrics for halo and nesting exchanges. This makes it easier to diagnose scaling behavior and identify communication bottlenecks in multi-GPU runs. For more detail on the timer output and MPI metrics, see :ref:`performanceprofiling`.
+
+Improvements and Bug Fixes
+**************************
+
+* Improved strong-scaling performance by reducing GPU kernel-launch and synchronization overheads that were significant for small per-rank patch sizes.
+
+Known Issues
+************
+
+* We have identified an issue affecting hail-diameter diagnostics when *nwp_diagnostics = 1* is enabled. When this option is enabled, the *HAIL_MAXK1* and *HAIL_MAX2D* diagnostic variables may be underestimated by about 50%.
+
 Version 4.5.0
 =============
 
-Skip to :ref:`v4_5_0_downloads_link`
+Downloads
+---------
+
+* AceCAST version 4.5.0 for Linux x86-64: `AceCASTv4.5.0.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.5.0%2Blinux.x86_64.nvhpc25.9.tar.gz>`_
+
+Command line download:
+
+.. code-block:: shell
+
+   wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.5.0%2Blinux.x86_64.nvhpc25.9.tar.gz
+
+.. important::
+   Check out the :ref:`installationguide` for further installation instructions.
 
 Release Notes
 -------------
@@ -95,24 +145,25 @@ Known Issues
 
 * We have identified an issue affecting hail-diameter diagnostics when *nwp_diagnostics = 1* is enabled. When this option is enabled, the *HAIL_MAXK1* and *HAIL_MAX2D* diagnostic variables may be underestimated by about 50%.
 
-.. _v4_5_0_downloads_link:
-
-Downloads
----------
-
-* AceCAST version 4.5.0 for Linux x86-64: `AceCASTv4.5.0.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.5.0%2Blinux.x86_64.nvhpc25.9.tar.gz>`_
-
-.. important::
-   Check out the :ref:`installationguide` for further installation instructions.
-
-.. tip::
-   If you would like to download the package from the command line you can use the `wget` or `curl`
-   commands with the download link url from above.
-
 Version 4.3.4
 =============
 
-Skip to :ref:`v4_3_1_downloads_link`
+Downloads
+---------
+ 
+* AceCAST version 4.3.4 for Linux x86-64: `AceCASTv4.3.4.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.3.4%2Blinux.x86_64.nvhpc25.9.tar.gz>`_
+
+Command line download:
+
+.. code-block:: shell
+
+   wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.3.4%2Blinux.x86_64.nvhpc25.9.tar.gz
+
+.. important::
+   AceCAST v4.3.4 uses the NVHPC SDK version 25.9. Previous versions of AceCAST required older versions of the NVHPC SDK. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST. To do this please follow the instructions in the :ref:`installationguide`.
+
+.. important::
+   Check out the :ref:`installationguide` for further installation instructions.
 
 Release Notes
 -------------
@@ -148,27 +199,22 @@ Licensing Changes
 * AceCAST now requires that you point to the license file with the *RLM_LICENSE* environment variable rather than placing the license file in the run directory. For a full description of license usage check out the :ref:`Licenselink` page.
 * When using I/O quilting, AceCAST now correctly counts only compute processes rather than both compute and I/O processes—when determining the total number of GPUs used for licensing purposes.
 
-.. _v4_3_1_downloads_link:
+Version 4.0.2
+=============
 
 Downloads
 ---------
  
-* AceCAST version 4.3.4 for Linux x86-64: `AceCASTv4.3.4.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.3.4%2Blinux.x86_64.nvhpc25.9.tar.gz>`_
+* AceCAST version 4.0.2 for Linux x86-64: `AceCASTv4.0.2.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.0.2%2Blinux.x86_64.haswell.nvhpc24.3.tar.gz>`_
 
-.. important::
-   AceCAST v4.3.4 uses the NVHPC SDK version 25.9. Previous versions of AceCAST required older versions of the NVHPC SDK. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST. To do this please follow the instructions in the :ref:`installationguide`.
+Command line download:
+
+.. code-block:: shell
+
+   wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.0.2%2Blinux.x86_64.haswell.nvhpc24.3.tar.gz
 
 .. important::
    Check out the :ref:`installationguide` for further installation instructions.
-
-.. tip::
-   If you would like to download the package from the command line you can use the `wget` or `curl`
-   commands with the download link url from above.
-
-Version 4.0.2
-=============
-
-Skip to :ref:`v4_0_2_downloads_link`
 
 Release Notes
 -------------
@@ -206,24 +252,22 @@ Known Issues
 
 * The YSU PBL scheme fails randomly with a "*variable in data clause is partially present on the device*" error for some configurations.
 
-.. _v4_0_2_downloads_link:
+Version 3.2.2
+=============
 
 Downloads
 ---------
  
-* AceCAST version 4.0.2 for Linux x86-64: `AceCASTv4.0.2.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.0.2%2Blinux.x86_64.haswell.nvhpc24.3.tar.gz>`_
+* AceCAST version 3.2.2 for Linux x86-64: `AceCASTv3.2.2.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v3.2.2%2Blinux.x86_64.haswell.tar.gz>`_
+
+Command line download:
+
+.. code-block:: shell
+
+   wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v3.2.2%2Blinux.x86_64.haswell.tar.gz
 
 .. important::
    Check out the :ref:`installationguide` for further installation instructions.
-
-.. tip::
-   If you would like to download the package from the command line you can use the `wget` or `curl`
-   commands with the download link url from above.
-
-Version 3.2.2
-=============
-
-Skip to :ref:`v3_2_2_downloads_link`
 
 Release Notes
 -------------
@@ -258,24 +302,22 @@ Both the *icloud_bl = 0* and *bl_mynn_cloudpdf = 0* options fail when using the 
 (*bl_pbl_physics = 5*). If these options are critical for your simulations please contact us at 
 support@tempoquest.com to ensure that we prioritize fixing this issue.
 
-.. _v3_2_2_downloads_link:
+Version 3.1.0
+=============
 
 Downloads
 ---------
  
-* AceCAST version 3.2.2 for Linux x86-64: `AceCASTv3.2.2.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v3.2.2%2Blinux.x86_64.haswell.tar.gz>`_
+* AceCAST version 3.1.0 for Linux x86-64: `AceCASTv3.1.0.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v3.1.0%2Blinux.x86_64.haswell.tar.gz>`_
+
+Command line download:
+
+.. code-block:: shell
+
+   wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v3.1.0%2Blinux.x86_64.haswell.tar.gz
 
 .. important::
    Check out the :ref:`installationguide` for further installation instructions.
-
-.. tip::
-   If you would like to download the package from the command line you can use the `wget` or `curl`
-   commands with the download link url from above.
-
-Version 3.1.0
-=============
-
-Skip to :ref:`v3_1_0_downloads_link`
 
 Release Notes
 -------------
@@ -336,25 +378,22 @@ Both the *icloud_bl = 0* and *bl_mynn_cloudpdf = 0* options fail when using the 
 (*bl_pbl_physics = 5*). If these options are critical for your simulations please contact us at 
 support@tempoquest.com to ensure that we prioritize fixing this issue.
 
-
-.. _v3_1_0_downloads_link:
+Version 3.0.1
+=============
 
 Downloads
 ---------
  
-* AceCAST version 3.1.0 for Linux x86-64: `AceCASTv3.1.0.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v3.1.0%2Blinux.x86_64.haswell.tar.gz>`_
+* AceCAST version 3.0.1 for Linux x86-64: `AceCASTv3.0.1.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v3.0.1%2Blinux.x86_64.haswell.tar.gz>`_
+
+Command line download:
+
+.. code-block:: shell
+
+   wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v3.0.1%2Blinux.x86_64.haswell.tar.gz
 
 .. important::
    Check out the :ref:`installationguide` for further installation instructions.
-
-.. tip::
-   If you would like to download the package from the command line you can use the `wget` or `curl`
-   commands with the download link url from above.
-
-Version 3.0.1
-=============
-
-Skip to :ref:`v3_0_1_downloads_link`
 
 Release Notes
 -------------
@@ -485,23 +524,22 @@ Both the *icloud_bl = 0* and *bl_mynn_cloudpdf = 0* options fail when using the 
 (*bl_pbl_physics = 5*). If these options are critical for your simulations please contact us at 
 support@tempoquest.com to ensure that we prioritize fixing this issue.
 
-
-.. _v3_0_1_downloads_link:
+Version 2.1.0
+=============
 
 Downloads
 ---------
  
-* AceCAST version 3.0.1 for Linux x86-64: `AceCASTv3.0.1.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v3.0.1%2Blinux.x86_64.haswell.tar.gz>`_
+* AceCAST version 2.1.0 for Linux x86-64: `AceCASTv2.1.0.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v2.1.0%2Blinux.x86_64.haswell.tar.gz>`_
+
+Command line download:
+
+.. code-block:: shell
+
+   wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v2.1.0%2Blinux.x86_64.haswell.tar.gz
 
 .. important::
    Check out the :ref:`installationguide` for further installation instructions.
-
-.. tip::
-   If you would like to download the package from the command line you can use the `wget` or `curl`
-   commands with the download link url from above.
-
-Version 2.1.0
-=============
 
 Release Notes
 -------------
@@ -547,18 +585,6 @@ Bug Fixes
   the incorrect *AceCAST Version* and *WRF Compatibility Version* when using the *support check* 
   tool. It should now print the correct versions.
 
-Downloads
----------
- 
-* AceCAST version 2.1.0 for Linux x86-64: `AceCASTv2.1.0.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v2.1.0%2Blinux.x86_64.haswell.tar.gz>`_
-
-.. important::
-   Check out the :ref:`installationguide` for further installation instructions.
-
-.. tip::
-   If you would like to download the package from the command line you can use the `wget` or `curl`
-   commands with the download link url from above.
-
 Known Issues
 ------------
 
@@ -582,6 +608,21 @@ support@tempoquest.com to ensure that we prioritize fixing this issue.
 Version 2.0.0
 =============
 
+Downloads
+---------
+
+ 
+* AceCAST version 2.0.0 for Linux x86-64: `AceCASTv2.0.0.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v2.0.0%2Blinux.x86_64.haswell.tar.gz>`_
+
+Command line download:
+
+.. code-block:: shell
+
+   wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v2.0.0%2Blinux.x86_64.haswell.tar.gz
+
+.. important::
+   Check out the :ref:`installationguide` for further installation instructions.
+
 Release Notes
 -------------
 
@@ -589,19 +630,6 @@ This is the first release of our highly anticipated upgraded version of AceCAST 
 version 4.2.2. This involved a massive rework of the entire code base due to the significant 
 changes between WRF versions 3.8.1 and 4.2.2. For a comprehensive list of supported options, check 
 out the :ref:`nmlsupporttbl` page.
-
-Downloads
----------
-
- 
-* AceCAST version 2.0.0 for Linux x86-64: `AceCASTv2.0.0.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v2.0.0%2Blinux.x86_64.haswell.tar.gz>`_
-
-.. important::
-   Check out the :ref:`installationguide` for further installation instructions.
-
-.. tip::
-   If you would like to download the package from the command line you can use the `wget` or `curl`
-   commands with the download link url from above.
 
 Known Issues
 ------------

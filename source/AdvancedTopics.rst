@@ -55,6 +55,274 @@ by launching the `acecast.exe` executable with `mpirun` and the `gpu-launch.sh` 
 
             mpirun -np 3 ./gpu-launch.sh --gpu-list 0,1,3 ./acecast.exe
 
+.. _performanceprofiling:
+
+Performance Profiling
+=====================
+
+AceCAST includes an internal timer infrastructure that can be enabled at runtime to produce
+detailed timing output in the RSL logs. This is useful for understanding where time is being
+spent in the model, especially for multi-GPU runs where communication and scaling behavior can
+be as important as raw kernel performance.
+
+Enable Internal Timers
+----------------------
+
+To enable the internal timers, export the following environment variable before launching
+AceCAST:
+
+.. code-block:: shell
+
+   export ACECAST_USE_TIMERS=true
+
+With timers enabled, AceCAST writes several complementary profiling views near the end of the
+`rsl.error.0000` file:
+
+* A fine-grained top-down call tree with per-region total time, call counts, and mean time.
+* A dedicated MPI performance summary for halo and nesting communication phases.
+* A compute-throughput summary showing per-domain and total updates-per-second metrics.
+* A simplified top-down summary that groups time into broader categories such as
+  initialization, I/O, MPI, dynamics, and physics.
+
+Example timer output:
+
+.. code-block:: output
+
+   Timing for main: time 2019-11-26_12:55:12 on domain   1:    0.23964 elapsed seconds
+   Timing for main: time 2019-11-26_12:56:24 on domain   1:    0.23654 elapsed seconds
+   Timing for main: time 2019-11-26_12:57:36 on domain   1:    0.23726 elapsed seconds
+   Timing for main: time 2019-11-26_12:58:48 on domain   1:    0.23867 elapsed seconds
+   Timing for main: time 2019-11-26_13:00:00 on domain   1:    0.23738 elapsed seconds
+    mediation_integrate.G         1700 DATASET=HISTORY
+    mediation_integrate.G         1701  grid%id             1  grid%oid
+               6
+   Timing for Writing wrfout_d01_2019-11-26_13_00_00 for domain        1:    2.63004 elapsed seconds
+   Timing for Writing auxhist3_d01_2019-11-26_13_00_00 for domain        1:    0.00001 elapsed seconds
+   Timing for Writing auxhist15_d01_2019-11-26_13_00_00 for domain        1:    0.00001 elapsed seconds
+   Timing for Writing auxhist22_d01_2019-11-26_13_00_00 for domain        1:    0.00001 elapsed seconds
+   Timing for Writing auxhist23_d01_2019-11-26_13_00_00 for domain        1:    0.00000 elapsed seconds
+
+
+
+
+   ==========================================================================================
+                                 Fine-Grained Top-Down Profile
+   ==========================================================================================
+
+   Top-down timing profile:
+       100.00% main, t_tot = 25.250872s, count = 1, t_mean = 25.250872s
+         25.29% wrf_init, t_tot = 6.384966s, count = 1, t_mean = 6.384966s
+         | 3.61% alloc_and_configure_domain, t_tot = 0.911055s, count = 1, t_mean = 0.911055s
+         | 15.85% med_initialdata_input, t_tot = 4.003109s, count = 1, t_mean = 4.003109s
+         |   10.56% process_input_input, t_tot = 2.667613s, count = 1, t_mean = 2.667613s
+         |   0.00% init_imask_arrays, t_tot = 0.000480s, count = 1, t_mean = 0.000480s
+         |   5.29% start_domain, t_tot = 1.335010s, count = 1, t_mean = 1.335010s
+         |     0.20% start_domain_em_part1, t_tot = 0.051267s, count = 1, t_mean = 0.051267s
+         |     4.78% start_domain_em_part2, t_tot = 1.207877s, count = 1, t_mean = 1.207877s
+         |     | 4.78% phy_init, t_tot = 1.207052s, count = 1, t_mean = 1.207052s
+         |     |   0.05% phy_init_part1, t_tot = 0.011393s, count = 1, t_mean = 0.011393s
+         |     |   | 0.01% landuse_init, t_tot = 0.002815s, count = 1, t_mean = 0.002815s
+         |     |   | 0.00% z2sigma, t_tot = 0.000052s, count = 1, t_mean = 0.000052s
+         |     |   0.11% ra_init, t_tot = 0.027249s, count = 1, t_mean = 0.027249s
+         |     |   | 0.00% ra_init_part1, t_tot = 0.000888s, count = 1, t_mean = 0.000888s
+         |     |   | 0.07% oznini, t_tot = 0.017299s, count = 1, t_mean = 0.017299s
+         |     |   | 0.02% lw_init, t_tot = 0.005145s, count = 1, t_mean = 0.005145s
+         |     |   | 0.02% sw_init, t_tot = 0.003906s, count = 1, t_mean = 0.003906s
+         |     |   0.05% bl_init, t_tot = 0.011991s, count = 1, t_mean = 0.011991s
+         |     |   0.00% cu_init, t_tot = 0.000874s, count = 1, t_mean = 0.000874s
+         |     |   0.00% shcu_init, t_tot = 0.000024s, count = 1, t_mean = 0.000024s
+         |     |   4.58% mp_init, t_tot = 1.155377s, count = 1, t_mean = 1.155377s
+         |     |   | 0.02% aerosol_init, t_tot = 0.005560s, count = 1, t_mean = 0.005560s
+         |     |   | 0.00% misc_init, t_tot = 0.000039s, count = 1, t_mean = 0.000039s
+         |     |   | 1.35% zero_lookup_tables, t_tot = 0.341676s, count = 1, t_mean = 0.341676s
+         |     |   | 0.24% table_ccnAct, t_tot = 0.061696s, count = 1, t_mean = 0.061696s
+         |     |   | 0.00% table_Efrw, t_tot = 0.000408s, count = 1, t_mean = 0.000408s
+         |     |   | 0.01% table_Efsw, t_tot = 0.001300s, count = 1, t_mean = 0.001300s
+         |     |   | 0.03% table_dropEvap, t_tot = 0.006463s, count = 1, t_mean = 0.006463s
+         |     |   | 0.00% radar_init, t_tot = 0.000168s, count = 1, t_mean = 0.000168s
+         |     |   | 1.43% qr_acr_qg, t_tot = 0.361681s, count = 1, t_mean = 0.361681s
+         |     |   | 0.10% qr_acr_qs, t_tot = 0.024485s, count = 1, t_mean = 0.024485s
+         |     |   | 0.50% freezeH2O, t_tot = 0.126299s, count = 1, t_mean = 0.126299s
+         |     |   | 0.00% qi_aut_qs, t_tot = 0.000821s, count = 1, t_mean = 0.000821s
+         |     |   | 0.69% final_device_update, t_tot = 0.175266s, count = 1, t_mean = 0.175266s
+         |     |   0.00% fg_init, t_tot = 0.000001s, count = 1, t_mean = 0.000001s
+         |     |   0.00% fdob_init, t_tot = 0.000001s, count = 1, t_mean = 0.000001s
+         |     0.30% start_domain_em_part3, t_tot = 0.075765s, count = 1, t_mean = 0.075765s
+         |       0.23% HALO, t_tot = 0.058393s, count = 10, t_mean = 0.005839s
+         |         0.01% halo_pack_y, t_tot = 0.003446s, count = 10, t_mean = 0.000345s
+         |         0.11% halo_exch_y, t_tot = 0.027051s, count = 10, t_mean = 0.002705s
+         |         0.00% halo_unpack_y, t_tot = 0.000594s, count = 10, t_mean = 0.000059s
+         |         0.00% halo_pack_x, t_tot = 0.000631s, count = 10, t_mean = 0.000063s
+         |         0.07% halo_exch_x, t_tot = 0.017980s, count = 10, t_mean = 0.001798s
+         |         0.00% halo_unpack_x, t_tot = 0.000566s, count = 10, t_mean = 0.000057s
+       0.00% wrf_dfi, t_tot = 0.000000s, count = 1, t_mean = 0.000000s
+       74.71% wrf_run, t_tot = 18.865876s, count = 1, t_mean = 18.865876s
+         74.71% integrate_head_grid, t_tot = 18.865875s, count = 1, t_mean = 18.865875s
+           ...
+
+   (see 'fort.88' for the same tree with min/max/avg t_tot across all MPI ranks.)
+
+
+   ==========================================================================================
+                                        MPI Performance
+   ==========================================================================================
+
+   MPI Metrics (local rank 0, global averages and maxima across all ranks):
+
+   MPI Metrics: HALO
+   | ----------------------- | ------------------ | ------------------ | ------------------ |
+   | Metric                  | Local              | Global Avg         | Global Max         |
+   | ----------------------- | ------------------ | ------------------ | ------------------ |
+   |              Bytes Sent | 2.530 GB           | 2.533 GB           | 2.537 GB           |
+   |                Messages |   5620             |   5620             |   5620             |
+   |            Avg Msg Size | 0.4501 MB          | 0.4507 MB          |                    |
+   | ----------------------- | ------------------ | ------------------ | ------------------ |
+   |              First Done | 3.416 s            | 3.347 s            | 3.497 s            |
+   |               Wait Tail | 2.867 s            | 2.532 s            | 2.887 s            |
+   |                MPI Time | 6.283 s            | 5.879 s            | 6.283 s            |
+   | ----------------------- | ------------------ | ------------------ | ------------------ |
+   |            Transport BW | 0.7406 GB/s        | 0.7568 GB/s        |                    |
+   |            Effective BW | 0.4026 GB/s        | 0.4309 GB/s        |                    |
+   |           Transport Lat | 607.8 us/msg       | 595.6 us/msg       | 622.3 us/msg       |
+   |             MPI Latency | 1.118 ms/msg       | 1.046 ms/msg       | 1.118 ms/msg       |
+   | ----------------------- | ------------------ | ------------------ | ------------------ |
+   |             Imbalance % |                    | 43.07 %            |                    |
+   | ----------------------- | ------------------ | ------------------ | ------------------ |
+     Transport BW/Lat derived from 'First Done'.
+     Imbalance %% = Wait Tail / MPI Time (global sums).
+
+   MPI Metrics: Nesting
+   | ----------------------- | ------------------ | ------------------ | ------------------ |
+   | Metric                  | Local              | Global Avg         | Global Max         |
+   | ----------------------- | ------------------ | ------------------ | ------------------ |
+   |              Bytes Sent | 0.000 GB           | 0.000 GB           | 0.000 GB           |
+   |                Messages |   0                |   0                |   0                |
+   |            Avg Msg Size | 0.000 MB           | 0.000 MB           |                    |
+   | ----------------------- | ------------------ | ------------------ | ------------------ |
+   |               Alltoallv | 0.000 s            | 0.000 s            | 0.000 s            |
+   |             Pre-Barrier | 0.000 s            | 0.000 s            | 0.000 s            |
+   |                MPI Time | 0.000 s            | 0.000 s            | 0.000 s            |
+   | ----------------------- | ------------------ | ------------------ | ------------------ |
+   |            Transport BW | 0.000 GB/s         | 0.000 GB/s         |                    |
+   |            Effective BW | 0.000 GB/s         | 0.000 GB/s         |                    |
+   |           Transport Lat | 0.000 us/msg       | 0.000 us/msg       | 0.000 us/msg       |
+   |             MPI Latency | 0.000 us/msg       | 0.000 us/msg       | 0.000 us/msg       |
+   | ----------------------- | ------------------ | ------------------ | ------------------ |
+   |             Imbalance % |                    | 0.000 %            |                    |
+   | ----------------------- | ------------------ | ------------------ | ------------------ |
+     Transport BW/Lat derived from 'Alltoallv'.
+     Imbalance %% = Pre-Barrier / MPI Time (global sums).
+
+
+   ==========================================================================================
+                                      Compute Performance
+   ==========================================================================================
+
+   Per-Domain Compute Throughput (local rank 0):
+
+   | ----------------------- | ------------------ | ------------------ |
+   |                  Metric |   d01              |  Total (All Ranks) |
+   | ----------------------- | ------------------ | ------------------ |
+   |               # columns | 31800              | 127.5 k            |
+   |                # levels | 50                 |                    |
+   |           # grid points | 1.590 M            | 6.375 M            |
+   |             # timesteps | 50                 |                    |
+   |        Total GP updates | 79.50 M            | 318.8 M            |
+   | ----------------------- | ------------------ | ------------------ |
+   |               Wall time | 13.36 s            |                    |
+   |                MPI time | 6.238 s            |                    |
+   |          Radiation time | 0.5452 s           |                    |
+   | ----------------------- | ------------------ | ------------------ |
+   |           Col Updates/s | 223.1 kupd/s       | 847.3 kupd/s       |
+   |  Col Updates/s (w/ MPI) | 119.0 kupd/s       | 476.8 kupd/s       |
+   |  Col Updates/s (no rad) | 241.6 kupd/s       | 957.3 kupd/s       |
+   |            GP Updates/s | 11.15 Mupd/s       | 42.37 Mupd/s       |
+   |   GP Updates/s (w/ MPI) | 5.948 Mupd/s       | 23.84 Mupd/s       |
+   |   GP Updates/s (no rad) | 12.08 Mupd/s       | 47.86 Mupd/s       |
+   | ----------------------- | ------------------ | ------------------ |
+     Numerator: #columns (or #grid points) x #solve_interface calls per domain.
+     Excluded from all rows: initialization, history/restart I/O, lateral-BC
+       reads, FDDA, nest interp/feedback (these run outside solve_interface).
+     Base row denominator: solve_interface wall time MINUS HALO+Nesting MPI
+       time (i.e. compute-only: dynamics + physics + pack/unpack kernels).
+     'w/ MPI' denominator: full solve_interface wall time (compute + MPI).
+     'no rad' denominator: base minus rad_driver_tim time.
+     'Total (All Ranks)' column: per-rank values summed across all MPI ranks.
+
+
+   ==========================================================================================
+                                  Simplified Top-Down Profile
+   ==========================================================================================
+
+   Top-Down Profile Summary:
+   | -------------------------------- | ------------ | --------- |
+   |              Name                |   Time (s)   |  Time (%) |
+   | -------------------------------- | ------------ | --------- |
+   | WRF Total                        |    25.250872 |    100.00 |
+   |     Initialization               |     6.384973 |     25.29 |
+   |         Allocate                 |     0.911055 |      3.61 |
+   |         Init I/O (Read)          |     2.667613 |     10.56 |
+   |         Init I/O (Write)         |     0.000000 |      0.00 |
+   |         HALO/Nesting (MPI)       |     0.045031 |      0.18 |
+   |         HALO/Nesting (non-MPI)   |     0.013362 |      0.05 |
+   |         Other                    |     2.747912 |     10.88 |
+   |     Integration                  |    18.865869 |     74.71 |
+   |         I/O (Read)               |     0.211539 |      0.84 |
+   |         I/O (Write)              |     5.277924 |     20.90 |
+   |         HALO/Nesting (MPI)       |     6.238715 |     24.71 |
+   |         HALO/Nesting (non-MPI)   |     0.352421 |      1.40 |
+   |         Compute/Other            |     6.785270 |     26.87 |
+   |             Physics              |     2.746135 |     10.88 |
+   |                 LW Radiation     |     0.518591 |      2.05 |
+   |                 SW Radiation     |     0.005723 |      0.02 |
+   |                 Surface Layer    |     0.037927 |      0.15 |
+   |                 Land Surface     |     0.057163 |      0.23 |
+   |                 PBL              |     0.275263 |      1.09 |
+   |                 Cumulus          |     0.467612 |      1.85 |
+   |                 Microphysics     |     0.958975 |      3.80 |
+   |                 Physics Overhead |     0.424880 |      1.68 |
+   |             Dynamics             |     5.212110 |     20.64 |
+   |                 RK Setup         |     0.179965 |      0.71 |
+   |                 Dry Dynamics     |     0.660739 |      2.62 |
+   |                 Acoustic / Small |     1.865666 |      7.39 |
+   |                 Scalar Transport |     2.163329 |      8.57 |
+   |                 Dynamics BC/EOS  |     0.098769 |      0.39 |
+   |                 Dyn/Phys Cplng   |     0.243640 |      0.96 |
+   |             Residual             |     0.000000 |      0.00 |
+   | -------------------------------- | ------------ | --------- |
+
+   Projected overhead from timer usage:       0.01s (0.046117% of main),    277ns per call (average)
+     MPI_WTICK() =    1.0000000000000001E-009
+
+   d01 2019-11-26_13:00:00 wrf: SUCCESS COMPLETE WRF
+
+Enable NVTX Ranges for Nsight Systems
+-------------------------------------
+
+AceCAST v4.6.0 can optionally emit NVTX ranges from the same timer infrastructure so that the
+main model phases appear directly on NVIDIA profiler timelines.
+
+To enable NVTX range emission, set both of the following environment variables before launching
+AceCAST under Nsight Systems:
+
+.. code-block:: shell
+
+   export ACECAST_USE_TIMERS=true
+   export ACECAST_USE_NVTX_RANGES=true
+
+Example usage with Nsight Systems:
+
+.. code-block:: shell
+
+   export ACECAST_USE_TIMERS=true
+   export ACECAST_USE_NVTX_RANGES=true
+
+   mpirun -n 1 ./gpu-launch.sh nsys profile --trace=cuda,nvtx --sample=none --cpuctxsw=none -o run-profile --force-overwrite true ./acecast.exe
+
+This mode is intended for profiling runs rather than production throughput measurements. When
+used together, the RSL timer output and the Nsight Systems timeline provide both high-level
+performance summaries and time-correlated GPU activity for deeper investigation.
+
 .. _JoinWRF:
 
 JoinWRF: Combining Decomposed WRF Output
@@ -202,9 +470,4 @@ References
 ..     /
 ..    ...
 ..
-
-
-
-
-
 

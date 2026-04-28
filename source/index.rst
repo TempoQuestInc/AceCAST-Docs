@@ -46,9 +46,9 @@ Index
    NamelistConfiguration.rst
    GeneratingInputData.rst
    Benchmarks.rst
-   Containers.rst
    AdvancedTopics.rst
    CommonIssues.rst
+   Containers.rst
 
 .. toctree::
    :maxdepth: 1

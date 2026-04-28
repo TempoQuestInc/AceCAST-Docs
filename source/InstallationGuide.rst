@@ -184,7 +184,7 @@ AceCAST requires installation of the NVIDIA HPC SDK version 25.9. You can either
 `NVHPC 25.9 Downloads`_) or you can try our quick method below:
 
 .. important::
-   AceCAST v4.5.0 and later uses the NVHPC SDK version 25.9. Previous versions of AceCAST required older versions of the NVHPC SDK. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST.
+   AceCAST v4.6.0 uses the NVHPC SDK version 25.9. Previous versions of AceCAST required older versions of the NVHPC SDK. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST.
 
 **NVHPC v25.9 Quick Install:**
 
@@ -246,15 +246,15 @@ follows:
 
 .. code-block:: shell
 
-    wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.5.0%2Blinux.x86_64.nvhpc25.9.tar.gz
-    tar -xf acecast-v4.5.0+linux.x86_64.nvhpc25.9.tar.gz
+    wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.6.0%2Blinux.x86_64.nvhpc25.9.tar.gz
+    tar -xf acecast-v4.6.0+linux.x86_64.nvhpc25.9.tar.gz
 
-If successful you should see a new directory *acecast-v4.5.0*. The directory structure should look 
+If successful you should see a new directory *acecast-v4.6.0*. The directory structure should look 
 like the following:
 
 .. code-block:: output
 
-    acecast-v4.5.0
+    acecast-v4.6.0
     ├── acecast
     │   └── run
     │       ├── acecast.exe
@@ -290,7 +290,7 @@ previous steps is to print the shared libraries used by the *acecast.exe* execut
 
         .. code-block:: shell
             
-            ldd acecast-v4.5.0/acecast/run/acecast.exe
+            ldd acecast-v4.6.0/acecast/run/acecast.exe
 
     .. tab:: successful output example
         
@@ -303,32 +303,32 @@ previous steps is to print the shared libraries used by the *acecast.exe* execut
             libz.so.1 => /lib64/libz.so.1 (0x00007f049c5b8000)
             libatomic.so.1 => /lib64/libatomic.so.1 (0x00007f049c3b0000)
             libm.so.6 => /lib64/libm.so.6 (0x00007f049c070000)
-            libmpi_usempif08.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/comm_libs/mpi/lib/libmpi_usempif08.so.40 (0x00001555545d0000)
-            libmpi_usempi_ignore_tkr.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/comm_libs/mpi/lib/libmpi_usempi_ignore_tkr.so.40 (0x00001555543cb000)
-            libmpi_mpifh.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/comm_libs/mpi/lib/libmpi_mpifh.so.40 (0x000015555417e000)
-            libmpi.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/comm_libs/mpi/lib/libmpi.so.40 (0x0000155553d3f000)
-            libnvhpcwrapcufft.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libnvhpcwrapcufft.so (0x00007f049be6e000)
+            libmpi_usempif08.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/comm_libs/mpi/lib/libmpi_usempif08.so.40 (0x00001555545d0000)
+            libmpi_usempi_ignore_tkr.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/comm_libs/mpi/lib/libmpi_usempi_ignore_tkr.so.40 (0x00001555543cb000)
+            libmpi_mpifh.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/comm_libs/mpi/lib/libmpi_mpifh.so.40 (0x000015555417e000)
+            libmpi.so.40 => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/comm_libs/mpi/lib/libmpi.so.40 (0x0000155553d3f000)
+            libnvhpcwrapcufft.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/compilers/lib/libnvhpcwrapcufft.so (0x00007f049be6e000)
             libcufft.so.11 => /usr/local/cuda-12.2/targets/x86_64-linux/lib/libcufft.so.11 (0x00007f049113e000)
-            libcudart.so.12 => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/cuda/12.3/lib64/libcudart.so.12 (0x00007f0490e90000)
-            libcudafor_120.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libcudafor_120.so (0x00007f048af67000)
-            libcudafor.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libcudafor.so (0x00007f048ad52000)
-            libacchost.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libacchost.so (0x00007f048aaed000)
-            libaccdevaux.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libaccdevaux.so (0x00007f048a8d1000)
-            libacccuda.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libacccuda.so (0x00007f048a5a0000)
+            libcudart.so.12 => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/cuda/12.9/lib64/libcudart.so.12 (0x00007f0490e90000)
+            libcudafor_120.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/compilers/lib/libcudafor_120.so (0x00007f048af67000)
+            libcudafor.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/compilers/lib/libcudafor.so (0x00007f048ad52000)
+            libacchost.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/compilers/lib/libacchost.so (0x00007f048aaed000)
+            libaccdevaux.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/compilers/lib/libaccdevaux.so (0x00007f048a8d1000)
+            libacccuda.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/compilers/lib/libacccuda.so (0x00007f048a5a0000)
             libdl.so.2 => /lib64/libdl.so.2 (0x00007f048a39c000)
-            libcudadevice.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libcudadevice.so (0x00007f048a185000)
-            libcudafor2.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libcudafor2.so (0x00007f0489f82000)
-            libnvf.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libnvf.so (0x00007f048985f000)
-            libnvomp.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libnvomp.so (0x00007f048885e000)
-            libnvhpcatm.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libnvhpcatm.so (0x00007f0488653000)
+            libcudadevice.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/compilers/lib/libcudadevice.so (0x00007f048a185000)
+            libcudafor2.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/compilers/lib/libcudafor2.so (0x00007f0489f82000)
+            libnvf.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/compilers/lib/libnvf.so (0x00007f048985f000)
+            libnvomp.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/compilers/lib/libnvomp.so (0x00007f048885e000)
+            libnvhpcatm.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/compilers/lib/libnvhpcatm.so (0x00007f0488653000)
             libpthread.so.0 => /lib64/libpthread.so.0 (0x00007f0488435000)
-            libnvcpumath-avx2.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libnvcpumath-avx2.so (0x00007f0487ff1000)
-            libnvc.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libnvc.so (0x00007f0487d8d000)
+            libnvcpumath-avx2.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/compilers/lib/libnvcpumath-avx2.so (0x00007f0487ff1000)
+            libnvc.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/compilers/lib/libnvc.so (0x00007f0487d8d000)
             librt.so.1 => /lib64/librt.so.1 (0x00007f0487b85000)
             libc.so.6 => /lib64/libc.so.6 (0x00007f04877d8000)
             libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x00007f04875c2000)
             /lib64/ld-linux-x86-64.so.2 (0x00007f049cd52000)
-            libnvcpumath.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/24.3/compilers/lib/libnvcpumath.so (0x00007f048717e000)
+            libnvcpumath.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/compilers/lib/libnvcpumath.so (0x00007f048717e000)
 
 
         As you can see above all of the required libraries were found and are in the expected 
@@ -364,7 +364,6 @@ previous steps is to print the shared libraries used by the *acecast.exe* execut
 .. note::
    The *ldd* command doesn't guarantee that AceCAST will run correctly but it can be extremely
    helpful in identifying a number of common issues that users run into regularly.
-
 
 
 
