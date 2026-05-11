@@ -69,6 +69,43 @@ subsection on this page.
 
 .. _latestlink:
 
+Version 4.6.1
+=============
+
+Downloads
+---------
+
+* AceCAST version 4.6.1 for Linux x86-64: `AceCASTv4.6.1.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.6.1%2Blinux.x86_64.nvhpc25.9.tar.gz>`_
+
+Command line download:
+
+.. code-block:: shell
+
+   wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.6.1%2Blinux.x86_64.nvhpc25.9.tar.gz
+
+.. important::
+   Check out the :ref:`installationguide` for further installation instructions.
+
+Release Notes
+-------------
+
+New in v4.6.1
+*************
+
+* AceCAST v4.6.1 is a patch release for the 4.6.x series. It includes all v4.6.0 features plus the MPI profiling and GPU communication improvements below.
+* Improved MPI profiling output when *ACECAST_USE_TIMERS=true* is enabled, with optional synchronization via *ACECAST_TIMERS_MPI_SYNC=true*. HALO and nesting communication now report scope-relative timing percentages, symmetric send/receive bandwidth, per-bin message-size counts, and a dedicated HALO scope timer. The compute-throughput summary now uses combined HALO and nesting scope time for communication accounting, making roofline-style MPI analysis easier. See :ref:`performanceprofiling` for an example and additional details.
+* Improved MPI communication performance on the AceCAST GPU build by removing per-call allocation overhead in nesting and HALO/period/swap/cycle communication paths. This improvement applies automatically to GPU runs and does not require any user configuration changes.
+
+Improvements and Bug Fixes
+**************************
+
+* Improved strong-scaling performance by reducing GPU kernel-launch and synchronization overheads that were significant for small per-rank patch sizes.
+
+Known Issues
+************
+
+* We have identified an issue affecting hail-diameter diagnostics when *nwp_diagnostics = 1* is enabled. When this option is enabled, the *HAIL_MAXK1* and *HAIL_MAX2D* diagnostic variables may be underestimated by about 50%.
+
 Version 4.6.0
 =============
 

@@ -75,6 +75,21 @@ AceCAST:
 
    export ACECAST_USE_TIMERS=true
 
+If you want more detailed MPI communication profiling, enable the optional synchronization
+timers:
+
+.. code-block:: shell
+
+   export ACECAST_TIMERS_MPI_SYNC=true
+
+This inserts MPI barriers around selected HALO and nesting communication scopes so the
+profiling output can separate time spent waiting for ranks to enter or exit a communication
+phase from time spent inside the MPI calls themselves. It also enables HALO timing bins by
+average message size.
+
+This option is intended for profiling and roofline-style analysis. It can change runtime
+performance because the added barriers reduce overlap and expose rank imbalance.
+
 With timers enabled, AceCAST writes several complementary profiling views near the end of the
 `rsl.error.0000` file:
 
@@ -88,76 +103,44 @@ Example timer output:
 
 .. code-block:: output
 
-   Timing for main: time 2019-11-26_12:55:12 on domain   1:    0.23964 elapsed seconds
-   Timing for main: time 2019-11-26_12:56:24 on domain   1:    0.23654 elapsed seconds
-   Timing for main: time 2019-11-26_12:57:36 on domain   1:    0.23726 elapsed seconds
-   Timing for main: time 2019-11-26_12:58:48 on domain   1:    0.23867 elapsed seconds
-   Timing for main: time 2019-11-26_13:00:00 on domain   1:    0.23738 elapsed seconds
-    mediation_integrate.G         1700 DATASET=HISTORY
-    mediation_integrate.G         1701  grid%id             1  grid%oid
-               6
-   Timing for Writing wrfout_d01_2019-11-26_13_00_00 for domain        1:    2.63004 elapsed seconds
-   Timing for Writing auxhist3_d01_2019-11-26_13_00_00 for domain        1:    0.00001 elapsed seconds
-   Timing for Writing auxhist15_d01_2019-11-26_13_00_00 for domain        1:    0.00001 elapsed seconds
-   Timing for Writing auxhist22_d01_2019-11-26_13_00_00 for domain        1:    0.00001 elapsed seconds
-   Timing for Writing auxhist23_d01_2019-11-26_13_00_00 for domain        1:    0.00000 elapsed seconds
-
-
-
-
    ==========================================================================================
                                  Fine-Grained Top-Down Profile
    ==========================================================================================
 
    Top-down timing profile:
-       100.00% main, t_tot = 25.250872s, count = 1, t_mean = 25.250872s
-         25.29% wrf_init, t_tot = 6.384966s, count = 1, t_mean = 6.384966s
-         | 3.61% alloc_and_configure_domain, t_tot = 0.911055s, count = 1, t_mean = 0.911055s
-         | 15.85% med_initialdata_input, t_tot = 4.003109s, count = 1, t_mean = 4.003109s
-         |   10.56% process_input_input, t_tot = 2.667613s, count = 1, t_mean = 2.667613s
-         |   0.00% init_imask_arrays, t_tot = 0.000480s, count = 1, t_mean = 0.000480s
-         |   5.29% start_domain, t_tot = 1.335010s, count = 1, t_mean = 1.335010s
-         |     0.20% start_domain_em_part1, t_tot = 0.051267s, count = 1, t_mean = 0.051267s
-         |     4.78% start_domain_em_part2, t_tot = 1.207877s, count = 1, t_mean = 1.207877s
-         |     | 4.78% phy_init, t_tot = 1.207052s, count = 1, t_mean = 1.207052s
-         |     |   0.05% phy_init_part1, t_tot = 0.011393s, count = 1, t_mean = 0.011393s
-         |     |   | 0.01% landuse_init, t_tot = 0.002815s, count = 1, t_mean = 0.002815s
+       100.00% main, t_tot = 89.908511s, count = 1, t_mean = 89.908511s
+         7.89% wrf_init, t_tot = 7.094729s, count = 1, t_mean = 7.094729s
+         | 1.72% alloc_and_configure_domain, t_tot = 1.549919s, count = 1, t_mean = 1.549919s
+         | 4.32% med_initialdata_input, t_tot = 3.884519s, count = 1, t_mean = 3.884519s
+         |   4.03% process_input_input, t_tot = 3.625361s, count = 1, t_mean = 3.625361s
+         |   0.00% init_imask_arrays, t_tot = 0.000541s, count = 1, t_mean = 0.000541s
+         |   0.29% start_domain, t_tot = 0.258612s, count = 1, t_mean = 0.258612s
+         |     0.06% start_domain_em_part1, t_tot = 0.051256s, count = 1, t_mean = 0.051256s
+         |     0.09% start_domain_em_part2, t_tot = 0.077445s, count = 1, t_mean = 0.077445s
+         |     | 0.08% phy_init, t_tot = 0.074896s, count = 1, t_mean = 0.074896s
+         |     |   0.01% phy_init_part1, t_tot = 0.011831s, count = 1, t_mean = 0.011831s
+         |     |   | 0.00% landuse_init, t_tot = 0.002328s, count = 1, t_mean = 0.002328s
          |     |   | 0.00% z2sigma, t_tot = 0.000052s, count = 1, t_mean = 0.000052s
-         |     |   0.11% ra_init, t_tot = 0.027249s, count = 1, t_mean = 0.027249s
-         |     |   | 0.00% ra_init_part1, t_tot = 0.000888s, count = 1, t_mean = 0.000888s
-         |     |   | 0.07% oznini, t_tot = 0.017299s, count = 1, t_mean = 0.017299s
-         |     |   | 0.02% lw_init, t_tot = 0.005145s, count = 1, t_mean = 0.005145s
-         |     |   | 0.02% sw_init, t_tot = 0.003906s, count = 1, t_mean = 0.003906s
-         |     |   0.05% bl_init, t_tot = 0.011991s, count = 1, t_mean = 0.011991s
-         |     |   0.00% cu_init, t_tot = 0.000874s, count = 1, t_mean = 0.000874s
-         |     |   0.00% shcu_init, t_tot = 0.000024s, count = 1, t_mean = 0.000024s
-         |     |   4.58% mp_init, t_tot = 1.155377s, count = 1, t_mean = 1.155377s
-         |     |   | 0.02% aerosol_init, t_tot = 0.005560s, count = 1, t_mean = 0.005560s
-         |     |   | 0.00% misc_init, t_tot = 0.000039s, count = 1, t_mean = 0.000039s
-         |     |   | 1.35% zero_lookup_tables, t_tot = 0.341676s, count = 1, t_mean = 0.341676s
-         |     |   | 0.24% table_ccnAct, t_tot = 0.061696s, count = 1, t_mean = 0.061696s
-         |     |   | 0.00% table_Efrw, t_tot = 0.000408s, count = 1, t_mean = 0.000408s
-         |     |   | 0.01% table_Efsw, t_tot = 0.001300s, count = 1, t_mean = 0.001300s
-         |     |   | 0.03% table_dropEvap, t_tot = 0.006463s, count = 1, t_mean = 0.006463s
-         |     |   | 0.00% radar_init, t_tot = 0.000168s, count = 1, t_mean = 0.000168s
-         |     |   | 1.43% qr_acr_qg, t_tot = 0.361681s, count = 1, t_mean = 0.361681s
-         |     |   | 0.10% qr_acr_qs, t_tot = 0.024485s, count = 1, t_mean = 0.024485s
-         |     |   | 0.50% freezeH2O, t_tot = 0.126299s, count = 1, t_mean = 0.126299s
-         |     |   | 0.00% qi_aut_qs, t_tot = 0.000821s, count = 1, t_mean = 0.000821s
-         |     |   | 0.69% final_device_update, t_tot = 0.175266s, count = 1, t_mean = 0.175266s
-         |     |   0.00% fg_init, t_tot = 0.000001s, count = 1, t_mean = 0.000001s
+         |     |   0.03% ra_init, t_tot = 0.026829s, count = 1, t_mean = 0.026829s
+         |     |   | 0.00% ra_init_part1, t_tot = 0.001743s, count = 1, t_mean = 0.001743s
+         |     |   | 0.02% oznini, t_tot = 0.015315s, count = 1, t_mean = 0.015315s
+         |     |   | 0.01% lw_init, t_tot = 0.006120s, count = 1, t_mean = 0.006120s
+         |     |   | 0.00% sw_init, t_tot = 0.003643s, count = 1, t_mean = 0.003643s
+         |     |   0.03% bl_init, t_tot = 0.025141s, count = 1, t_mean = 0.025141s
+         |     |   0.01% cu_init, t_tot = 0.010791s, count = 1, t_mean = 0.010791s
+         |     |   | 0.01% kf_eta_init, t_tot = 0.010752s, count = 1, t_mean = 0.010752s
+         |     |   0.00% shcu_init, t_tot = 0.000033s, count = 1, t_mean = 0.000033s
+         |     |   0.00% mp_init, t_tot = 0.000151s, count = 1, t_mean = 0.000151s
+         |     |   0.00% fg_init, t_tot = 0.000003s, count = 1, t_mean = 0.000003s
          |     |   0.00% fdob_init, t_tot = 0.000001s, count = 1, t_mean = 0.000001s
-         |     0.30% start_domain_em_part3, t_tot = 0.075765s, count = 1, t_mean = 0.075765s
-         |       0.23% HALO, t_tot = 0.058393s, count = 10, t_mean = 0.005839s
-         |         0.01% halo_pack_y, t_tot = 0.003446s, count = 10, t_mean = 0.000345s
-         |         0.11% halo_exch_y, t_tot = 0.027051s, count = 10, t_mean = 0.002705s
-         |         0.00% halo_unpack_y, t_tot = 0.000594s, count = 10, t_mean = 0.000059s
-         |         0.00% halo_pack_x, t_tot = 0.000631s, count = 10, t_mean = 0.000063s
-         |         0.07% halo_exch_x, t_tot = 0.017980s, count = 10, t_mean = 0.001798s
-         |         0.00% halo_unpack_x, t_tot = 0.000566s, count = 10, t_mean = 0.000057s
+         |     0.14% start_domain_em_part3, t_tot = 0.129777s, count = 1, t_mean = 0.129777s
+         |       0.12% HALO, t_tot = 0.112048s, count = 10, t_mean = 0.011205s
+         |         0.00% halo_pack_y, t_tot = 0.002655s, count = 10, t_mean = 0.000266s
+         |         0.12% halo_exch_y, t_tot = 0.105628s, count = 10, t_mean = 0.010563s
+         |         0.00% halo_unpack_y, t_tot = 0.000666s, count = 10, t_mean = 0.000067s
        0.00% wrf_dfi, t_tot = 0.000000s, count = 1, t_mean = 0.000000s
-       74.71% wrf_run, t_tot = 18.865876s, count = 1, t_mean = 18.865876s
-         74.71% integrate_head_grid, t_tot = 18.865875s, count = 1, t_mean = 18.865875s
+       92.11% wrf_run, t_tot = 82.813754s, count = 1, t_mean = 82.813754s
+         92.11% integrate_head_grid, t_tot = 82.813753s, count = 1, t_mean = 82.813753s
            ...
 
    (see 'fort.88' for the same tree with min/max/avg t_tot across all MPI ranks.)
@@ -167,51 +150,138 @@ Example timer output:
                                         MPI Performance
    ==========================================================================================
 
-   MPI Metrics (local rank 0, global averages and maxima across all ranks):
+   MPI Metrics (local rank 0, global totals and timing ranges across all ranks):
 
-   MPI Metrics: HALO
-   | ----------------------- | ------------------ | ------------------ | ------------------ |
-   | Metric                  | Local              | Global Avg         | Global Max         |
-   | ----------------------- | ------------------ | ------------------ | ------------------ |
-   |              Bytes Sent | 2.530 GB           | 2.533 GB           | 2.537 GB           |
-   |                Messages |   5620             |   5620             |   5620             |
-   |            Avg Msg Size | 0.4501 MB          | 0.4507 MB          |                    |
-   | ----------------------- | ------------------ | ------------------ | ------------------ |
-   |              First Done | 3.416 s            | 3.347 s            | 3.497 s            |
-   |               Wait Tail | 2.867 s            | 2.532 s            | 2.887 s            |
-   |                MPI Time | 6.283 s            | 5.879 s            | 6.283 s            |
-   | ----------------------- | ------------------ | ------------------ | ------------------ |
-   |            Transport BW | 0.7406 GB/s        | 0.7568 GB/s        |                    |
-   |            Effective BW | 0.4026 GB/s        | 0.4309 GB/s        |                    |
-   |           Transport Lat | 607.8 us/msg       | 595.6 us/msg       | 622.3 us/msg       |
-   |             MPI Latency | 1.118 ms/msg       | 1.046 ms/msg       | 1.118 ms/msg       |
-   | ----------------------- | ------------------ | ------------------ | ------------------ |
-   |             Imbalance % |                    | 43.07 %            |                    |
-   | ----------------------- | ------------------ | ------------------ | ------------------ |
-     Transport BW/Lat derived from 'First Done'.
-     Imbalance %% = Wait Tail / MPI Time (global sums).
+   |-----------------------------------------------------------------------------------------------------------|
+   | HALO MPI Communication                                                                                    |
+   |-----------------------------------------------------------------------------------------------------------|
 
-   MPI Metrics: Nesting
-   | ----------------------- | ------------------ | ------------------ | ------------------ |
-   | Metric                  | Local              | Global Avg         | Global Max         |
-   | ----------------------- | ------------------ | ------------------ | ------------------ |
-   |              Bytes Sent | 0.000 GB           | 0.000 GB           | 0.000 GB           |
-   |                Messages |   0                |   0                |   0                |
-   |            Avg Msg Size | 0.000 MB           | 0.000 MB           |                    |
-   | ----------------------- | ------------------ | ------------------ | ------------------ |
-   |               Alltoallv | 0.000 s            | 0.000 s            | 0.000 s            |
-   |             Pre-Barrier | 0.000 s            | 0.000 s            | 0.000 s            |
-   |                MPI Time | 0.000 s            | 0.000 s            | 0.000 s            |
-   | ----------------------- | ------------------ | ------------------ | ------------------ |
-   |            Transport BW | 0.000 GB/s         | 0.000 GB/s         |                    |
-   |            Effective BW | 0.000 GB/s         | 0.000 GB/s         |                    |
-   |           Transport Lat | 0.000 us/msg       | 0.000 us/msg       | 0.000 us/msg       |
-   |             MPI Latency | 0.000 us/msg       | 0.000 us/msg       | 0.000 us/msg       |
-   | ----------------------- | ------------------ | ------------------ | ------------------ |
-   |             Imbalance % |                    | 0.000 %            |                    |
-   | ----------------------- | ------------------ | ------------------ | ------------------ |
-     Transport BW/Lat derived from 'Alltoallv'.
-     Imbalance %% = Pre-Barrier / MPI Time (global sums).
+   HALO Summary Metrics:
+   | ----------------------------------- | ------------------------ | ---------------------------------------------------- |
+   | Metric                              | Local Rank               | Global Total / Range                                 |
+   | ----------------------------------- | ------------------------ | ---------------------------------------------------- |
+   |                          Bytes Sent | 4.37 GB                  | 26.2 GB                                              |
+   |                          Bytes Recv | 4.37 GB                  | 26.2 GB                                              |
+   |                     Bytes Exchanged | 8.75 GB                  | 52.5 GB                                              |
+   |                       Messages Sent | 2825                     | 16950                                                |
+   |                       Messages Recv | 2825                     | 16950                                                |
+   |                  Messages Exchanged | 5650                     | 33900                                                |
+   |                        Avg Msg Size | 1.55 MB                  | 1.55 MB                                              |
+   | ----------------------------------- | ------------------------ | ---------------------------------------------------- |
+   |                          Scope Time | 17.4 s       (100%)      | 17.4 s           (r2)    .. 17.5 s           (r3)    |
+   |                           Sync Wait | 0.317 s      (1.82%)     | 0.301 s          (r2)    .. 0.369 s          (r3)    |
+   |                            MPI Time | 11.4 s       (65.71%)    | 11.3 s           (r3)    .. 17.0 s           (r1)    |
+   |                      Post Sync Wait | 5.65 s       (32.47%)    | 0.519E-01 s      (r1)    .. 5.82 s           (r3)    |
+   |                               MPI % | 65.7 %                   | 64.6 %           (r3)    .. 97.6 %           (r1)    |
+   | ----------------------------------- | ------------------------ | ---------------------------------------------------- |
+   |                         Exchange BW | 765 MB/s                 | 765 MB/s         (r0)    .. 1.03 GB/s        (r2)    |
+   |                  Effective Phase BW | 502 MB/s                 | 501 MB/s         (r3)    .. 1.01 GB/s        (r2)    |
+   |                MPI Time per Message | 2.03 ms/msg              | 1.50 ms/msg      (r2)    .. 2.03 ms/msg      (r0)    |
+   | ----------------------------------- | ------------------------ | ---------------------------------------------------- |
+     Global ranges show value (rank) for the ranks that produced the min/max.
+     Scope Time spans halo_exch_x/halo_exch_y after communicator lookup.
+     HALO Bytes Recv is assumed equal to Bytes Sent for symmetric halo exchanges.
+     Sync Wait is the optional ACECAST_TIMERS_MPI_SYNC barrier time before request posting.
+     Exchange BW = (Bytes Sent + Bytes Recv) / MPI Time.
+     Effective Phase BW = (Bytes Sent + Bytes Recv) / (Sync Wait + MPI Time + Post Sync Wait).
+     MPI % = MPI Time / (Sync Wait + MPI Time + Post Sync Wait).
+     MPI Time per Message = MPI Time / (Messages Sent + Messages Recv).
+
+   HALO Message Size Bins (sent + received):
+     Receive-side HALO bin counts mirror send sizes for symmetric halo exchanges.
+   | ---------------- | -------------------- | -------------------- |
+   | Size Bin         | Local Rank           | Global Total         |
+   | ---------------- | -------------------- | -------------------- |
+   |         <= 1 KiB | 500                  | 3000                 |
+   |         <= 4 KiB | 100                  | 600                  |
+   |        <= 16 KiB | 104                  | 624                  |
+   |        <= 64 KiB | 0                    | 0                    |
+   |       <= 256 KiB | 278                  | 1668                 |
+   |         <= 1 MiB | 2334                 | 14004                |
+   |         <= 4 MiB | 1828                 | 10968                |
+   |        <= 16 MiB | 506                  | 3036                 |
+   |        <= 64 MiB | 0                    | 0                    |
+   |       <= 256 MiB | 0                    | 0                    |
+   |        > 256 MiB | 0                    | 0                    |
+   | ---------------- | -------------------- | -------------------- |
+
+   HALO Timing by Avg Message Size (local rank exchange-level bins):
+     Each exchange is binned by (Bytes Sent + Bytes Recv) / (Messages Sent + Messages Recv).
+     Times are summed for this MPI rank only.
+     MPI BW is bidirectional: (Bytes Sent + Bytes Recv) / MPI Time.
+   | ---------------- | ---------- | ---------- | ------------ | ------------ | ------------ | ------------ |
+   | Avg Msg Size     | Exchanges  | Messages   | Bytes        | MPI Time     | MPI BW       | MPI Time/Msg |
+   | ---------------- | ---------- | ---------- | ------------ | ------------ | ------------ | ------------ |
+   |         <= 1 KiB |        250 |        500 | 0.00 GB      | 0.742E-03 s  | 0.00 GB/s    | 1.48 us/msg  |
+   |         <= 4 KiB |         50 |        100 | 0.379 MB     | 0.488E-01 s  | 7.75 MB/s    | 488 us/msg   |
+   |        <= 16 KiB |         52 |        104 | 1.12 MB      | 0.283E-02 s  | 396 MB/s     | 27.3 us/msg  |
+   |        <= 64 KiB |          0 |          0 | 0.00 GB      | 0.00 s       | 0.00 GB/s    | 0.00 us/msg  |
+   |       <= 256 KiB |        139 |        278 | 72.1 MB      | 0.756E-01 s  | 954 MB/s     | 272 us/msg   |
+   |         <= 1 MiB |       1167 |       2334 | 1.30 GB      | 1.32 s       | 980 MB/s     | 567 us/msg   |
+   |         <= 4 MiB |        914 |       1828 | 4.06 GB      | 4.89 s       | 830 MB/s     | 2.67 ms/msg  |
+   |        <= 16 MiB |        253 |        506 | 3.32 GB      | 5.10 s       | 651 MB/s     | 10.1 ms/msg  |
+   |        <= 64 MiB |          0 |          0 | 0.00 GB      | 0.00 s       | 0.00 GB/s    | 0.00 us/msg  |
+   |       <= 256 MiB |          0 |          0 | 0.00 GB      | 0.00 s       | 0.00 GB/s    | 0.00 us/msg  |
+   |        > 256 MiB |          0 |          0 | 0.00 GB      | 0.00 s       | 0.00 GB/s    | 0.00 us/msg  |
+   | ---------------- | ---------- | ---------- | ------------ | ------------ | ------------ | ------------ |
+   |              All |       2825 |       5650 | 8.75 GB      | 11.4 s       | 765 MB/s     | 2.03 ms/msg  |
+   | ---------------- | ---------- | ---------- | ------------ | ------------ | ------------ | ------------ |
+
+   |-----------------------------------------------------------------------------------------------------------|
+   | Nesting MPI Communication                                                                                 |
+   |-----------------------------------------------------------------------------------------------------------|
+
+   Nesting Summary Metrics:
+   | ----------------------------------- | ------------------------ | ---------------------------------------------------- |
+   | Metric                              | Local Rank               | Global Total / Range                                 |
+   | ----------------------------------- | ------------------------ | ---------------------------------------------------- |
+   |                          Bytes Sent | 0.00 GB                  | 4.47 GB                                              |
+   |                          Bytes Recv | 1.14 GB                  | 4.47 GB                                              |
+   |                     Bytes Exchanged | 1.14 GB                  | 8.94 GB                                              |
+   |                       Messages Sent | 0                        | 70                                                   |
+   |                       Messages Recv | 14                       | 70                                                   |
+   |                  Messages Exchanged | 14                       | 140                                                  |
+   |                        Avg Msg Size | 81.7 MB                  | 63.9 MB                                              |
+   | ----------------------------------- | ------------------------ | ---------------------------------------------------- |
+   |                          Scope Time | 2.00 s       (100%)      | 1.74 s           (r2)    .. 2.00 s           (r3)    |
+   |                     Entry Sync Wait | 0.255 s      (12.77%)    | 0.362E-04 s      (r2)    .. 0.256 s          (r3)    |
+   |                 Descriptor MPI Time | 0.333E-03 s  (0.02%)     | 0.332E-03 s      (r1)    .. 0.335E-03 s      (r2)    |
+   |                          Setup Time | 0.443E-03 s  (0.02%)     | 0.443E-03 s      (r0)    .. 0.521E-03 s      (r3)    |
+   |                    Payload MPI Time | 1.48 s       (74.06%)    | 1.48 s           (r0)    .. 1.74 s           (r2)    |
+   |                      Exit Sync Wait | 0.262 s      (13.13%)    | 0.606E-04 s      (r2)    .. 0.262 s          (r0)    |
+   |                       Payload MPI % | 74.1 %                   | 74.1 %           (r0)    .. 99.9 %           (r2)    |
+   | ----------------------------------- | ------------------------ | ---------------------------------------------------- |
+   |                          Payload BW | 773 MB/s                 | 773 MB/s         (r0)    .. 1.95 GB/s        (r2)    |
+   |                  Effective Scope BW | 572 MB/s                 | 572 MB/s         (r0)    .. 1.95 GB/s        (r2)    |
+   |            Payload Time per Message | 106 ms/msg               | 30.3 ms/msg      (r1)    .. 108 ms/msg       (r3)    |
+   | ----------------------------------- | ------------------------ | ---------------------------------------------------- |
+     Global ranges show value (rank) for the ranks that produced the min/max.
+     Scope Time spans rsl_lite_bcast_msgs/merge_msgs after communicator lookup.
+     Entry Sync Wait is the optional barrier at nesting communication scope entry.
+     Descriptor MPI Time is the metadata exchange before the payload MPI_Alltoallv.
+     Setup Time includes size/displacement construction, message-size accounting, and allocation.
+     Effective Scope BW = (Bytes Sent + Bytes Recv) / Scope Time.
+     Payload BW = (Bytes Sent + Bytes Recv) / Payload MPI Time.
+     Exit Sync Wait is the optional barrier after rsl_lite_bcast_msgs/merge_msgs.
+     Payload MPI % = Payload MPI Time / Scope Time.
+     Payload Time per Message = Payload MPI Time / (Messages Sent + Messages Recv).
+
+   Nesting Message Size Bins (sent + received):
+   | ---------------- | -------------------- | -------------------- |
+   | Size Bin         | Local Rank           | Global Total         |
+   | ---------------- | -------------------- | -------------------- |
+   |         <= 1 KiB | 0                    | 0                    |
+   |         <= 4 KiB | 0                    | 0                    |
+   |        <= 16 KiB | 0                    | 0                    |
+   |        <= 64 KiB | 0                    | 0                    |
+   |       <= 256 KiB | 0                    | 0                    |
+   |         <= 1 MiB | 0                    | 0                    |
+   |         <= 4 MiB | 0                    | 28                   |
+   |        <= 16 MiB | 0                    | 0                    |
+   |        <= 64 MiB | 0                    | 0                    |
+   |       <= 256 MiB | 14                   | 112                  |
+   |        > 256 MiB | 0                    | 0                    |
+   | ---------------- | -------------------- | -------------------- |
 
 
    ==========================================================================================
@@ -220,34 +290,38 @@ Example timer output:
 
    Per-Domain Compute Throughput (local rank 0):
 
-   | ----------------------- | ------------------ | ------------------ |
-   |                  Metric |   d01              |  Total (All Ranks) |
-   | ----------------------- | ------------------ | ------------------ |
-   |               # columns | 31800              | 127.5 k            |
-   |                # levels | 50                 |                    |
-   |           # grid points | 1.590 M            | 6.375 M            |
-   |             # timesteps | 50                 |                    |
-   |        Total GP updates | 79.50 M            | 318.8 M            |
-   | ----------------------- | ------------------ | ------------------ |
-   |               Wall time | 13.36 s            |                    |
-   |                MPI time | 6.238 s            |                    |
-   |          Radiation time | 0.5452 s           |                    |
-   | ----------------------- | ------------------ | ------------------ |
-   |           Col Updates/s | 223.1 kupd/s       | 847.3 kupd/s       |
-   |  Col Updates/s (w/ MPI) | 119.0 kupd/s       | 476.8 kupd/s       |
-   |  Col Updates/s (no rad) | 241.6 kupd/s       | 957.3 kupd/s       |
-   |            GP Updates/s | 11.15 Mupd/s       | 42.37 Mupd/s       |
-   |   GP Updates/s (w/ MPI) | 5.948 Mupd/s       | 23.84 Mupd/s       |
-   |   GP Updates/s (no rad) | 12.08 Mupd/s       | 47.86 Mupd/s       |
-   | ----------------------- | ------------------ | ------------------ |
+   | ----------------------- | ------------------ | ------------------ | ------------------ | ------------------ |
+   |                  Metric |   d01              |   d02              |        All Domains |  Total (All Ranks) |
+   | ----------------------- | ------------------ | ------------------ | ------------------ | ------------------ |
+   |               # columns | 40000              | 62375              | 102.4 k            | 409.0 k            |
+   |                # levels | 81                 | 81                 |                    |                    |
+   |           # grid points | 3.240 M            | 5.052 M            | 8.292 M            | 33.13 M            |
+   |             # timesteps | 13                 | 37                 |                    |                    |
+   |    Total column updates | 520.0 k            | 2.308 M            | 2.828 M            | 11.29 M            |
+   |        Total GP updates | 42.12 M            | 186.9 M            | 229.1 M            | 914.7 M            |
+   | ----------------------- | ------------------ | ------------------ | ------------------ | ------------------ |
+   |               Wall time | 7.40 s             | 26.3 s             | 33.7 s             | 33.7 s..33.8 s     |
+   |         Comm scope time | 3.51 s             | 11.8 s             | 15.3 s             | 15.3 s..15.4 s     |
+   |          Radiation time | 0.998 s            | 2.65 s             | 3.65 s             | 3.63 s..3.66 s     |
+   | ----------------------- | ------------------ | ------------------ | ------------------ | ------------------ |
+   |           Col Updates/s | 134 kupd/s         | 159 kupd/s         | 154 kupd/s         | 613 kupd/s         |
+   | Col Updates/s (w/ Comm) | 70.3 kupd/s        | 87.7 kupd/s        | 83.8 kupd/s        | 334 kupd/s         |
+   |  Col Updates/s (no rad) | 180 kupd/s         | 194 kupd/s         | 191 kupd/s         | 764 kupd/s         |
+   |            GP Updates/s | 10.8 Mupd/s        | 12.9 Mupd/s        | 12.4 Mupd/s        | 49.7 Mupd/s        |
+   |  GP Updates/s (w/ Comm) | 5.69 Mupd/s        | 7.10 Mupd/s        | 6.79 Mupd/s        | 27.1 Mupd/s        |
+   |   GP Updates/s (no rad) | 14.6 Mupd/s        | 15.7 Mupd/s        | 15.5 Mupd/s        | 61.9 Mupd/s        |
+   | ----------------------- | ------------------ | ------------------ | ------------------ | ------------------ |
      Numerator: #columns (or #grid points) x #solve_interface calls per domain.
      Excluded from all rows: initialization, history/restart I/O, lateral-BC
        reads, FDDA, nest interp/feedback (these run outside solve_interface).
-     Base row denominator: solve_interface wall time MINUS HALO+Nesting MPI
+     Base row denominator: solve_interface wall time MINUS HALO+Nesting communication scope
        time (i.e. compute-only: dynamics + physics + pack/unpack kernels).
-     'w/ MPI' denominator: full solve_interface wall time (compute + MPI).
+     'w/ Comm' denominator: full solve_interface wall time (compute + communication scope).
      'no rad' denominator: base minus rad_driver_tim time.
-     'Total (All Ranks)' column: per-rank values summed across all MPI ranks.
+     All Domains column: active domains summed on this MPI rank.
+     Total (All Ranks) column: active domains summed across all MPI ranks.
+     Timing rows show Total as the min..max range of the All Domains value across ranks.
+     Update-rate totals sum the All Domains update rate across MPI ranks.
 
 
    ==========================================================================================
@@ -258,48 +332,46 @@ Example timer output:
    | -------------------------------- | ------------ | --------- |
    |              Name                |   Time (s)   |  Time (%) |
    | -------------------------------- | ------------ | --------- |
-   | WRF Total                        |    25.250872 |    100.00 |
-   |     Initialization               |     6.384973 |     25.29 |
-   |         Allocate                 |     0.911055 |      3.61 |
-   |         Init I/O (Read)          |     2.667613 |     10.56 |
+   | WRF Total                        |    89.908511 |    100.00 |
+   |     Initialization               |    16.031019 |     17.83 |
+   |         Allocate                 |     3.936398 |      4.38 |
+   |         Init I/O (Read)          |     9.196258 |     10.23 |
    |         Init I/O (Write)         |     0.000000 |      0.00 |
-   |         HALO/Nesting (MPI)       |     0.045031 |      0.18 |
-   |         HALO/Nesting (non-MPI)   |     0.013362 |      0.05 |
-   |         Other                    |     2.747912 |     10.88 |
-   |     Integration                  |    18.865869 |     74.71 |
-   |         I/O (Read)               |     0.211539 |      0.84 |
-   |         I/O (Write)              |     5.277924 |     20.90 |
-   |         HALO/Nesting (MPI)       |     6.238715 |     24.71 |
-   |         HALO/Nesting (non-MPI)   |     0.352421 |      1.40 |
-   |         Compute/Other            |     6.785270 |     26.87 |
-   |             Physics              |     2.746135 |     10.88 |
-   |                 LW Radiation     |     0.518591 |      2.05 |
-   |                 SW Radiation     |     0.005723 |      0.02 |
-   |                 Surface Layer    |     0.037927 |      0.15 |
-   |                 Land Surface     |     0.057163 |      0.23 |
-   |                 PBL              |     0.275263 |      1.09 |
-   |                 Cumulus          |     0.467612 |      1.85 |
-   |                 Microphysics     |     0.958975 |      3.80 |
-   |                 Physics Overhead |     0.424880 |      1.68 |
-   |             Dynamics             |     5.212110 |     20.64 |
-   |                 RK Setup         |     0.179965 |      0.71 |
-   |                 Dry Dynamics     |     0.660739 |      2.62 |
-   |                 Acoustic / Small |     1.865666 |      7.39 |
-   |                 Scalar Transport |     2.163329 |      8.57 |
-   |                 Dynamics BC/EOS  |     0.098769 |      0.39 |
-   |                 Dyn/Phys Cplng   |     0.243640 |      0.96 |
+   |         HALO/Nesting Comm Scope  |     0.925088 |      1.03 |
+   |         HALO/Nesting non-Comm    |     0.052485 |      0.06 |
+   |         Other                    |     1.920790 |      2.14 |
+   |     Integration                  |    73.877465 |     82.17 |
+   |         I/O (Read)               |     0.159091 |      0.18 |
+   |         I/O (Write)              |    36.466161 |     40.56 |
+   |         HALO/Nesting Comm Scope  |    18.487557 |     20.56 |
+   |         HALO/Nesting non-Comm    |     0.484992 |      0.54 |
+   |         Compute/Other            |    18.279663 |     20.33 |
+   |             Physics              |     6.290144 |      7.00 |
+   |                 LW Radiation     |     0.936756 |      1.04 |
+   |                 SW Radiation     |     2.679492 |      2.98 |
+   |                 Surface Layer    |     0.110301 |      0.12 |
+   |                 Land Surface     |     0.039150 |      0.04 |
+   |                 PBL              |     1.303318 |      1.45 |
+   |                 Cumulus          |     0.118034 |      0.13 |
+   |                 Microphysics     |     0.449363 |      0.50 |
+   |                 Physics Overhead |     0.653730 |      0.73 |
+   |             Dynamics             |    13.517983 |     15.04 |
+   |                 RK Setup         |     0.518204 |      0.58 |
+   |                 Dry Dynamics     |     2.284024 |      2.54 |
+   |                 Acoustic / Small |     6.485919 |      7.21 |
+   |                 Scalar Transport |     3.362443 |      3.74 |
+   |                 Dynamics BC/EOS  |     0.205207 |      0.23 |
+   |                 Dyn/Phys Cplng   |     0.662185 |      0.74 |
    |             Residual             |     0.000000 |      0.00 |
    | -------------------------------- | ------------ | --------- |
 
-   Projected overhead from timer usage:       0.01s (0.046117% of main),    277ns per call (average)
+   Projected overhead from timer usage:       0.01s (0.011544% of main),    328ns per call (average)
      MPI_WTICK() =    1.0000000000000001E-009
-
-   d01 2019-11-26_13:00:00 wrf: SUCCESS COMPLETE WRF
 
 Enable NVTX Ranges for Nsight Systems
 -------------------------------------
 
-AceCAST v4.6.0 can optionally emit NVTX ranges from the same timer infrastructure so that the
+AceCAST v4.6.1 can optionally emit NVTX ranges from the same timer infrastructure so that the
 main model phases appear directly on NVIDIA profiler timelines.
 
 To enable NVTX range emission, set both of the following environment variables before launching
@@ -470,4 +542,3 @@ References
 ..     /
 ..    ...
 ..
-
