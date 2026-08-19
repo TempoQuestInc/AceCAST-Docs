@@ -58,6 +58,8 @@ will have a version number `MAJOR.MINOR.PATCH`, which can be understood as follo
      - 4.6.0
    * - 4.6
      - 4.6.0
+   * - 4.7
+     - 4.6.0
 
 For any given version we will provide release notes and download information within its own 
 subsection on this page. 
@@ -68,6 +70,37 @@ subsection on this page.
 
 
 .. _latestlink:
+
+Version 4.7.0
+=============
+
+Downloads
+---------
+
+* AceCAST version 4.7.0 for Linux x86-64: `AceCASTv4.7.0.tar.gz <https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.7.0%2Blinux.x86_64.nvhpc25.9.tar.gz>`_
+
+Command line download:
+
+.. code-block:: shell
+
+   wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.7.0%2Blinux.x86_64.nvhpc25.9.tar.gz
+
+.. important::
+   Check out the :ref:`installationguide` for further installation instructions. For v4.7.0 and later, the runtime environment must include the NCCL libraries from the NVIDIA HPC SDK installation.
+
+Release Notes
+-------------
+
+New in v4.7.0
+*************
+
+* Added support for WRF incremental analysis updates (IAU). IAU reduces model initialization shock by applying analysis increments gradually over a specified time window. See the `WRF IAU documentation <https://www2.mmm.ucar.edu/wrf/users/workshops/WS2025/presentations/3_Liu.pdf#page=2>`_ for details.
+* AceCAST now supports an optional NCCL backend for GPU-to-GPU communication. When enabled with *ACECAST_USE_NCCL=true*, standard halo exchanges and nesting payload exchanges use NCCL GPU-to-GPU point-to-point communication instead of CUDA-aware MPI, while preserving CUDA-aware MPI as the default backend. This can improve communication performance on some systems. See :ref:`ncclbackend` for basic usage.
+
+Known Issues
+************
+
+* We have identified an issue affecting hail-diameter diagnostics when *nwp_diagnostics = 1* is enabled. When this option is enabled, the *HAIL_MAXK1* and *HAIL_MAX2D* diagnostic variables may be underestimated by about 50%.
 
 Version 4.6.1
 =============

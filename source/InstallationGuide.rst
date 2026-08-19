@@ -184,7 +184,7 @@ AceCAST requires installation of the NVIDIA HPC SDK version 25.9. You can either
 `NVHPC 25.9 Downloads`_) or you can try our quick method below:
 
 .. important::
-   AceCAST v4.6.1 uses the NVHPC SDK version 25.9. Previous versions of AceCAST required older versions of the NVHPC SDK. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST.
+   AceCAST v4.7.0 uses the NVHPC SDK version 25.9. Previous versions of AceCAST required older versions of the NVHPC SDK. Users will need to install this newer version of the NVIDIA HPC SDK with the new version of AceCAST.
 
 **NVHPC v25.9 Quick Install:**
 
@@ -204,21 +204,27 @@ AceCAST requires installation of the NVIDIA HPC SDK version 25.9. You can either
             echo '#!/bin/bash'"
             export NVARCH=\`uname -s\`_\`uname -m\`
             export NVCOMPILERS=$NVHPC_INSTALL_DIR
-            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/25.9/compilers/man
-            export PATH=\$NVCOMPILERS/\$NVARCH/25.9/compilers/bin:\$PATH
-            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/25.9/compilers/lib:\$LD_LIBRARY_PATH
-            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/25.9/cuda/12.9/lib64:\$LD_LIBRARY_PATH
-            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/25.9/math_libs/12.9/lib64:\$LD_LIBRARY_PATH
+            export NVHPC_REL_VER=25.9
+            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/\${NVHPC_REL_VER}/compilers/man
+            export PATH=\$NVCOMPILERS/\$NVARCH/\${NVHPC_REL_VER}/compilers/bin:\$PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/\${NVHPC_REL_VER}/compilers/lib:\$LD_LIBRARY_PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/\${NVHPC_REL_VER}/cuda/12.9/lib64:\$LD_LIBRARY_PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/\${NVHPC_REL_VER}/math_libs/12.9/lib64:\$LD_LIBRARY_PATH
 
-            export PATH=\$NVCOMPILERS/\$NVARCH/25.9/comm_libs/hpcx/bin:\$PATH
-            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/25.9/comm_libs/hpcx/lib:\$LD_LIBRARY_PATH
-            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/25.9/comm_libs/hpcx/man
+            export PATH=\$NVCOMPILERS/\$NVARCH/\${NVHPC_REL_VER}/comm_libs/hpcx/bin:\$PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/\${NVHPC_REL_VER}/comm_libs/hpcx/lib:\$LD_LIBRARY_PATH
+            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/\${NVHPC_REL_VER}/comm_libs/hpcx/man
+
+            export NCCL=\$NVCOMPILERS/\$NVARCH/\${NVHPC_REL_VER}/comm_libs/nccl
+            export PATH=\$NVCOMPILERS/\$NVARCH/\${NVHPC_REL_VER}/comm_libs/nccl/bin:\$PATH
+            export LD_LIBRARY_PATH=\$NVCOMPILERS/\$NVARCH/\${NVHPC_REL_VER}/comm_libs/nccl/lib:\$LD_LIBRARY_PATH
+            export MANPATH=\$MANPATH:\$NVCOMPILERS/\$NVARCH/\${NVHPC_REL_VER}/comm_libs/nccl/man
 
             ulimit -s unlimited
             " > $NVHPC_INSTALL_DIR/acecast_env.sh
 
         .. note::
-            This step can take a while depending on your internet speeds. The installation itself typically 
+            This step can take a while depending on your internet speeds. The installation itself typically
             takes 10 minutes.
 
 .. _environmentsetup:
@@ -240,21 +246,21 @@ Installing AceCAST
 Download AceCAST Distribution Package
 -------------------------------------
 
-To install AceCAST itself, navigate to the :ref:`latestlink` and copy the download url for 
-AceCAST. You can then download and unpack the distribution using the *wget* and *tar* commands as 
+To install AceCAST itself, navigate to the :ref:`latestlink` and copy the download url for
+AceCAST. You can then download and unpack the distribution using the *wget* and *tar* commands as
 follows:
 
 .. code-block:: shell
 
-    wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.6.1%2Blinux.x86_64.nvhpc25.9.tar.gz
-    tar -xf acecast-v4.6.1+linux.x86_64.nvhpc25.9.tar.gz
+    wget https://tqi-public.s3.us-east-2.amazonaws.com/distros/acecast-v4.7.0%2Blinux.x86_64.nvhpc25.9.tar.gz
+    tar -xf acecast-v4.7.0+linux.x86_64.nvhpc25.9.tar.gz
 
-If successful you should see a new directory *acecast-v4.6.1*. The directory structure should look 
+If successful you should see a new directory *acecast-v4.7.0*. The directory structure should look
 like the following:
 
 .. code-block:: output
 
-    acecast-v4.6.1
+    acecast-v4.7.0
     ├── acecast
     │   └── run
     │       ├── acecast.exe
@@ -271,16 +277,16 @@ like the following:
         └─── ungrib.exe
 
 .. note::
-   You should see more files/directories than what is shown here. We are only showing a subset here 
+   You should see more files/directories than what is shown here. We are only showing a subset here
    to give users a sense of the package contents.
 
-Notice that we have added UPP and WPS packages for your convenience since they are frequently used 
+Notice that we have added UPP and WPS packages for your convenience since they are frequently used
 within AceCAST/WRF workflows.
 
 Verify Runtime Environment
 --------------------------
 
-One quick way to verify that you have installed and set up your environment correctly in the 
+One quick way to verify that you have installed and set up your environment correctly in the
 previous steps is to print the shared libraries used by the *acecast.exe* executable with the
 *ldd* command.
 
@@ -289,11 +295,11 @@ previous steps is to print the shared libraries used by the *acecast.exe* execut
     .. tab:: command
 
         .. code-block:: shell
-            
-            ldd acecast-v4.6.1/acecast/run/acecast.exe
+
+            ldd acecast-v4.7.0/acecast/run/acecast.exe
 
     .. tab:: successful output example
-        
+
         .. code-block:: output
             :emphasize-lines: 9
 
@@ -331,12 +337,12 @@ previous steps is to print the shared libraries used by the *acecast.exe* execut
             libnvcpumath.so => /home/samm.tempoquest/nvhpc/Linux_x86_64/25.9/compilers/lib/libnvcpumath.so (0x00007f048717e000)
 
 
-        As you can see above all of the required libraries were found and are in the expected 
-        locations (for example notice the the mpi library libmpi.so.40 was found within the 
+        As you can see above all of the required libraries were found and are in the expected
+        locations (for example notice the the mpi library libmpi.so.40 was found within the
         OpenMPI installation of the NVIDIA HPC SDK).
 
     .. tab:: problematic output example
-        
+
         .. code-block:: output
             :emphasize-lines: 6,7,8,9
 
@@ -356,16 +362,14 @@ previous steps is to print the shared libraries used by the *acecast.exe* execut
             /lib64/ld-linux-x86-64.so.2 (0x000015555532b000)
             libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x0000155553bf2000)
 
-        Notice here that the various required MPI libraries (*libmpi.so.40, libmpi_mpifh.so.40, 
-        etc.*) were not found. In this case either the NVIDIA HPC SDK was not installed correctly, 
-        or the environment was not set up correctly (i.e. the *acecast_env.sh* script was not 
+        Notice here that the various required MPI libraries (*libmpi.so.40, libmpi_mpifh.so.40,
+        etc.*) were not found. In this case either the NVIDIA HPC SDK was not installed correctly,
+        or the environment was not set up correctly (i.e. the *acecast_env.sh* script was not
         created or not sourced).
 
 .. note::
    The *ldd* command doesn't guarantee that AceCAST will run correctly but it can be extremely
    helpful in identifying a number of common issues that users run into regularly.
-
-
 
 
 

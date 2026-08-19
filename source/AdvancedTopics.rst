@@ -55,6 +55,39 @@ by launching the `acecast.exe` executable with `mpirun` and the `gpu-launch.sh` 
 
             mpirun -np 3 ./gpu-launch.sh --gpu-list 0,1,3 ./acecast.exe
 
+.. _ncclbackend:
+
+NCCL GPU Communication Backend
+==============================
+
+AceCAST uses CUDA-aware MPI for GPU-to-GPU communication by default. Starting with v4.7.0,
+AceCAST can optionally use NCCL point-to-point communication for standard halo exchanges and
+nesting payload exchanges.
+
+To enable the NCCL backend, source the AceCAST environment setup script described in
+:ref:`environmentsetup`, then export the following variable before launching AceCAST:
+
+.. code-block:: shell
+
+   export ACECAST_USE_NCCL=true
+
+Using NCCL can improve communication performance on some systems, especially for multi-GPU runs
+where halo or nesting exchanges are a significant part of runtime. CUDA-aware MPI remains the
+default backend, so this option can be enabled selectively when benchmarking a new system.
+
+Launch AceCAST with the same MPI and GPU launch workflow used for the default backend:
+
+.. code-block:: shell
+
+   mpirun -np 4 ./gpu-launch.sh ./acecast.exe
+
+For v4.7.0 and later, the AceCAST environment setup script must include the NCCL paths from the
+NVIDIA HPC SDK installation. The quick-install script in :ref:`nvhpc_install` configures these
+paths automatically. If you maintain your own environment module or setup script, make sure the
+NCCL ``bin``, ``lib``, and ``man`` directories under
+``$NVCOMPILERS/$NVARCH/$NVHPC_REL_VER/comm_libs/nccl`` are added consistently with the rest of
+the NVIDIA HPC SDK environment.
+
 .. _performanceprofiling:
 
 Performance Profiling
@@ -371,7 +404,7 @@ Example timer output:
 Enable NVTX Ranges for Nsight Systems
 -------------------------------------
 
-AceCAST v4.6.1 can optionally emit NVTX ranges from the same timer infrastructure so that the
+AceCAST v4.6.1 and later can optionally emit NVTX ranges from the same timer infrastructure so that the
 main model phases appear directly on NVIDIA profiler timelines.
 
 To enable NVTX range emission, set both of the following environment variables before launching
