@@ -59,6 +59,14 @@ Technical
 
    * A: Send us an :ref:`email, we would be happy to renew it for you! <supportlink>`
 
+#. Q: I am moving from an older AceCAST release that used a Reprise RLM license, and my license does not work with AceCAST 4.7.1. What do I do?
+
+   * A: AceCAST 4.7.1 uses TempoQuest AceCAST licenses. It does not accept Reprise RLM license files and does not read the *RLM_LICENSE* environment variable. Request a TempoQuest AceCAST license (see :ref:`licenserequests`) and point the *ACECAST_LICENSE* environment variable to it. See :ref:`licensemigration` for details.
+
+#. Q: How can I check my TempoQuest license before I start a job?
+
+   * A: Run the program *acecast-license-check --ranks N*, found in the *acecast/run* directory of the AceCAST package, in the same environment and run directory as your job, where N is the number of MPI ranks (normally GPUs) your run will use. This checks an offline license. For an online license run *acecast-license-check --ranks N --online*; this counts as a run with the license service (recorded, and billed where usage is metered). See :ref:`tqlicensecheck`.
+
 #. Q: WRF has many "submodels" which one's are supported by AceCAST?
 
    * A: Currently, TempoQuest only supports WRF-ARW, however we have plans to port WRF-DA and WRF-Chem to GPU's in the future. If you are interested in this please reach out to us and we can prioritize the porting.

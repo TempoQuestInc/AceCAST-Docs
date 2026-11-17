@@ -71,6 +71,52 @@ subsection on this page.
 
 .. _latestlink:
 
+Version 4.7.1
+=============
+
+Downloads
+---------
+
+* AceCAST version 4.7.1 for Linux x86-64: `acecast-v4.7.1+linux.x86_64.nvhpc25.9+acelic.tar.gz`. This package is not on a public download link. TempoQuest sends you a secure download link and, separately, your license (see :ref:`licenserequests`).
+
+.. important::
+   Check out the :ref:`installationguide` for further installation instructions. As for v4.7.0, the runtime environment must include the NCCL libraries from the NVIDIA HPC SDK installation.
+
+Release Notes
+-------------
+
+New in v4.7.1
+*************
+
+* AceCAST v4.7.1 is a patch release for the 4.7.x series. It includes all v4.7.0 features plus the incremental analysis update (IAU) fixes below.
+* AceCAST 4.7.1 uses the TempoQuest license system in place of Reprise RLM (see :ref:`release471license`).
+
+Improvements and Bug Fixes
+**************************
+
+* IAU timing: the IAU window now starts at the analysis time of the increment file and is measured in model time, rather than being counted in time steps from the first time step of the run. Each time step applies the part of the increment that falls inside the window, based on the actual length of the time step, so the full increment is applied over *iau_time_window_sec* also when the window is not a whole number of time steps or when the time step changes during the run (for example with adaptive time stepping).
+* IAU increment files that do not contain the *TIME_IAU* field, such as files written by older versions of WRF, remain supported: for these files the time of the increment record is used as the analysis time.
+* When IAU is enabled (*iau > 0*), AceCAST now stops with an "IAU timing error" message if the analysis time is missing or invalid or if *iau_time_window_sec* is not positive.
+* When IAU is enabled, the rsl log files now contain lines with *WRF_IAU_TIMING_V3* that mark the start and the end of the IAU window on each domain.
+
+.. _release471license:
+
+Licensing in v4.7.1
+*******************
+
+* **Package:** `acecast-v4.7.1+linux.x86_64.nvhpc25.9+acelic.tar.gz` (Linux x86-64). It unpacks to `acecast-v4.7.1/`. The top directory also contains a `BUILD_MANIFEST.txt` file that records how the package was built.
+* **Download:** the package is not on a public download link. TempoQuest sends you a secure download link and, separately, your license.
+* **License:** AceCAST 4.7.1 needs a TempoQuest AceCAST license. Reprise RLM license files do not work with it, and the *RLM_LICENSE* environment variable is no longer read.
+* **Job scripts:** replace `export RLM_LICENSE=...` with `export ACECAST_LICENSE=/path/to/acecast.lic`. AceCAST also finds a license file named `acecast.lic` in the run directory. See :ref:`licensemigration` for the steps and :ref:`tqlicense` for all of the options.
+* **License agent:** keep the file `acecast/run/acecast-license-agent` in the same directory as *acecast.exe*, or set *ACECAST_LICENSE_AGENT* to its path. AceCAST uses it to contact the TempoQuest license service when you have an online license; the machine that runs MPI rank 0 then needs outbound HTTPS access to the license service (see :ref:`tqonline`). Offline licenses need no network access.
+* **New tools:** `acecast/run/acecast-hostid` prints the host identifiers of a machine, which TempoQuest needs to issue a license tied to that machine (see :ref:`tqhostids`). `acecast/run/acecast-license-check` checks the license before you start a job (see :ref:`tqlicensecheck`).
+* **License terms:** a standard offline license file is accepted for at most 460 days from its issue date when it is tied to a machine, and for at most 14 days when it is not, grace period included (see :ref:`tqlicenseterm`).
+
+Known Issues
+************
+
+* We have identified an issue affecting hail-diameter diagnostics when *nwp_diagnostics = 1* is enabled. When this option is enabled, the *HAIL_MAXK1* and *HAIL_MAX2D* diagnostic variables may be underestimated by about 50%.
+
 Version 4.7.0
 =============
 

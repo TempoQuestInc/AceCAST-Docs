@@ -113,7 +113,7 @@ or run *docker run --help* from the command line.
 Users are free to use containers to run AceCAST in whatever way they see fit. Note that you can use the host OS
 to manage your inputs/outputs and use a container simply to run acecast itself. In this example we have already
 downloaded the :ref:`Easter500 <Benchmarks>` test case data into the *inputs/* subdirectory. 
-We also assume that you have set the RLM_LICENSE environment variable to point to your license file. This current directory will be mounted inside the container using the *-v* option to the *docker run*
+We also assume that you have set the RLM_LICENSE environment variable to point to your license file (the container images on DockerHub are older AceCAST releases that used Reprise RLM licensing, which is discontinued; see :ref:`legacyrlm`). This current directory will be mounted inside the container using the *-v* option to the *docker run*
 command so all of the files you see here will be available inside the container when it is running.
 
 ::
